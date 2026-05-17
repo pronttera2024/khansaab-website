@@ -5,6 +5,70 @@ import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 import { ContactStrip, ProductCard } from './ProductsPage.jsx'
 
+function imgSeed(label) {
+  const s = String(label || 'khansaab')
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  return h % 1000
+}
+
+function MagnifyImage({ label, zoom = 2.5, lensSize = 220, aspectRatio = '3/4', children }) {
+  const containerRef = useRef(null)
+  const lensRef = useRef(null)
+  const [active, setActive] = useState(false)
+  const seed = imgSeed(label)
+  const hiResUrl = `https://picsum.photos/seed/khansaab-${seed}/1600/2000`
+
+  const handleMove = (e) => {
+    const el = containerRef.current
+    const lens = lensRef.current
+    if (!el || !lens) return
+    const rect = el.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+      setActive(false)
+      return
+    }
+    const half = lensSize / 2
+    const bgW = rect.width * zoom
+    const bgH = rect.height * zoom
+    lens.style.left = `${x - half}px`
+    lens.style.top = `${y - half}px`
+    lens.style.backgroundSize = `${bgW}px ${bgH}px`
+    lens.style.backgroundPosition = `${-(x * zoom - half)}px ${-(y * zoom - half)}px`
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onMouseMove={handleMove}
+      style={{ position: 'relative', aspectRatio, width: '100%', cursor: active ? 'crosshair' : 'zoom-in', overflow: 'hidden' }}
+    >
+      <Img label={label} style={{ aspectRatio, width: '100%', height: '100%' }}/>
+      {children}
+      <div
+        ref={lensRef}
+        aria-hidden
+        style={{
+          position: 'absolute', pointerEvents: 'none', left: 0, top: 0,
+          width: lensSize, height: lensSize, borderRadius: '50%',
+          border: '2px solid var(--gold)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.6) inset',
+          backgroundImage: `url(${hiResUrl})`,
+          backgroundRepeat: 'no-repeat',
+          opacity: active ? 1 : 0,
+          transform: active ? 'scale(1)' : 'scale(0.6)',
+          transition: 'opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out)',
+          willChange: 'left, top, background-position',
+        }}
+      />
+    </div>
+  )
+}
+
 const PRODUCT = {
   name: 'The Ivory Sovereign Thobe',
   arabic: 'الثوب الملكي',
@@ -158,17 +222,16 @@ export default function ProductDetailPage() {
               ))}
             </div>
             <div style={{ position: 'sticky', top: 110, alignSelf: 'start' }}>
-              <div style={{ position: 'relative' }}>
-                <Img label={PRODUCT.gallery[activeImg]} style={{ aspectRatio: '3/4', width: '100%' }}/>
-                {PRODUCT.tag && <div style={{ position: 'absolute', top: 16, left: 16, background: 'var(--ink)', color: 'var(--ivory)', padding: '8px 14px', fontSize: 10, letterSpacing: '0.22em', fontWeight: 600 }}>{PRODUCT.tag}</div>}
-                <button style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16 }}>♡</button>
-                <div style={{ position: 'absolute', bottom: 16, right: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)' }}>
+              <MagnifyImage label={PRODUCT.gallery[activeImg]} aspectRatio="3/4">
+                {PRODUCT.tag && <div style={{ position: 'absolute', top: 16, left: 16, background: 'var(--ink)', color: 'var(--ivory)', padding: '8px 14px', fontSize: 10, letterSpacing: '0.22em', fontWeight: 600, zIndex: 2, pointerEvents: 'none' }}>{PRODUCT.tag}</div>}
+                <button onClick={(e) => e.stopPropagation()} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16, zIndex: 2 }}>♡</button>
+                <div style={{ position: 'absolute', bottom: 16, right: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)', zIndex: 2, pointerEvents: 'none' }}>
                   {String(activeImg + 1).padStart(2, '0')} / {String(PRODUCT.gallery.length).padStart(2, '0')}
                 </div>
-                <div style={{ position: 'absolute', bottom: 16, left: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)' }}>
-                  ⊕ HOVER TO ZOOM
+                <div style={{ position: 'absolute', bottom: 16, left: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)', zIndex: 2, pointerEvents: 'none' }}>
+                  ⊕ MOVE TO ZOOM
                 </div>
-              </div>
+              </MagnifyImage>
             </div>
           </div>
         )}

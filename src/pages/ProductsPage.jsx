@@ -6,18 +6,18 @@ import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 
 const ALL_PRODUCTS = [
-  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive' },
-  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday' },
-  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business' },
-  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive' },
-  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding' },
-  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive' },
-  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday' },
-  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive' },
-  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding' },
+  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/assets/thobe_ivory.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/assets/hero_1.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/assets/bisht_black.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/assets/jubba_emerald.png' },
+  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/assets/ref_5.jpg' },
+  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/assets/reel_6.png' },
+  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/assets/kandura_white.png' },
+  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/assets/ref_4.jpg' },
+  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/assets/ref_3.jpg' },
+  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/assets/ref_2.jpg' },
+  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/assets/reel_4.png' },
+  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/assets/ref_1.jpg' },
 ]
 
 function FilterGroup({ title, options, value, onChange }) {
@@ -59,7 +59,7 @@ function ProductCard({ p, view, compact }) {
         border: '1px solid rgba(10,9,8,0.06)',
       }}>
         <div style={{ position: 'relative', aspectRatio: '4/5', background: 'var(--bone)' }}>
-          <Img label={p.name.toUpperCase()} style={{ height: '100%' }}/>
+          <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%' }}/>
           {p.tag && (
             <div style={{ position: 'absolute', top: 8, left: 8, background: 'var(--ink)', color: 'var(--ivory)', padding: '3px 7px', fontSize: 8, letterSpacing: '0.16em', fontWeight: 700, borderRadius: 3 }}>
               {p.tag}
@@ -113,7 +113,7 @@ function ProductCard({ p, view, compact }) {
     return (
       <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => go('product')}
         style={{ display: 'grid', gridTemplateColumns: '240px 1fr auto', gap: 32, padding: 20, border: '1px solid rgba(10,9,8,0.08)', background: 'var(--paper)', cursor: 'pointer', transition: 'all 0.4s' }}>
-        <Img label={p.name.toUpperCase()} style={{ aspectRatio: '3/4' }}/>
+        <Img src={p.src} label={p.name.toUpperCase()} style={{ aspectRatio: '3/4' }}/>
         <div style={{ paddingTop: 12 }}>
           {p.tag && <span style={{ fontSize: 9, letterSpacing: '0.2em', fontWeight: 600, color: 'var(--emerald)', marginBottom: 8, display: 'inline-block' }}>{p.tag}</span>}
           <h3 className="display" style={{ fontSize: 28, marginBottom: 8 }}>{p.name}</h3>
@@ -133,8 +133,8 @@ function ProductCard({ p, view, compact }) {
   return (
     <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => go('product')} style={{ cursor: 'pointer', position: 'relative' }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: compact ? 10 : 20 }}>
-        <Img label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)', opacity: hov && !compact ? 0 : 1 }}/>
-        {!compact && <Img variant="dark" label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
+        <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)', opacity: hov && !compact ? 0 : 1 }}/>
+        {!compact && <Img variant="dark" src={p.src} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
         {p.tag && <div style={{ position: 'absolute', top: compact ? 8 : 14, left: compact ? 8 : 14, background: 'var(--ink)', color: 'var(--ivory)', padding: compact ? '3px 7px' : '5px 10px', fontSize: compact ? 8 : 9, letterSpacing: '0.18em', fontWeight: 600 }}>{p.tag}</div>}
         {!compact && <button style={{ position: 'absolute', top: 14, right: 14, width: 34, height: 34, borderRadius: '50%', background: 'rgba(245,239,227,0.92)' }}>♡</button>}
       </div>

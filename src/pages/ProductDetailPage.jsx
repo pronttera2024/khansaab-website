@@ -12,12 +12,12 @@ function imgSeed(label) {
   return h % 1000
 }
 
-function MagnifyImage({ label, zoom = 2.5, lensSize = 220, aspectRatio = '3/4', children }) {
+function MagnifyImage({ label, src, zoom = 2.5, lensSize = 220, aspectRatio = '3/4', children }) {
   const containerRef = useRef(null)
   const lensRef = useRef(null)
   const [active, setActive] = useState(false)
   const seed = imgSeed(label)
-  const hiResUrl = `https://picsum.photos/seed/khansaab-${seed}/1600/2000`
+  const hiResUrl = src || `https://picsum.photos/seed/khansaab-${seed}/1600/2000`
 
   const handleMove = (e) => {
     const el = containerRef.current
@@ -47,7 +47,7 @@ function MagnifyImage({ label, zoom = 2.5, lensSize = 220, aspectRatio = '3/4', 
       onMouseMove={handleMove}
       style={{ position: 'relative', aspectRatio, width: '100%', cursor: active ? 'crosshair' : 'zoom-in', overflow: 'hidden' }}
     >
-      <Img label={label} style={{ aspectRatio, width: '100%', height: '100%' }}/>
+      <Img label={label} src={src} style={{ aspectRatio, width: '100%', height: '100%' }}/>
       {children}
       <div
         ref={lensRef}
@@ -89,9 +89,11 @@ const PRODUCT = {
     { name: 'Sand', hex: '#D4C2A1' }, { name: 'Stone', hex: '#9A8B6F' },
   ],
   gallery: [
-    'IVORY SOVEREIGN · FRONT FULL', 'IVORY SOVEREIGN · COLLAR DETAIL',
-    'IVORY SOVEREIGN · CUFF + TARBOOSH', 'IVORY SOVEREIGN · BACK · STUDIO',
-    'IVORY SOVEREIGN · WORN · OUTDOOR',
+    { label: 'IVORY SOVEREIGN · FRONT FULL', src: '/assets/thobe_ivory.png' },
+    { label: 'IVORY SOVEREIGN · COLLAR DETAIL', src: '/assets/about_2.png' },
+    { label: 'IVORY SOVEREIGN · CUFF + TARBOOSH', src: '/assets/reel_1.png' },
+    { label: 'IVORY SOVEREIGN · BACK · STUDIO', src: '/assets/ref_1.jpg' },
+    { label: 'IVORY SOVEREIGN · WORN · OUTDOOR', src: '/assets/about_3.png' },
   ],
   features: [
     { i: '✦', t: 'Quartet collar', d: 'Four-piece tailored collar with mother-of-pearl tarboosh.' },
@@ -146,7 +148,7 @@ function MobileGallery({ images, tag, active, setActive }) {
       >
         {images.map((g, i) => (
           <div key={i} style={{ flex: '0 0 100%', scrollSnapAlign: 'center', aspectRatio: '3/4' }}>
-            <Img label={g} style={{ width: '100%', height: '100%' }}/>
+            <Img label={g.label} src={g.src} style={{ width: '100%', height: '100%' }}/>
           </div>
         ))}
       </div>
@@ -217,12 +219,12 @@ export default function ProductDetailPage() {
             <div data-thumb-rail style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {PRODUCT.gallery.map((g, i) => (
                 <button key={i} onClick={() => setActiveImg(i)} style={{ aspectRatio: '3/4', border: i === activeImg ? '1px solid var(--ink)' : '1px solid transparent', padding: 3, opacity: i === activeImg ? 1 : 0.6, transition: 'all 0.3s' }}>
-                  <Img label={`${String(i + 1).padStart(2, '0')}`} style={{ height: '100%', width: '100%' }}/>
+                  <Img label={`${String(i + 1).padStart(2, '0')}`} src={g.src} style={{ height: '100%', width: '100%' }}/>
                 </button>
               ))}
             </div>
             <div style={{ position: 'sticky', top: 110, alignSelf: 'start' }}>
-              <MagnifyImage label={PRODUCT.gallery[activeImg]} aspectRatio="3/4">
+              <MagnifyImage label={PRODUCT.gallery[activeImg].label} src={PRODUCT.gallery[activeImg].src} aspectRatio="3/4">
                 {PRODUCT.tag && <div style={{ position: 'absolute', top: 16, left: 16, background: 'var(--ink)', color: 'var(--ivory)', padding: '8px 14px', fontSize: 10, letterSpacing: '0.22em', fontWeight: 600, zIndex: 2, pointerEvents: 'none' }}>{PRODUCT.tag}</div>}
                 <button onClick={(e) => e.stopPropagation()} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16, zIndex: 2 }}>♡</button>
                 <div style={{ position: 'absolute', bottom: 16, right: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)', zIndex: 2, pointerEvents: 'none' }}>
@@ -377,13 +379,13 @@ export default function ProductDetailPage() {
           </header>
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isPhone ? 18 : 24 }}>
             {[
-              { d: 'Day 01', t: 'Pattern', body: 'A paper pattern is cut to your measurements.' },
-              { d: 'Day 02-04', t: 'Cloth', body: 'Heavyweight cotton is laid, marked and cut by hand.' },
-              { d: 'Day 05-11', t: 'Stitch', body: '60 stitches per cm. By a single artisan.' },
-              { d: 'Day 12-14', t: 'Finish', body: 'Pressed, packed and signed on the inner placket.' },
+              { d: 'Day 01', t: 'Pattern', body: 'A paper pattern is cut to your measurements.', src: '/assets/reel_6.png' },
+              { d: 'Day 02-04', t: 'Cloth', body: 'Heavyweight cotton is laid, marked and cut by hand.', src: '/assets/about_1.png' },
+              { d: 'Day 05-11', t: 'Stitch', body: '60 stitches per cm. By a single artisan.', src: '/assets/reel_1.png' },
+              { d: 'Day 12-14', t: 'Finish', body: 'Pressed, packed and signed on the inner placket.', src: '/assets/reel_7.png' },
             ].map((s, i) => (
               <div key={i}>
-                <Img label={`STEP ${i + 1}`} style={{ aspectRatio: '16/9', marginBottom: 14 }}/>
+                <Img label={`STEP ${i + 1}`} src={s.src} style={{ aspectRatio: '16/9', marginBottom: 14 }}/>
                 <p className="mono" style={{ color: 'var(--gold-warm)', marginBottom: 6, fontSize: isPhone ? 10 : 11 }}>{s.d}</p>
                 <h3 className="display" style={{ fontSize: isPhone ? 20 : 26, marginBottom: 6 }}>{s.t}</h3>
                 <p style={{ fontSize: 13, opacity: 0.7, lineHeight: 1.55 }}>{s.body}</p>
@@ -487,10 +489,10 @@ export default function ProductDetailPage() {
           </header>
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isPhone ? 12 : 24 }}>
             {[
-              { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK" },
-              { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER' },
-              { name: 'White Yemeni Shemagh', arabic: 'شماغ يمني', cat: 'accessories', fabric: 'cotton', price: 240 },
-              { name: 'Amber Misbaha Set', arabic: 'مسبحة عنبر', cat: 'accessories', fabric: 'amber', price: 380, old: 440, tag: 'NEW' },
+              { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", src: '/assets/hero_1.png' },
+              { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', src: '/assets/bisht_black.png' },
+              { name: 'White Yemeni Shemagh', arabic: 'شماغ يمني', cat: 'accessories', fabric: 'cotton', price: 240, src: '/assets/shemagh.png' },
+              { name: 'Amber Misbaha Set', arabic: 'مسبحة عنبر', cat: 'accessories', fabric: 'amber', price: 380, old: 440, tag: 'NEW', src: '/assets/accessories.png' },
             ].map((p, i) => (
               <ProductCard key={i} p={p} view="grid" compact={isPhone}/>
             ))}

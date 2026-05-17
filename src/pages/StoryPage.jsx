@@ -96,42 +96,49 @@ const TIMELINE_EVENTS = [
     title: "The first stitch",
     desc: "Khan opens a sewing room behind the Dubai gold souk with two needles and a kerosene lamp.",
     img: "1972 · WORKSHOP",
+    src: "/assets/reel_1.png"
   },
   {
     year: "1988",
     title: "Beyond the Emirates",
     desc: "Waiting list extends to Riyadh, Doha and Kuwait City. Six tailors are hired.",
     img: "1988 · APPOINTMENT BOOK",
+    src: "/assets/about_1.png"
   },
   {
     year: "1995",
     title: "Second generation",
     desc: "Saif's father, Rashid, takes the bench. The atelier moves to Al Wasl Road.",
     img: "1995 · RASHID KHAN",
+    src: "/assets/ref_2.jpg"
   },
   {
     year: "2003",
     title: "The Bisht Room",
     desc: "A dedicated atelier for ceremonial cloaks opens — 24k gold-thread embroidery a specialty.",
     img: "2003 · BISHT ROOM",
+    src: "/assets/reel_7.png"
   },
   {
     year: "2014",
     title: "KhanSaab is born",
     desc: "Saif joins. The house is formally named KhanSaab and begins serving international clientele.",
     img: "2014 · SAIF KHAN",
+    src: "/assets/reel_6.png"
   },
   {
     year: "2019",
     title: "Diplomatic",
     desc: "The Diplomatic line launches — crease-resistant travel thobes worn from Geneva to Tokyo.",
     img: "2019 · DIPLOMATIC LINE",
+    src: "/assets/ref_5.jpg"
   },
   {
     year: "2026",
     title: "Forty hands, one craft",
     desc: "Today: 40 artisans, 47 countries shipped, 12,400+ five-star reviews — and the same shears.",
     img: "2026 · THE ATELIER",
+    src: "/assets/about_1.png"
   },
 ];
 
@@ -205,7 +212,7 @@ function MobileTimelineItem({ e, i, total }) {
           overflow: "hidden",
         }}
       >
-        <Img variant="dark" label={e.img} style={{ height: "100%" }} />
+        <Img variant="dark" label={e.img} src={e.src} style={{ height: "100%" }} />
         <div
           style={{
             position: "absolute",
@@ -556,6 +563,7 @@ function Timeline() {
                 <Img
                   variant="dark"
                   label={e.img}
+                  src={e.src}
                   style={{ aspectRatio: "4/5" }}
                 />
                 <div
@@ -591,6 +599,7 @@ const TEAM = [
     since: "2014",
     quote:
       "A garment is a thirty-year conversation between a man and his cloth.",
+    src: "/assets/hero_1.png"
   },
   {
     name: "Rashid Khan",
@@ -598,6 +607,7 @@ const TEAM = [
     arabic: "راشد خان",
     since: "1995",
     quote: "We make heritage. The seasons are someone else's problem.",
+    src: "/assets/ref_1.jpg"
   },
   {
     name: "Aisha Al-Nuaimi",
@@ -605,6 +615,7 @@ const TEAM = [
     arabic: "عائشة النعيمي",
     since: "2018",
     quote: "Tradition is not what we preserve. It is what we choose to extend.",
+    src: "/assets/about_3.png"
   },
   {
     name: "Tariq Mansouri",
@@ -613,6 +624,7 @@ const TEAM = [
     since: "2003",
     quote:
       "A bisht should weigh on the shoulders the way honour does — gently, firmly.",
+    src: "/assets/reel_4.png"
   },
 ];
 
@@ -637,6 +649,7 @@ function TeamCard({ member }) {
         <Img
           variant="dark"
           label={`PORTRAIT · ${member.name.toUpperCase()}`}
+          src={member.src}
           style={{
             height: "100%",
             transform: hov ? "scale(1.05)" : "scale(1)",
@@ -825,6 +838,7 @@ function Team() {
       >
         <Img
           label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · DUBAI 2026"
+          src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
         <div
@@ -967,6 +981,7 @@ export default function StoryPage() {
         <Img
           variant="dark"
           label="DUBAI · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
+          src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
         {isPhone ? (
@@ -1153,6 +1168,7 @@ export default function StoryPage() {
         >
           <Img
             label="HAND CUTTING · CHALK MARKS · POPLIN"
+            src="/assets/about_1.png"
             style={{ height: "100%" }}
           />
           {isPhone && (
@@ -1199,6 +1215,7 @@ export default function StoryPage() {
           <Img
             variant="dark"
             label="GOLD THREAD EMBROIDERY · COLLAR DETAIL · MACRO"
+            src="/assets/about_2.png"
             style={{ height: "100%" }}
           />
           {isPhone && (

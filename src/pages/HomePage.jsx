@@ -6,7 +6,6 @@ import Img from '../components/shared/Img.jsx'
 import { Ornament } from '../components/shared/Ornament.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 
-/* ---- Hero carousel data ---- */
 const HERO_SLIDES = [
   {
     arabic: 'مجموعة الإمارات الخالدة',
@@ -15,7 +14,7 @@ const HERO_SLIDES = [
     titleBot: 'Made for', titleBotAccent: 'you.',
     body: 'Hand-stitched thobes, kanduras and bishts of uncommon quality — cut from the finest Japanese cottons and Italian wools, finished in our Dubai atelier.',
     cta1: 'Shop the Collection', cta2: 'Book Made-to-Measure',
-    image: '/assets/ref_1.jpg',
+    image: '/assets/hero_1.png',
     label: 'MODEL · WHITE EMIRATI KANDURA · GHUTRA',
     bg: 'linear-gradient(180deg, #2a2520 0%, #0a0908 70%)',
     chapter: 'Eternal Emirates', season: 'Spring · 2026',
@@ -27,7 +26,7 @@ const HERO_SLIDES = [
     titleBot: 'A garment of', titleBotAccent: 'a lifetime.',
     body: 'Hand-woven camel-wool bishts with bullion embroidery. Four months on the loom, three weeks at the bench, one wedding morning to remember.',
     cta1: 'Shop the Bishts', cta2: 'Bespoke Consultation',
-    image: '/assets/ref_4.jpg',
+    image: '/assets/bisht_black.png',
     label: 'GROOM · OBSIDIAN BISHT · STAIRCASE',
     bg: 'linear-gradient(180deg, #0F3B2E 0%, #082019 100%)',
     chapter: 'The Ceremonial', season: 'Year-round',
@@ -39,7 +38,7 @@ const HERO_SLIDES = [
     titleBot: 'London &', titleBotAccent: 'Geneva.',
     body: 'Crease-resistant Japanese cotton in our signature cuts — designed to leave a 14-hour cabin looking like the first morning of a fitting.',
     cta1: 'Shop Diplomatic', cta2: 'Find Your Cut',
-    image: '/assets/ref_2.jpg',
+    image: '/assets/reel_6.png',
     label: 'EXECUTIVE · CHARCOAL THOBE · LOUNGE',
     bg: 'linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)',
     chapter: 'Diplomatic', season: 'Permanent',
@@ -51,7 +50,7 @@ const HERO_SLIDES = [
     titleBot: 'unforgettable', titleBotAccent: 'morning.',
     body: 'From the groom\'s bisht to the entire wedding party — our atelier handles every measurement, every embroidery and every garment delivery in one heirloom box.',
     cta1: 'Book Wedding Consult', cta2: 'See the Look Book',
-    image: '/assets/ref_3.jpg',
+    image: '/assets/reel_4.png',
     label: 'GROOM · GOLD BISHT · COURTYARD',
     bg: 'linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)',
     chapter: 'The Wedding', season: 'By appointment',
@@ -255,17 +254,17 @@ function HorizontalAbout() {
     {
       no: 'I', arabic: 'من نحن', title: 'Who we are', kicker: 'A house of master tailors',
       body: 'KhanSaab was founded in 2014 by a third-generation tailor from the Bastakiya quarter of Dubai. What began as a single sewing room is today a 40-person atelier dressing diplomats, executives and grooms across three continents.',
-      stat: '12 years · 3 generations · 1 craft', bg: 'var(--emerald)', img: 'ATELIER · MASTER TAILOR HANDS · CUTTING IVORY POPLIN',
+      stat: '12 years · 3 generations · 1 craft', bg: 'var(--emerald)', img: 'ATELIER · MASTER TAILOR HANDS · CUTTING IVORY POPLIN', src: '/assets/about_1.png',
     },
     {
       no: 'II', arabic: 'ماذا نفعل', title: 'What we do', kicker: 'Heritage menswear, modernised',
       body: 'Every thobe, kandura and bisht is cut from a paper pattern, fitted on the body, and finished by a single artisan who signs the inner placket. We refuse mass production. We refuse compromise.',
-      stat: '0 factories · 100% atelier-finished', bg: 'var(--ink)', img: 'DETAIL · GOLD-THREAD EMBROIDERY ON COLLAR · MACRO',
+      stat: '0 factories · 100% atelier-finished', bg: 'var(--ink)', img: 'DETAIL · GOLD-THREAD EMBROIDERY ON COLLAR · MACRO', src: '/assets/about_2.png',
     },
     {
       no: 'III', arabic: 'لماذا نفعل', title: 'Why we do it', kicker: 'Because tradition deserves devotion',
       body: 'Khaleeji menswear is one of the world\'s oldest living dress codes. We exist to keep it alive — to make a thobe that your grandson will inherit and wear with the same pride you did on your wedding day.',
-      stat: 'Made to last a lifetime · Made to be passed on', bg: 'var(--navy)', img: 'FATHER & SON · WHITE THOBES · SHARED MIRROR',
+      stat: 'Made to last a lifetime · Made to be passed on', bg: 'var(--navy)', img: 'FATHER & SON · WHITE THOBES · SHARED MIRROR', src: '/assets/about_3.png',
     },
   ]
 
@@ -312,7 +311,7 @@ function HorizontalAbout() {
                 </div>
               </div>
               <div data-horizontal-about-image style={{ position: 'relative', height: '70vh' }}>
-                <Img variant="dark" label={p.img} style={{ height: '100%' }}/>
+                <Img variant="dark" label={p.img} src={p.src} style={{ height: '100%' }}/>
                 <div style={{
                   position: 'absolute', bottom: -24, right: -24, width: 120, height: 120,
                   border: '1px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -336,12 +335,12 @@ function HorizontalAbout() {
 
 /* ---- Categories Bento ---- */
 const BENTO_CATS = [
-  { id: 'thobes', name: 'Thobes', arabic: 'ثوب', desc: 'Classical ankle-length robes in cotton, linen and silk-blends.', count: 64, bg: 'var(--ivory)', color: 'var(--ink)', img: 'IVORY THOBE · FULL BODY', featured: true },
-  { id: 'kanduras', name: 'Kanduras', arabic: 'كندورة', desc: 'The signature Emirati silhouette — crisp, tasseled, untouchable.', count: 42, bg: 'var(--bone)', color: 'var(--ink)', img: 'WHITE KANDURA · TASSEL' },
-  { id: 'bishts', name: 'Bishts', arabic: 'بشت', desc: 'Hand-woven ceremonial cloaks in camel wool with bullion trim.', count: 18, bg: 'var(--ink)', color: 'var(--ivory)', img: 'BLACK BISHT · GOLD TRIM' },
-  { id: 'jubbas', name: 'Jubbas', arabic: 'جبة', desc: 'Moroccan-influenced robes for Friday and feast days.', count: 26, bg: 'var(--emerald)', color: 'var(--ivory)', img: 'EMERALD JUBBA · HOOD' },
-  { id: 'shemaghs', name: 'Shemaghs & Ghutras', arabic: 'شماغ', desc: 'Headwraps in the finest Yemeni and Kashmiri weaves.', count: 38, bg: 'var(--sand)', color: 'var(--ink)', img: 'WHITE GHUTRA + AGAL' },
-  { id: 'accessories', name: 'Accessories', arabic: 'إكسسوارات', desc: 'Agals, cufflinks, prayer beads & oud-scented pochettes.', count: 52, bg: 'var(--navy)', color: 'var(--ivory)', img: 'AGAL + AMBER MISBAHA' },
+  { id: 'thobes', name: 'Thobes', arabic: 'ثوب', desc: 'Classical ankle-length robes in cotton, linen and silk-blends.', count: 64, bg: 'var(--ivory)', color: 'var(--ink)', img: 'IVORY THOBE · FULL BODY', src: '/assets/thobe_ivory.png', featured: true },
+  { id: 'kanduras', name: 'Kanduras', arabic: 'كندورة', desc: 'The signature Emirati silhouette — crisp, tasseled, untouchable.', count: 42, bg: 'var(--bone)', color: 'var(--ink)', img: 'WHITE KANDURA · TASSEL', src: '/assets/kandura_white.png' },
+  { id: 'bishts', name: 'Bishts', arabic: 'بشت', desc: 'Hand-woven ceremonial cloaks in camel wool with bullion trim.', count: 18, bg: 'var(--ink)', color: 'var(--ivory)', img: 'BLACK BISHT · GOLD TRIM', src: '/assets/bisht_black.png' },
+  { id: 'jubbas', name: 'Jubbas', arabic: 'جبة', desc: 'Moroccan-influenced robes for Friday and feast days.', count: 26, bg: 'var(--emerald)', color: 'var(--ivory)', img: 'EMERALD JUBBA · HOOD', src: '/assets/jubba_emerald.png' },
+  { id: 'shemaghs', name: 'Shemaghs & Ghutras', arabic: 'شماغ', desc: 'Headwraps in the finest Yemeni and Kashmiri weaves.', count: 38, bg: 'var(--sand)', color: 'var(--ink)', img: 'WHITE GHUTRA + AGAL', src: '/assets/shemagh.png' },
+  { id: 'accessories', name: 'Accessories', arabic: 'إكسسوارات', desc: 'Agals, cufflinks, prayer beads & oud-scented pochettes.', count: 52, bg: 'var(--navy)', color: 'var(--ivory)', img: 'AGAL + AMBER MISBAHA', src: '/assets/accessories.png' },
 ]
 
 function BentoCard({ cat, span }) {
@@ -356,7 +355,7 @@ function BentoCard({ cat, span }) {
         transition: 'transform 0.6s var(--ease-out)', transform: hover ? 'scale(0.995)' : 'scale(1)',
       }}>
       <div style={{ position: 'absolute', inset: 0 }}>
-        <Img variant={isDark ? 'dark' : 'default'} label={cat.img} style={{ height: '100%' }}/>
+        <Img variant={isDark ? 'dark' : 'default'} label={cat.img} src={cat.src} style={{ height: '100%' }}/>
         <div style={{
           position: 'absolute', inset: 0,
           background: isDark
@@ -427,13 +426,13 @@ function CategoriesBento() {
 
 /* ---- Reels carousel ---- */
 const REELS_DATA = [
-  { label: 'Hand-stitching the cuff', caption: '60 stitches per centimetre. By hand.', duration: '0:42', views: '184K', likes: '12.4K' },
-  { label: 'Fabric selection · Japan', caption: 'Sea Island cotton from Suruga.', duration: '1:08', views: '92K', likes: '8.1K' },
-  { label: 'Lookbook · Eternal Emirates', caption: 'Spring 2026, in three minutes.', duration: '0:35', views: '256K', likes: '18.7K' },
-  { label: 'How to wear a bisht', caption: 'The shoulder drape, explained.', duration: '1:24', views: '318K', likes: '24.2K' },
-  { label: 'Inside the embroidery room', caption: 'Three artisans. One placket.', duration: '0:58', views: '147K', likes: '9.6K' },
-  { label: 'Customer fitting · London', caption: 'Mayfair atelier · trunk show.', duration: '0:48', views: '73K', likes: '5.3K' },
-  { label: 'The gold-thread room', caption: '24k bullion, hand-couched.', duration: '1:12', views: '201K', likes: '15.8K' },
+  { label: 'Hand-stitching the cuff', caption: '60 stitches per centimetre. By hand.', duration: '0:42', views: '184K', likes: '12.4K', src: '/assets/reel_1.png' },
+  { label: 'Fabric selection · Japan', caption: 'Sea Island cotton from Suruga.', duration: '1:08', views: '92K', likes: '8.1K', src: '/assets/reel_2.png' },
+  { label: 'Lookbook · Eternal Emirates', caption: 'Spring 2026, in three minutes.', duration: '0:35', views: '256K', likes: '18.7K', src: '/assets/reel_3.png' },
+  { label: 'How to wear a bisht', caption: 'The shoulder drape, explained.', duration: '1:24', views: '318K', likes: '24.2K', src: '/assets/reel_4.png' },
+  { label: 'Inside the embroidery room', caption: 'Three artisans. One placket.', duration: '0:58', views: '147K', likes: '9.6K', src: '/assets/reel_1.png' },
+  { label: 'Customer fitting · London', caption: 'Mayfair atelier · trunk show.', duration: '0:48', views: '73K', likes: '5.3K', src: '/assets/reel_6.png' },
+  { label: 'The gold-thread room', caption: '24k bullion, hand-couched.', duration: '1:12', views: '201K', likes: '15.8K', src: '/assets/reel_7.png' },
 ]
 
 function Reels() {
@@ -531,7 +530,7 @@ function Reels() {
                 transition: 'transform 0.4s var(--ease-out), box-shadow 0.4s',
                 cursor: 'pointer',
               }}>
-                <Img variant="dark" label={r.label} style={{ height: '100%' }}/>
+                <Img variant="dark" label={r.label} src={r.src} style={{ height: '100%' }}/>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
                 <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -577,7 +576,7 @@ function Reels() {
               overflow: 'hidden', background: 'var(--ink-soft)',
               boxShadow: isActive ? '0 30px 80px rgba(0,0,0,0.5)' : 'none', borderRadius: 6,
             }}>
-              <Img variant="dark" label={r.label} style={{ height: '100%' }}/>
+              <Img variant="dark" label={r.label} src={r.src} style={{ height: '100%' }}/>
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
               <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -630,10 +629,10 @@ function Reels() {
 
 /* ---- Best Sellers ---- */
 const BESTSELLERS = [
-  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK" },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW' },
+  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER', src: '/assets/thobe_ivory.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK", src: '/assets/kandura_white.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER', src: '/assets/bisht_black.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW', src: '/assets/jubba_emerald.png' },
 ]
 
 function BestSellers() {
@@ -655,8 +654,8 @@ function BestSellers() {
             return (
               <article key={i} onClick={() => go('product')} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: 'pointer', position: 'relative' }}>
                 <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, aspectRatio: '3/4' }}>
-                  <Img label={`${p.name.toUpperCase()} · FRONT`} style={{ height: '100%', transition: 'all 0.6s var(--ease-out)', transform: isHov ? 'scale(1.04)' : 'scale(1)', opacity: isHov ? 0 : 1 }}/>
-                  <Img label={`${p.name.toUpperCase()} · DETAIL`} variant="dark" style={{ position: 'absolute', inset: 0, height: '100%', opacity: isHov ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}/>
+                  <Img label={`${p.name.toUpperCase()} · FRONT`} src={p.src} style={{ height: '100%', transition: 'all 0.6s var(--ease-out)', transform: isHov ? 'scale(1.04)' : 'scale(1)', opacity: isHov ? 0 : 1 }}/>
+                  <Img label={`${p.name.toUpperCase()} · DETAIL`} src={p.src} variant="dark" style={{ position: 'absolute', inset: 0, height: '100%', opacity: isHov ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}/>
                   <div style={{
                     position: 'absolute', top: 16, left: 16,
                     background: p.tag === 'BEST SELLER' ? 'var(--ink)' : p.tag === 'NEW' ? 'var(--emerald)' : p.tag === 'MADE TO ORDER' ? 'var(--gold)' : 'var(--ivory)',
@@ -698,9 +697,9 @@ function BestSellers() {
 
 /* ---- Collections ---- */
 const COLLECTIONS_DATA = [
-  { no: '01', arabic: 'مجموعة العيد', name: 'Eid Royal', subtitle: 'Festive · Spring \'26', desc: 'Twelve ceremonial garments for the holy festival. Hand-embroidered in pearl-silver thread on cream and emerald cottons.', cta: 'Discover the collection', bg: 'var(--emerald)', img: 'MODEL · WHITE EID THOBE · MOSQUE COURTYARD', align: 'left' },
-  { no: '02', arabic: 'مجموعة الزفاف', name: 'Wedding Atelier', subtitle: 'Made-to-Measure · Year-round', desc: 'From the groom\'s bisht to the entire wedding party. Six measurements, four fittings, one unforgettable garment.', cta: 'Book a consultation', bg: 'var(--ink)', img: 'GROOM · GOLD BISHT · STAIRCASE', align: 'right' },
-  { no: '03', arabic: 'مجموعة السفر', name: 'Diplomatic', subtitle: 'Travel · Permanent', desc: 'Crease-resistant Japanese cotton in our signature cuts. For executives between Riyadh, London and Geneva.', cta: 'Shop diplomatic', bg: 'var(--navy)', img: 'EXECUTIVE · CHARCOAL THOBE · AIRPORT LOUNGE', align: 'left' },
+  { no: '01', arabic: 'مجموعة العيد', name: 'Eid Royal', subtitle: 'Festive · Spring \'26', desc: 'Twelve ceremonial garments for the holy festival. Hand-embroidered in pearl-silver thread on cream and emerald cottons.', cta: 'Discover the collection', bg: 'var(--emerald)', img: 'MODEL · WHITE EID THOBE · MOSQUE COURTYARD', src: '/assets/thobe_ivory.png', align: 'left' },
+  { no: '02', arabic: 'مجموعة الزفاف', name: 'Wedding Atelier', subtitle: 'Made-to-Measure · Year-round', desc: 'From the groom\'s bisht to the entire wedding party. Six measurements, four fittings, one unforgettable garment.', cta: 'Book a consultation', bg: 'var(--ink)', img: 'GROOM · GOLD BISHT · STAIRCASE', src: '/assets/bisht_black.png', align: 'right' },
+  { no: '03', arabic: 'مجموعة السفر', name: 'Diplomatic', subtitle: 'Travel · Permanent', desc: 'Crease-resistant Japanese cotton in our signature cuts. For executives between Riyadh, London and Geneva.', cta: 'Shop diplomatic', bg: 'var(--navy)', img: 'EXECUTIVE · CHARCOAL THOBE · AIRPORT LOUNGE', src: '/assets/ref_2.jpg', align: 'left' },
 ]
 
 function Collections() {
@@ -710,7 +709,7 @@ function Collections() {
         <div key={i} style={{ background: c.bg, color: 'var(--ivory)', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
           <div className="geo-overlay" style={{ opacity: 0.07 }}/>
           <div className="container" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', direction: c.align === 'right' ? 'rtl' : 'ltr' }}>
-            <div data-collection-image style={{ direction: 'ltr' }}><Img variant="dark" label={c.img} style={{ aspectRatio: '4/5', height: 'auto' }}/></div>
+            <div data-collection-image style={{ direction: 'ltr' }}><Img variant="dark" label={c.img} src={c.src} style={{ aspectRatio: '4/5', height: 'auto' }}/></div>
             <div data-collection-content style={{ direction: 'ltr', maxWidth: 540 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, marginBottom: 28 }}>
                 <span className="display-italic" style={{ fontSize: 80, color: 'var(--gold)', lineHeight: 1 }}>{c.no}</span>

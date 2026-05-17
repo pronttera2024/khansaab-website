@@ -50,7 +50,7 @@ export default function Footer() {
   const { openAtelier, openSizeGuide } = useModals()
 
   return (
-    <footer style={{
+    <footer data-footer style={{
       background: 'var(--ink)',
       color: 'var(--ivory)',
       position: 'relative',
@@ -60,7 +60,7 @@ export default function Footer() {
       <div className="geo-overlay" />
 
       <div className="container" style={{ position: 'relative' }}>
-        <div style={{
+        <div data-footer-top style={{
           display: 'grid',
           gridTemplateColumns: '1.2fr 1fr',
           gap: 80,
@@ -82,7 +82,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+          <div data-footer-info style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
             <FooterBlock label="Atelier" lines={['12 Al Wasl Road', 'Jumeirah, Dubai', 'United Arab Emirates']} />
             <FooterBlock label="Studio Hours" lines={['Mon — Sat', '10:00 — 21:00 GST', 'Sunday by appointment']} />
             <FooterBlock label="Phone" lines={['+971 4 555 0911', '+44 20 7946 0011']} />
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{
+        <div data-footer-links style={{
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1fr',
           gap: 56,
@@ -136,7 +136,7 @@ export default function Footer() {
           ]} />
         </div>
 
-        <div style={{
+        <div data-footer-newsletter style={{
           padding: '44px 0',
           borderTop: '1px solid rgba(201,169,97,0.18)',
           borderBottom: '1px solid rgba(201,169,97,0.18)',
@@ -168,7 +168,7 @@ export default function Footer() {
           </form>
         </div>
 
-        <div style={{
+        <div data-footer-bottom style={{
           padding: '32px 0',
           display: 'flex',
           justifyContent: 'space-between',

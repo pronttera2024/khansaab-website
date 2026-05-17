@@ -14,7 +14,7 @@ export default function AtelierDialog({ open, onClose }) {
 
   if (!open) return null
   return (
-    <div onClick={onClose} style={{
+    <div onClick={onClose} data-modal-backdrop style={{
       position: 'fixed', inset: 0, zIndex: 200,
       background: 'rgba(10,9,8,0.72)',
       backdropFilter: 'blur(8px)',
@@ -23,7 +23,7 @@ export default function AtelierDialog({ open, onClose }) {
       padding: 24,
       animation: 'fadeIn 0.3s var(--ease-out)',
     }}>
-      <div onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" style={{
+      <div onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" data-mobile-sheet data-sheet-type="dialog" style={{
         background: 'var(--ivory)',
         color: 'var(--ink)',
         maxWidth: 560, width: '100%',
@@ -33,6 +33,7 @@ export default function AtelierDialog({ open, onClose }) {
         boxShadow: '0 40px 120px rgba(0,0,0,0.5)',
         animation: 'fadeUp 0.5s var(--ease-out)',
       }}>
+        <span data-sheet-handle aria-hidden="true"/>
         <button onClick={onClose} aria-label="Close"
           style={{
             position: 'absolute', top: 14, right: 14,
@@ -79,18 +80,20 @@ export default function AtelierDialog({ open, onClose }) {
           ))}
         </div>
 
-        <button onClick={() => openWhatsApp("Hello KhanSaab — I'd like to start a custom tailoring order.")}
-          className="btn btn-gold"
-          style={{ width: '100%', height: 56, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-            <path d="M20.5 3.5A11 11 0 0 0 3.7 17.8L2.5 22l4.3-1.1A11 11 0 1 0 20.5 3.5Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.5-.2-.3A9 9 0 1 1 12 20.5Zm5-6.7c-.3-.2-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.2l-.9 1.2c-.2.2-.4.2-.7.1-1-.4-2-1-2.8-2-.2-.3-.2-.5 0-.7l.3-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5l-.7-1.8c-.2-.5-.5-.4-.7-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2.1 3.2 5 4.4 1.5.6 2.1.6 2.9.5.5-.1 1.6-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.2-.2-.3-.5-.5Z"/>
-          </svg>
-          Contact us on WhatsApp
-        </button>
+        <div data-sheet-footer>
+          <button onClick={() => openWhatsApp("Hello KhanSaab — I'd like to start a custom tailoring order.")}
+            className="btn btn-gold"
+            style={{ width: '100%', height: 56, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+              <path d="M20.5 3.5A11 11 0 0 0 3.7 17.8L2.5 22l4.3-1.1A11 11 0 1 0 20.5 3.5Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.5-.2-.3A9 9 0 1 1 12 20.5Zm5-6.7c-.3-.2-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.2l-.9 1.2c-.2.2-.4.2-.7.1-1-.4-2-1-2.8-2-.2-.3-.2-.5 0-.7l.3-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5l-.7-1.8c-.2-.5-.5-.4-.7-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2.1 3.2 5 4.4 1.5.6 2.1.6 2.9.5.5-.1 1.6-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.2-.2-.3-.5-.5Z"/>
+            </svg>
+            Contact us on WhatsApp
+          </button>
 
-        <p className="mono" style={{ marginTop: 14, fontSize: 11, opacity: 0.5, textAlign: 'center' }}>
-          +91 89750 48440 · Replies within an hour
-        </p>
+          <p className="mono" style={{ marginTop: 14, fontSize: 11, opacity: 0.5, textAlign: 'center' }}>
+            +91 89750 48440 · Replies within an hour
+          </p>
+        </div>
       </div>
     </div>
   )

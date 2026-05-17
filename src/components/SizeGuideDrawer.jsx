@@ -23,7 +23,7 @@ export default function SizeGuideDrawer({ open, onClose }) {
 
   return (
     <>
-      <div onClick={onClose} style={{
+      <div onClick={onClose} data-modal-backdrop style={{
         position: 'fixed', inset: 0, zIndex: 200,
         background: 'rgba(10,9,8,0.55)',
         backdropFilter: 'blur(4px)',
@@ -33,7 +33,7 @@ export default function SizeGuideDrawer({ open, onClose }) {
         transition: 'opacity 0.35s var(--ease-out)',
       }}/>
 
-      <aside aria-hidden={!open} role="dialog" aria-modal="true" style={{
+      <aside aria-hidden={!open} role="dialog" aria-modal="true" data-mobile-sheet data-sheet-type="drawer" data-open={open ? 'true' : 'false'} style={{
         position: 'fixed', top: 0, right: 0, bottom: 0,
         width: 'min(620px, 100vw)',
         background: 'var(--ivory)',
@@ -45,6 +45,7 @@ export default function SizeGuideDrawer({ open, onClose }) {
         display: 'flex', flexDirection: 'column',
         overflow: 'hidden',
       }}>
+        <span data-sheet-handle aria-hidden="true"/>
         <header style={{
           padding: '28px 32px 20px',
           borderBottom: '1px solid rgba(10,9,8,0.1)',
@@ -121,10 +122,12 @@ export default function SizeGuideDrawer({ open, onClose }) {
             ))}
           </ul>
 
-          <button onClick={() => openWhatsApp("Hi! I'd like help with my measurements.")}
-            className="btn btn-gold" style={{ width: '100%', height: 52 }}>
-            Need help? Chat on WhatsApp
-          </button>
+          <div data-sheet-footer>
+            <button onClick={() => openWhatsApp("Hi! I'd like help with my measurements.")}
+              className="btn btn-gold" style={{ width: '100%', height: 52 }}>
+              Need help? Chat on WhatsApp
+            </button>
+          </div>
         </div>
       </aside>
     </>

@@ -84,25 +84,16 @@ export default function Nav({ light = false }) {
                   Atelier
                 </button>
               </nav>
-
-              <button className="mobile-menu-btn" onClick={() => setOpen(true)} aria-label="Open menu"
-                style={{ borderColor: transparent ? 'rgba(245,239,227,0.35)' : 'rgba(10,9,8,0.25)' }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                  <line x1="4" y1="7" x2="20" y2="7" />
-                  <line x1="4" y1="13" x2="20" y2="13" />
-                  <line x1="4" y1="19" x2="14" y2="19" />
-                </svg>
-              </button>
             </div>
 
             <button onClick={() => go('home')} style={{ display: 'flex', justifyContent: 'center' }} data-logo>
-              <span data-logo-word><KhanSaabLogo size={44} color={tone} /></span>
+              <span data-logo-word><KhanSaabLogo size={44} color={tone} invert={transparent} /></span>
               <span style={{ display: 'none' }} data-logo-mark className="mobile-only-logo">
-                <KhanSaabLogo size={36} color={tone} showWord={false} />
+                <KhanSaabLogo size={32} color={tone} invert={transparent} />
               </span>
             </button>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', minHeight: 44 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 8, minHeight: 44 }}>
               <button onClick={openAtelier} className="nav-desktop btn btn-ghost"
                 style={{
                   fontSize: 11, letterSpacing: '0.24em',
@@ -111,6 +102,26 @@ export default function Nav({ light = false }) {
                   color: 'inherit',
                 }}>
                 Custom Tailoring
+              </button>
+
+              <button className="mobile-tailoring-btn" onClick={openAtelier} aria-label="Custom tailoring"
+                style={{ borderColor: transparent ? 'rgba(245,239,227,0.35)' : 'rgba(10,9,8,0.25)' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 3 L12 12 L18 3" />
+                  <path d="M12 12 L12 21" />
+                  <circle cx="9" cy="6" r="1.6" />
+                  <circle cx="15" cy="6" r="1.6" />
+                  <path d="M8 21 L16 21" />
+                </svg>
+              </button>
+
+              <button className="mobile-menu-btn" onClick={() => setOpen(true)} aria-label="Open menu"
+                style={{ borderColor: transparent ? 'rgba(245,239,227,0.35)' : 'rgba(10,9,8,0.25)' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="13" x2="20" y2="13" />
+                  <line x1="4" y1="19" x2="14" y2="19" />
+                </svg>
               </button>
             </div>
           </div>
@@ -126,7 +137,7 @@ export default function Nav({ light = false }) {
         </button>
 
         <div style={{ marginTop: 8 }}>
-          <KhanSaabLogo size={40} color="var(--ivory)" />
+          <KhanSaabLogo size={40} color="var(--ivory)" invert />
         </div>
 
         <p className="eyebrow" style={{ color: 'var(--gold)', marginTop: 36, marginBottom: 8, letterSpacing: '0.32em' }}>

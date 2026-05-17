@@ -15,11 +15,9 @@ const HERO_SLIDES = [
     titleBot: 'Made for', titleBotAccent: 'you.',
     body: 'Hand-stitched thobes, kanduras and bishts of uncommon quality — cut from the finest Japanese cottons and Italian wools, finished in our Dubai atelier.',
     cta1: 'Shop the Collection', cta2: 'Book Made-to-Measure',
-    panels: [
-      { label: 'MODEL · IVORY THOBE · SIDE', bg: 'linear-gradient(160deg, #1a1815 0%, #0a0908 100%)' },
-      { label: 'MODEL · WHITE EMIRATI KANDURA · GHUTRA', bg: 'linear-gradient(180deg, #2a2520 0%, #0a0908 70%)' },
-      { label: 'MODEL · BEIGE BISHT · MIRROR SIDE', bg: 'linear-gradient(200deg, #1a1815 0%, #0a0908 100%)' },
-    ],
+    image: '/assets/ref_1.jpg',
+    label: 'MODEL · WHITE EMIRATI KANDURA · GHUTRA',
+    bg: 'linear-gradient(180deg, #2a2520 0%, #0a0908 70%)',
     chapter: 'Eternal Emirates', season: 'Spring · 2026',
   },
   {
@@ -29,11 +27,9 @@ const HERO_SLIDES = [
     titleBot: 'A garment of', titleBotAccent: 'a lifetime.',
     body: 'Hand-woven camel-wool bishts with bullion embroidery. Four months on the loom, three weeks at the bench, one wedding morning to remember.',
     cta1: 'Shop the Bishts', cta2: 'Bespoke Consultation',
-    panels: [
-      { label: 'GOLD THREAD DETAIL · MACRO', bg: 'linear-gradient(160deg, #082019 0%, #0F3B2E 60%, #082019 100%)' },
-      { label: 'GROOM · OBSIDIAN BISHT · STAIRCASE', bg: 'linear-gradient(180deg, #0F3B2E 0%, #082019 100%)' },
-      { label: 'BULLION TRIM · SHOULDER', bg: 'linear-gradient(200deg, #1B5942 0%, #082019 100%)' },
-    ],
+    image: '/assets/ref_4.jpg',
+    label: 'GROOM · OBSIDIAN BISHT · STAIRCASE',
+    bg: 'linear-gradient(180deg, #0F3B2E 0%, #082019 100%)',
     chapter: 'The Ceremonial', season: 'Year-round',
   },
   {
@@ -43,11 +39,9 @@ const HERO_SLIDES = [
     titleBot: 'London &', titleBotAccent: 'Geneva.',
     body: 'Crease-resistant Japanese cotton in our signature cuts — designed to leave a 14-hour cabin looking like the first morning of a fitting.',
     cta1: 'Shop Diplomatic', cta2: 'Find Your Cut',
-    panels: [
-      { label: 'EXECUTIVE · CHARCOAL THOBE · LOUNGE', bg: 'linear-gradient(160deg, #0F1B2D 0%, #0a0908 100%)' },
-      { label: 'STILL LIFE · TRAVEL ROLL + LEATHER', bg: 'linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)' },
-      { label: 'MODEL · NAVY KANDURA · TARMAC', bg: 'linear-gradient(200deg, #1a1f2e 0%, #0F1B2D 100%)' },
-    ],
+    image: '/assets/ref_2.jpg',
+    label: 'EXECUTIVE · CHARCOAL THOBE · LOUNGE',
+    bg: 'linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)',
     chapter: 'Diplomatic', season: 'Permanent',
   },
   {
@@ -57,11 +51,9 @@ const HERO_SLIDES = [
     titleBot: 'unforgettable', titleBotAccent: 'morning.',
     body: 'From the groom\'s bisht to the entire wedding party — our atelier handles every measurement, every embroidery and every garment delivery in one heirloom box.',
     cta1: 'Book Wedding Consult', cta2: 'See the Look Book',
-    panels: [
-      { label: 'WEDDING PARTY · WHITE & GOLD', bg: 'linear-gradient(160deg, #3D1F1A 0%, #0a0908 100%)' },
-      { label: 'GROOM · GOLD BISHT · COURTYARD', bg: 'linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)' },
-      { label: 'FATHER & SON · MIRROR FITTING', bg: 'linear-gradient(200deg, #3D1F1A 0%, #1a0e0a 100%)' },
-    ],
+    image: '/assets/ref_3.jpg',
+    label: 'GROOM · GOLD BISHT · COURTYARD',
+    bg: 'linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)',
     chapter: 'The Wedding', season: 'By appointment',
   },
 ]
@@ -95,27 +87,39 @@ function Hero() {
           transition: 'opacity 1.2s var(--ease-out)',
           pointerEvents: i === idx ? 'auto' : 'none',
         }}>
-          <div style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateColumns: '1fr 1.4fr 1fr' }}>
-            {slide.panels.map((p, j) => (
-              <div key={j} style={{
-                position: 'relative', overflow: 'hidden', background: p.bg,
-                borderLeft: j > 0 ? '1px solid rgba(201,169,97,0.15)' : 'none',
-                transform: i === idx ? 'scale(1)' : 'scale(1.06)',
-                transition: 'transform 6s var(--ease-out)',
-              }}>
-                <div style={{
+          <div style={{
+            position: 'absolute', inset: 0, overflow: 'hidden', background: slide.bg,
+            transform: i === idx ? 'scale(1)' : 'scale(1.06)',
+            transition: 'transform 6s var(--ease-out)',
+          }}>
+            {slide.image && (
+              <img
+                src={slide.image}
+                alt={slide.label}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+                style={{
                   position: 'absolute', inset: 0,
-                  backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23C9A961' stroke-width='0.4' opacity='0.5'><path d='M40 0 L80 40 L40 80 L0 40 Z'/><circle cx='40' cy='40' r='3'/></g></svg>\")",
-                  backgroundSize: '80px', opacity: 0.15,
-                }}/>
-                <div className="label" style={{
-                  position: 'absolute', top: 24, left: 24,
-                  background: 'rgba(10,9,8,0.55)', color: 'rgba(245,239,227,0.6)',
-                  border: '1px solid rgba(201,169,97,0.25)', padding: '5px 10px',
-                  fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.18em',
-                }}>{p.label}</div>
-              </div>
-            ))}
+                  width: '100%', height: '100%', objectFit: 'cover',
+                  filter: 'brightness(0.7) saturate(0.95)',
+                }}
+              />
+            )}
+            <div style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(180deg, rgba(10,9,8,0.25) 0%, rgba(10,9,8,0.55) 100%)',
+            }}/>
+            <div style={{
+              position: 'absolute', inset: 0,
+              backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23C9A961' stroke-width='0.4' opacity='0.5'><path d='M40 0 L80 40 L40 80 L0 40 Z'/><circle cx='40' cy='40' r='3'/></g></svg>\")",
+              backgroundSize: '80px', opacity: 0.12,
+            }}/>
+            <div className="label" style={{
+              position: 'absolute', top: 24, left: 24,
+              background: 'rgba(10,9,8,0.55)', color: 'rgba(245,239,227,0.6)',
+              border: '1px solid rgba(201,169,97,0.25)', padding: '5px 10px',
+              fontFamily: 'var(--f-mono)', fontSize: 9, letterSpacing: '0.18em',
+            }}>{slide.label}</div>
           </div>
           <div style={{
             position: 'absolute', inset: 0,
@@ -232,7 +236,6 @@ function HorizontalAbout() {
   const { isPhone } = useViewport()
 
   useEffect(() => {
-    if (isPhone) return
     const onScroll = () => {
       const wrap = wrapRef.current; const track = trackRef.current
       if (!wrap || !track) return
@@ -246,7 +249,7 @@ function HorizontalAbout() {
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [isPhone])
+  }, [])
 
   const panels = [
     {
@@ -308,7 +311,7 @@ function HorizontalAbout() {
                   {p.stat}
                 </div>
               </div>
-              <div style={{ position: 'relative', height: '70vh' }}>
+              <div data-horizontal-about-image style={{ position: 'relative', height: '70vh' }}>
                 <Img variant="dark" label={p.img} style={{ height: '100%' }}/>
                 <div style={{
                   position: 'absolute', bottom: -24, right: -24, width: 120, height: 120,
@@ -325,7 +328,7 @@ function HorizontalAbout() {
         <div data-horizontal-about-hint style={{
           position: 'absolute', bottom: 48, left: 48,
           fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', opacity: 0.55,
-        }}>↓  Continue scrolling — content moves horizontally</div>
+        }}>{isPhone ? '↓  Keep scrolling →' : '↓  Continue scrolling — content moves horizontally'}</div>
       </div>
     </div>
   )
@@ -363,14 +366,14 @@ function BentoCard({ cat, span }) {
         }}/>
       </div>
       <div className="geo-overlay" style={{ opacity: isDark ? 0.10 : 0.06 }}/>
-      <div style={{ position: 'relative', height: '100%', padding: '36px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
+      <div style={{ position: 'relative', height: '100%', padding: 'clamp(20px, 4vw, 36px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%' }}>
-          <span className="arabic" style={{ fontSize: 36, color: isDark ? 'var(--gold)' : 'var(--emerald)', lineHeight: 1 }}>{cat.arabic}</span>
+          <span className="arabic" style={{ fontSize: 'clamp(26px, 4.5vw, 36px)', color: isDark ? 'var(--gold)' : 'var(--emerald)', lineHeight: 1 }}>{cat.arabic}</span>
           <span className="mono" style={{ opacity: 0.6 }}>{String(cat.count).padStart(3, '0')} PIECES</span>
         </div>
         <div>
-          <h3 className="display" style={{ fontSize: span.gridRow ? 56 : 40, lineHeight: 0.95, marginBottom: 12, fontWeight: 400 }}>{cat.name}</h3>
-          <p style={{ fontSize: 14, opacity: 0.75, maxWidth: 320, lineHeight: 1.6 }}>{cat.desc}</p>
+          <h3 className="display" style={{ fontSize: span.gridRow ? 56 : 'clamp(28px, 5vw, 40px)', lineHeight: 0.95, marginBottom: 10, fontWeight: 400 }}>{cat.name}</h3>
+          <p style={{ fontSize: 13.5, opacity: 0.75, maxWidth: 320, lineHeight: 1.55 }}>{cat.desc}</p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <span style={{
@@ -386,6 +389,8 @@ function BentoCard({ cat, span }) {
 }
 
 function CategoriesBento() {
+  const { isPhone } = useViewport()
+  const mobileSpan = { gridColumn: '1 / -1', aspectRatio: '16 / 9' }
   return (
     <section style={{ background: 'var(--paper)', padding: '140px 0 160px', position: 'relative' }}>
       <div className="container">
@@ -399,14 +404,22 @@ function CategoriesBento() {
             Every category is curated by our head tailor. No drop-shipping, no compromise — only what we'd wear ourselves.
           </p>
         </header>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridAutoRows: '300px', gap: 16 }}>
-          <BentoCard cat={BENTO_CATS[0]} span={{ gridColumn: 'span 6', gridRow: 'span 2' }}/>
-          <BentoCard cat={BENTO_CATS[1]} span={{ gridColumn: 'span 6' }}/>
-          <BentoCard cat={BENTO_CATS[2]} span={{ gridColumn: 'span 3' }}/>
-          <BentoCard cat={BENTO_CATS[3]} span={{ gridColumn: 'span 3' }}/>
-          <BentoCard cat={BENTO_CATS[4]} span={{ gridColumn: 'span 6' }}/>
-          <BentoCard cat={BENTO_CATS[5]} span={{ gridColumn: 'span 6' }}/>
-        </div>
+        {isPhone ? (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 14 }}>
+            {BENTO_CATS.map((cat, i) => (
+              <BentoCard key={i} cat={cat} span={mobileSpan}/>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridAutoRows: '300px', gap: 16 }}>
+            <BentoCard cat={BENTO_CATS[0]} span={{ gridColumn: 'span 6', gridRow: 'span 2' }}/>
+            <BentoCard cat={BENTO_CATS[1]} span={{ gridColumn: 'span 6' }}/>
+            <BentoCard cat={BENTO_CATS[2]} span={{ gridColumn: 'span 3' }}/>
+            <BentoCard cat={BENTO_CATS[3]} span={{ gridColumn: 'span 3' }}/>
+            <BentoCard cat={BENTO_CATS[4]} span={{ gridColumn: 'span 6' }}/>
+            <BentoCard cat={BENTO_CATS[5]} span={{ gridColumn: 'span 6' }}/>
+          </div>
+        )}
       </div>
     </section>
   )
@@ -428,15 +441,40 @@ function Reels() {
   const [paused, setPaused] = useState(false)
   const n = REELS_DATA.length
   const { isPhone, width } = useViewport()
-  const cardW = isPhone ? Math.min(260, width - 80) : 320
+  const cardW = isPhone ? Math.min(260, Math.max(220, width - 80)) : 320
   const cardGap = isPhone ? 14 : 24
   const cardH = isPhone ? 460 : 560
+  const scrollerRef = useRef(null)
 
   useEffect(() => {
-    if (paused) return
+    if (paused || isPhone) return
     const t = setInterval(() => setActive(a => (a + 1) % n), 4000)
     return () => clearInterval(t)
-  }, [paused, n])
+  }, [paused, n, isPhone])
+
+  useEffect(() => {
+    if (!isPhone) return
+    const el = scrollerRef.current
+    if (!el) return
+    let raf = 0
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const center = el.scrollLeft + el.clientWidth / 2
+        const idx = Math.round((center - cardW / 2) / (cardW + cardGap))
+        const clamped = Math.max(0, Math.min(n - 1, idx))
+        setActive(clamped)
+      })
+    }
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => { el.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf) }
+  }, [isPhone, cardW, cardGap, n])
+
+  const scrollTo = (i) => {
+    const el = scrollerRef.current
+    if (!el) return
+    el.scrollTo({ left: i * (cardW + cardGap), behavior: 'smooth' })
+  }
 
   return (
     <section style={{ background: 'var(--ink)', color: 'var(--ivory)', padding: '140px 0', position: 'relative', overflow: 'hidden' }}>
@@ -448,17 +486,75 @@ function Reels() {
             <h2 className="display" style={{ fontSize: 'clamp(56px, 6.5vw, 96px)', lineHeight: 1, fontWeight: 400 }}>The reels.</h2>
             <p style={{ marginTop: 14, opacity: 0.65, maxWidth: 480, fontSize: 15 }}>A weekly window into the studio. Tap a reel to watch — or follow along on Instagram.</p>
           </div>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <button onClick={() => setPaused(p => !p)} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)', fontSize: 12 }}>
-              {paused ? '▶' : '❚❚'}
-            </button>
-            <div style={{ width: 1, height: 24, background: 'rgba(201,169,97,0.25)' }}/>
-            <button onClick={() => setActive(a => (a - 1 + n) % n)} style={{ width: 52, height: 52, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)' }}>←</button>
-            <button onClick={() => setActive(a => (a + 1) % n)} style={{ width: 52, height: 52, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)' }}>→</button>
-          </div>
+          {!isPhone && (
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              <button onClick={() => setPaused(p => !p)} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)', fontSize: 12 }}>
+                {paused ? '▶' : '❚❚'}
+              </button>
+              <div style={{ width: 1, height: 24, background: 'rgba(201,169,97,0.25)' }}/>
+              <button onClick={() => setActive(a => (a - 1 + n) % n)} style={{ width: 52, height: 52, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)' }}>←</button>
+              <button onClick={() => setActive(a => (a + 1) % n)} style={{ width: 52, height: 52, borderRadius: '50%', border: '1px solid rgba(201,169,97,0.4)', color: 'var(--gold-light)' }}>→</button>
+            </div>
+          )}
         </div>
       </div>
 
+      {isPhone ? (
+        <div
+          ref={scrollerRef}
+          data-reels-scroller
+          style={{
+            display: 'flex',
+            gap: cardGap,
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
+            padding: `0 calc((100% - ${cardW}px) / 2)`,
+            height: cardH + 20,
+            alignItems: 'center',
+          }}>
+          {REELS_DATA.map((r, i) => {
+            const isActive = i === active
+            return (
+              <article key={i} onClick={() => scrollTo(i)} style={{
+                flex: `0 0 ${cardW}px`,
+                height: cardH,
+                scrollSnapAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                background: 'var(--ink-soft)',
+                boxShadow: isActive ? '0 20px 50px rgba(0,0,0,0.5)' : 'none',
+                borderRadius: 6,
+                transform: isActive ? 'scale(1)' : 'scale(0.94)',
+                transition: 'transform 0.4s var(--ease-out), box-shadow 0.4s',
+                cursor: 'pointer',
+              }}>
+                <Img variant="dark" label={r.label} style={{ height: '100%' }}/>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
+                <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold), var(--gold-warm))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ink)', fontSize: 11, fontWeight: 600, fontFamily: 'var(--f-display)' }}>K</div>
+                    <span style={{ fontSize: 11, fontWeight: 500 }}>khansaab</span>
+                  </div>
+                  <div style={{ background: 'rgba(10,9,8,0.6)', padding: '4px 9px', borderRadius: 4, fontSize: 10, fontFamily: 'var(--f-mono)', color: 'var(--gold-light)' }}>{r.duration}</div>
+                </div>
+                {isActive && (
+                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 60, height: 60, borderRadius: '50%', border: '1px solid var(--gold)', background: 'rgba(201,169,97,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)' }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L20 12 L8 19 Z"/></svg>
+                  </div>
+                )}
+                <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16 }}>
+                  <p style={{ fontSize: 14, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: 'var(--ivory)' }}>{r.label}</p>
+                  <p style={{ fontSize: 11, opacity: 0.75, marginBottom: 6, color: 'var(--ivory)' }}>{r.caption}</p>
+                  <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: 'var(--ivory)' }}>{r.views} views · ♡ {r.likes}</p>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      ) : (
       <div data-reels-viewport onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
         style={{ position: 'relative', height: 640, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {REELS_DATA.map((r, i) => {
@@ -521,10 +617,11 @@ function Reels() {
           )
         })}
       </div>
+      )}
 
       <div className="container" style={{ marginTop: 32, display: 'flex', justifyContent: 'center', gap: 8 }}>
         {REELS_DATA.map((_, i) => (
-          <button key={i} onClick={() => setActive(i)} style={{ width: i === active ? 36 : 8, height: 4, borderRadius: 2, background: i === active ? 'var(--gold)' : 'rgba(245,239,227,0.2)', transition: 'all 0.4s' }}/>
+          <button key={i} onClick={() => isPhone ? scrollTo(i) : setActive(i)} style={{ width: i === active ? 36 : 8, height: 4, borderRadius: 2, background: i === active ? 'var(--gold)' : 'rgba(245,239,227,0.2)', transition: 'all 0.4s' }}/>
         ))}
       </div>
     </section>
@@ -573,18 +670,18 @@ function BestSellers() {
                     + Quick Add
                   </div>
                 </div>
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+                <div data-product-meta>
+                  <div data-product-cat style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8, marginBottom: 8 }}>
                     <span className="mono" style={{ opacity: 0.55, fontSize: 10 }}>{p.cat}</span>
-                    <span className="arabic" style={{ fontSize: 18, color: 'var(--emerald)', opacity: 0.8 }}>{p.arabic}</span>
+                    <span className="arabic" style={{ fontSize: 18, color: 'var(--emerald)', opacity: 0.8, flexShrink: 0 }}>{p.arabic}</span>
                   </div>
                   <h3 className="display" style={{ fontSize: 22, lineHeight: 1.15, marginBottom: 14, fontWeight: 500 }}>{p.name}</h3>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div data-product-price-row style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
                     <div style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
                       <span style={{ fontSize: 18, fontWeight: 600 }}>${p.price.toLocaleString()}</span>
                       {p.old && <span style={{ fontSize: 13, textDecoration: 'line-through', opacity: 0.45 }}>${p.old}</span>}
                     </div>
-                    <div style={{ display: 'flex', gap: 6 }}>
+                    <div data-product-sizes style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                       {p.sizes.slice(0, 3).map(s => (<span key={s} className="mono" style={{ padding: '3px 7px', border: '1px solid rgba(10,9,8,0.18)', fontSize: 10 }}>{s}</span>))}
                       <span className="mono" style={{ opacity: 0.5, fontSize: 10 }}>+{p.sizes.length - 3}</span>
                     </div>
@@ -613,16 +710,16 @@ function Collections() {
         <div key={i} style={{ background: c.bg, color: 'var(--ivory)', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
           <div className="geo-overlay" style={{ opacity: 0.07 }}/>
           <div className="container" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', direction: c.align === 'right' ? 'rtl' : 'ltr' }}>
-            <div style={{ direction: 'ltr' }}><Img variant="dark" label={c.img} style={{ aspectRatio: '4/5', height: 'auto' }}/></div>
-            <div style={{ direction: 'ltr', maxWidth: 540 }}>
+            <div data-collection-image style={{ direction: 'ltr' }}><Img variant="dark" label={c.img} style={{ aspectRatio: '4/5', height: 'auto' }}/></div>
+            <div data-collection-content style={{ direction: 'ltr', maxWidth: 540 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, marginBottom: 28 }}>
                 <span className="display-italic" style={{ fontSize: 80, color: 'var(--gold)', lineHeight: 1 }}>{c.no}</span>
                 <div style={{ width: 60, height: 1, background: 'var(--gold)', opacity: 0.5 }}/>
                 <span className="arabic" style={{ fontSize: 26, color: 'var(--gold-light)' }}>{c.arabic}</span>
               </div>
               <p className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 18 }}>{c.subtitle}</p>
-              <h2 className="display" style={{ fontSize: 'clamp(64px, 7vw, 112px)', lineHeight: 0.95, marginBottom: 32, fontWeight: 400 }}>{c.name}</h2>
-              <p style={{ fontSize: 17, opacity: 0.75, lineHeight: 1.75, marginBottom: 40 }}>{c.desc}</p>
+              <h2 data-collection-title className="display" style={{ fontSize: 'clamp(64px, 7vw, 112px)', lineHeight: 0.95, marginBottom: 32, fontWeight: 400 }}>{c.name}</h2>
+              <p data-collection-desc style={{ fontSize: 17, opacity: 0.75, lineHeight: 1.75, marginBottom: 40 }}>{c.desc}</p>
               <button className="btn btn-gold">{c.cta} →</button>
               <div style={{ marginTop: 56, display: 'flex', gap: 32 }}>
                 {[{ v: '12', l: 'Pieces' }, { v: '4-6', l: 'Weeks lead' }, { v: '100%', l: 'Hand-finished' }].map(s => (

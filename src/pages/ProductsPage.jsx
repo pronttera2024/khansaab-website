@@ -43,7 +43,71 @@ function FilterGroup({ title, options, value, onChange }) {
 
 function ProductCard({ p, view, compact }) {
   const [hov, setHov] = useState(false)
+  const [wish, setWish] = useState(false)
   const { go } = useRouter()
+
+  if (compact) {
+    const rating = 4.6 + ((p.price % 4) / 10)
+    const reviews = 40 + (p.price % 280)
+    const discount = p.old ? Math.round(((p.old - p.price) / p.old) * 100) : 0
+    return (
+      <article onClick={() => go('product')} style={{
+        cursor: 'pointer', position: 'relative',
+        background: 'var(--paper)',
+        borderRadius: 10,
+        overflow: 'hidden',
+        border: '1px solid rgba(10,9,8,0.06)',
+      }}>
+        <div style={{ position: 'relative', aspectRatio: '4/5', background: 'var(--bone)' }}>
+          <Img label={p.name.toUpperCase()} style={{ height: '100%' }}/>
+          {p.tag && (
+            <div style={{ position: 'absolute', top: 8, left: 8, background: 'var(--ink)', color: 'var(--ivory)', padding: '3px 7px', fontSize: 8, letterSpacing: '0.16em', fontWeight: 700, borderRadius: 3 }}>
+              {p.tag}
+            </div>
+          )}
+          {discount > 0 && (
+            <div style={{ position: 'absolute', top: 8, right: 8, background: 'var(--gold)', color: 'var(--ink)', padding: '3px 7px', fontSize: 10, fontWeight: 700, borderRadius: 3 }}>
+              -{discount}%
+            </div>
+          )}
+          <button
+            onClick={(e) => { e.stopPropagation(); setWish(w => !w) }}
+            aria-label="Add to wishlist"
+            style={{
+              position: 'absolute', bottom: 8, right: 8,
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'rgba(245,239,227,0.95)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.12)',
+              color: wish ? 'var(--emerald)' : 'rgba(10,9,8,0.55)',
+            }}>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill={wish ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.4">
+              <path d="M8 14 C8 14 1 9.5 1 5 C1 3 2.5 1.5 4.5 1.5 C6 1.5 7.2 2.5 8 3.8 C8.8 2.5 10 1.5 11.5 1.5 C13.5 1.5 15 3 15 5 C15 9.5 8 14 8 14 Z"/>
+            </svg>
+          </button>
+        </div>
+        <div style={{ padding: '10px 10px 12px' }}>
+          <h3 style={{
+            fontFamily: 'var(--f-body)', fontSize: 13, fontWeight: 500,
+            lineHeight: 1.3, color: 'var(--ink)',
+            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+            overflow: 'hidden', minHeight: 34, marginBottom: 6,
+          }}>{p.name}</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
+            <span style={{ color: 'var(--gold)', fontSize: 11, letterSpacing: '0.04em' }}>★★★★★</span>
+            <span className="mono" style={{ fontSize: 10, opacity: 0.55 }}>({reviews})</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>${p.price.toLocaleString()}</span>
+            {p.old && <span style={{ fontSize: 11, textDecoration: 'line-through', opacity: 0.45 }}>${p.old}</span>}
+          </div>
+          <p style={{ fontSize: 10, color: 'var(--emerald)', marginTop: 6, fontWeight: 600 }}>
+            ✦ Free express delivery
+          </p>
+        </div>
+      </article>
+    )
+  }
 
   if (view === 'list') {
     return (
@@ -86,6 +150,32 @@ function ProductCard({ p, view, compact }) {
         </div>
       </div>
     </article>
+  )
+}
+
+function BottomSheet({ open, onClose, title, children, footer }) {
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [open, onClose])
+  return (
+    <>
+      <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 150, background: 'rgba(10,9,8,0.55)', opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none', transition: 'opacity 0.3s' }}/>
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 151, background: 'var(--ivory)', borderTopLeftRadius: 16, borderTopRightRadius: 16, maxHeight: '88vh', transform: open ? 'translateY(0)' : 'translateY(100%)', transition: 'transform 0.4s var(--ease-out)', boxShadow: '0 -20px 60px rgba(0,0,0,0.25)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 0 4px' }}>
+          <div style={{ width: 44, height: 4, borderRadius: 2, background: 'rgba(10,9,8,0.2)' }}/>
+        </div>
+        <div style={{ padding: '8px 20px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(10,9,8,0.08)' }}>
+          <h3 className="display" style={{ fontSize: 22, fontWeight: 500 }}>{title}</h3>
+          <button onClick={onClose} style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>Close</button>
+        </div>
+        <div style={{ overflowY: 'auto', padding: '12px 20px', flex: 1 }}>{children}</div>
+        {footer && <div style={{ padding: 16, borderTop: '1px solid rgba(10,9,8,0.08)' }}>{footer}</div>}
+      </div>
+    </>
   )
 }
 
@@ -141,7 +231,7 @@ function ContactStrip() {
   )
 }
 
-export { ContactStrip }
+export { ContactStrip, ProductCard }
 
 export default function ProductsPage() {
   const { isPhone } = useViewport()
@@ -149,7 +239,39 @@ export default function ProductsPage() {
   const [sort, setSort] = useState('featured')
   const [view, setView] = useState('grid')
   const [filterOpen, setFilterOpen] = useState(false)
+  const [sortOpen, setSortOpen] = useState(false)
+  const [query, setQuery] = useState('')
 
+  const PLACEHOLDERS = [
+    'Search "ivory thobe"…',
+    'Try "bisht with gold"',
+    'Search "linen kandura"',
+    'Try "wedding"',
+    'Search "Saudi thobe"',
+  ]
+  const [phIdx, setPhIdx] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setPhIdx(i => (i + 1) % PLACEHOLDERS.length), 2800)
+    return () => clearInterval(t)
+  }, [])
+
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const SORTS = [
+    { v: 'featured', label: 'Featured' },
+    { v: 'new', label: 'Newest' },
+    { v: 'price-asc', label: 'Price: Low to High' },
+    { v: 'price-desc', label: 'Price: High to Low' },
+  ]
+  const sortLabel = SORTS.find(s => s.v === sort)?.label || 'Featured'
+
+  const q = query.trim().toLowerCase()
   const matches = ALL_PRODUCTS.filter(p =>
     (filters.category === 'all' || p.cat === filters.category) &&
     (filters.fabric === 'all' || p.fabric === filters.fabric) &&
@@ -157,7 +279,8 @@ export default function ProductsPage() {
       (filters.price === 'u1000' && p.price < 1000) ||
       (filters.price === '1000-2000' && p.price >= 1000 && p.price <= 2000) ||
       (filters.price === '2000+' && p.price > 2000)) &&
-    (filters.occasion === 'all' || p.occasion === filters.occasion)
+    (filters.occasion === 'all' || p.occasion === filters.occasion) &&
+    (q === '' || p.name.toLowerCase().includes(q) || p.cat.includes(q) || p.fabric.includes(q))
   )
 
   const activeFilterCount = Object.values(filters).filter(v => v !== 'all').length
@@ -187,31 +310,127 @@ export default function ProductsPage() {
 
   return (
     <main style={{ background: 'var(--ivory)', paddingTop: isPhone ? 96 : 120, minHeight: '100vh' }}>
-      <section style={{ padding: isPhone ? '28px 0 24px' : '60px 0 60px', borderBottom: '1px solid rgba(10,9,8,0.08)' }}>
-        <div className="container">
-          <div className="mono" style={{ opacity: 0.55, marginBottom: isPhone ? 14 : 20, fontSize: 11 }}>Home  /  Collection  /  All</div>
-          <span className="arabic" style={{ fontSize: isPhone ? 26 : 44, color: 'var(--emerald)', display: 'block', marginBottom: 8 }}>المجموعة الكاملة</span>
-          <h1 className="display" style={{ fontSize: 'clamp(40px, 8vw, 128px)', lineHeight: 0.95, fontWeight: 400 }}>
-            The full <span className="display-italic" style={{ color: 'var(--emerald)' }}>collection.</span>
-          </h1>
-          <p style={{ marginTop: isPhone ? 12 : 20, maxWidth: 540, fontSize: isPhone ? 14 : 16, opacity: 0.65 }}>
-            <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{matches.length}</span> of <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{ALL_PRODUCTS.length}</span> hand-finished garments. Updated weekly.
-          </p>
-        </div>
-      </section>
+      {!isPhone && (
+        <section style={{ padding: '60px 0 60px', borderBottom: '1px solid rgba(10,9,8,0.08)' }}>
+          <div className="container">
+            <div className="mono" style={{ opacity: 0.55, marginBottom: 20, fontSize: 11 }}>Home  /  Collection  /  All</div>
+            <span className="arabic" style={{ fontSize: 44, color: 'var(--emerald)', display: 'block', marginBottom: 8 }}>المجموعة الكاملة</span>
+            <h1 className="display" style={{ fontSize: 'clamp(40px, 8vw, 128px)', lineHeight: 0.95, fontWeight: 400 }}>
+              The full <span className="display-italic" style={{ color: 'var(--emerald)' }}>collection.</span>
+            </h1>
+            <p style={{ marginTop: 20, maxWidth: 540, fontSize: 16, opacity: 0.65 }}>
+              <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{matches.length}</span> of <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{ALL_PRODUCTS.length}</span> hand-finished garments. Updated weekly.
+            </p>
+          </div>
+        </section>
+      )}
 
       {isPhone && (
-        <div style={{ position: 'sticky', top: 64, zIndex: 30, background: 'var(--ivory)', borderBottom: '1px solid rgba(10,9,8,0.08)', display: 'flex', gap: 8, padding: '10px 16px' }}>
-          <button onClick={() => setFilterOpen(true)} style={{ flex: 1, height: 44, border: '1px solid rgba(10,9,8,0.2)', borderRadius: 999, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 500, background: activeFilterCount ? 'var(--ink)' : 'transparent', color: activeFilterCount ? 'var(--ivory)' : 'inherit' }}>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.4"><line x1="2" y1="4" x2="12" y2="4"/><line x1="2" y1="10" x2="12" y2="10"/><circle cx="5" cy="4" r="1.5" fill="currentColor"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/></svg>
-            Filter {activeFilterCount > 0 && `· ${activeFilterCount}`}
-          </button>
-          <select value={sort} onChange={e => setSort(e.target.value)} style={{ flex: 1, height: 44, padding: '0 14px', border: '1px solid rgba(10,9,8,0.2)', background: 'transparent', fontFamily: 'var(--f-body)', fontSize: 12, borderRadius: 999, cursor: 'pointer', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 500 }}>
-            <option value="featured">Sort · Featured</option>
-            <option value="new">Sort · Newest</option>
-            <option value="price-asc">Price ↑</option>
-            <option value="price-desc">Price ↓</option>
-          </select>
+        <div style={{ position: 'sticky', top: 102, zIndex: 30, background: 'var(--ivory)', borderBottom: '1px solid rgba(10,9,8,0.08)' }}>
+          {/* Row 1: search + filter icon + sort icon */}
+          <div style={{
+            display: 'flex', gap: 8,
+            padding: scrolled ? '8px 12px' : '10px 12px',
+            transition: 'padding 0.25s var(--ease-out)',
+          }}>
+            <label style={{
+              flex: 1, minWidth: 0,
+              display: 'flex', alignItems: 'center', gap: 8,
+              height: 42, padding: '0 14px',
+              background: 'var(--paper)',
+              border: '1px solid rgba(10,9,8,0.12)',
+              borderRadius: 999,
+              position: 'relative',
+            }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.55, flexShrink: 0 }}>
+                <circle cx="7" cy="7" r="5"/>
+                <path d="M11 11l3 3"/>
+              </svg>
+              <div style={{ flex: 1, minWidth: 0, position: 'relative', height: '100%' }}>
+                <input
+                  type="search"
+                  inputMode="search"
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  aria-label="Search garments"
+                  style={{
+                    width: '100%', height: '100%',
+                    border: 0, outline: 0, background: 'transparent',
+                    fontFamily: 'var(--f-body)', fontSize: 14, color: 'var(--ink)',
+                    position: 'relative', zIndex: 1,
+                  }}/>
+                {!query && (
+                  <span key={phIdx} style={{
+                    position: 'absolute', inset: 0,
+                    display: 'flex', alignItems: 'center',
+                    fontSize: 14, color: 'rgba(10,9,8,0.4)',
+                    pointerEvents: 'none',
+                    animation: 'fadeUp 0.5s var(--ease-out)',
+                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                  }}>{PLACEHOLDERS[phIdx]}</span>
+                )}
+              </div>
+              {query && (
+                <button onClick={() => setQuery('')} aria-label="Clear search" style={{
+                  width: 22, height: 22, borderRadius: '50%',
+                  background: 'rgba(10,9,8,0.12)', color: 'var(--ink)',
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 12,
+                }}>×</button>
+              )}
+            </label>
+            <button onClick={() => setFilterOpen(true)} aria-label="Filter" style={{
+              flexShrink: 0, width: 42, height: 42, borderRadius: '50%',
+              border: '1px solid rgba(10,9,8,0.18)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              background: activeFilterCount ? 'var(--ink)' : 'transparent',
+              color: activeFilterCount ? 'var(--ivory)' : 'var(--ink)',
+              position: 'relative',
+            }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="2" y1="5" x2="14" y2="5"/><line x1="2" y1="11" x2="14" y2="11"/><circle cx="6" cy="5" r="1.8" fill="currentColor"/><circle cx="10" cy="11" r="1.8" fill="currentColor"/></svg>
+              {activeFilterCount > 0 && (
+                <span style={{
+                  position: 'absolute', top: -2, right: -2,
+                  minWidth: 16, height: 16, padding: '0 4px', borderRadius: 999,
+                  background: 'var(--gold)', color: 'var(--ink)',
+                  fontSize: 10, fontWeight: 700,
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                }}>{activeFilterCount}</span>
+              )}
+            </button>
+            <button onClick={() => setSortOpen(true)} aria-label={`Sort: ${sortLabel}`} style={{
+              flexShrink: 0, width: 42, height: 42, borderRadius: '50%',
+              border: '1px solid rgba(10,9,8,0.18)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--ink)',
+            }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M4 3v10M4 13l-2-2M4 13l2-2"/>
+                <path d="M12 13V3M12 3l-2 2M12 3l2 2"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Row 2: selected filter chips */}
+          {activeFilterCount > 0 && (
+            <div style={{ display: 'flex', gap: 6, overflowX: 'auto', padding: '0 12px 10px', scrollbarWidth: 'none' }} data-no-scrollbar>
+              <button onClick={() => setFilters({ category: 'all', fabric: 'all', price: 'all', occasion: 'all' })} style={{
+                flex: '0 0 auto', height: 28, padding: '0 12px', borderRadius: 999,
+                border: '1px solid rgba(10,9,8,0.18)', background: 'transparent',
+                color: 'rgba(10,9,8,0.6)', fontSize: 11, fontWeight: 600, whiteSpace: 'nowrap',
+              }}>Clear all</button>
+              {Object.entries(filters).filter(([, v]) => v !== 'all').map(([k, v]) => (
+                <button key={k} onClick={() => setFilters({ ...filters, [k]: 'all' })} style={{
+                  flex: '0 0 auto', height: 28, padding: '0 10px 0 12px', borderRadius: 999,
+                  background: 'var(--ink)', color: 'var(--ivory)',
+                  fontSize: 11, fontWeight: 600, whiteSpace: 'nowrap',
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                }}>
+                  {v.replace('-', ' – ')}
+                  <span style={{ opacity: 0.7 }}>×</span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -236,10 +455,10 @@ export default function ProductsPage() {
           <aside style={{ position: 'sticky', top: 120, alignSelf: 'start' }}>{filterRail}</aside>
         )}
         <div>
-          {activeFilterCount > 0 && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: isPhone ? 16 : 24, padding: isPhone ? '0 16px' : 0 }}>
-              {Object.entries(filters).filter(([_, v]) => v !== 'all').map(([k, v]) => (
-                <button key={k} onClick={() => setFilters({ ...filters, [k]: 'all' })} style={{ padding: isPhone ? '6px 12px' : '8px 16px', borderRadius: 999, background: 'var(--ink)', color: 'var(--ivory)', fontSize: isPhone ? 10 : 11, letterSpacing: '0.16em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          {activeFilterCount > 0 && !isPhone && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
+              {Object.entries(filters).filter(([, v]) => v !== 'all').map(([k, v]) => (
+                <button key={k} onClick={() => setFilters({ ...filters, [k]: 'all' })} style={{ padding: '8px 16px', borderRadius: 999, background: 'var(--ink)', color: 'var(--ivory)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                   {v.replace('-', ' – ')} ×
                 </button>
               ))}
@@ -265,9 +484,28 @@ export default function ProductsPage() {
       </div>
 
       {isPhone && (
-        <FilterSheet open={filterOpen} onClose={() => setFilterOpen(false)} count={matches.length}>
-          {filterRail}
-        </FilterSheet>
+        <>
+          <FilterSheet open={filterOpen} onClose={() => setFilterOpen(false)} count={matches.length}>
+            {filterRail}
+          </FilterSheet>
+          <BottomSheet open={sortOpen} onClose={() => setSortOpen(false)} title="Sort by">
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {SORTS.map(s => {
+                const active = s.v === sort
+                return (
+                  <button key={s.v} onClick={() => { setSort(s.v); setSortOpen(false) }} style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '16px 4px', borderBottom: '1px solid rgba(10,9,8,0.06)',
+                    fontSize: 15, color: active ? 'var(--emerald)' : 'var(--ink)', fontWeight: active ? 600 : 400,
+                  }}>
+                    {s.label}
+                    {active && <span style={{ color: 'var(--emerald)' }}>✓</span>}
+                  </button>
+                )
+              })}
+            </div>
+          </BottomSheet>
+        </>
       )}
 
       <ContactStrip/>

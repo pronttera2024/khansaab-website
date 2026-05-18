@@ -1,4 +1,4 @@
-import { useRouter } from '../context/RouterContext.jsx'
+import { Link, useParams } from 'react-router-dom'
 import { openWhatsApp } from '../utils/whatsapp.js'
 
 export const LEGAL_PAGES = {
@@ -86,15 +86,18 @@ export const LEGAL_PAGES = {
   },
 }
 
-export default function LegalPage({ slug }) {
+export default function LegalPage() {
+  const { slug } = useParams()
   const data = LEGAL_PAGES[slug] || LEGAL_PAGES['legal-terms']
-  const { go } = useRouter()
+  
 
   return (
     <main style={{ background: 'var(--ivory)', paddingTop: 140, paddingBottom: 120, minHeight: '100vh' }}>
       <div className="container" style={{ maxWidth: 880 }}>
         <div className="mono" style={{ opacity: 0.55, marginBottom: 32 }}>
-          <button onClick={() => go('home')} style={{ color: 'inherit', padding: 0 }}>Home</button>
+          <Link to="/" style={{ color: 'inherit', padding: 0 }}>
+  Home
+</Link>
           <span> / Legal / <span style={{ color: 'var(--ink)' }}>{data.title}</span></span>
         </div>
 

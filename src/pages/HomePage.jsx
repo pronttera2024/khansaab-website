@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from '../context/RouterContext.jsx'
+import { useNavigate } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import { useViewport } from '../hooks/useViewport.js'
 import Img from '../components/shared/Img.jsx'
@@ -61,7 +61,7 @@ function Hero() {
   const [idx, setIdx] = useState(0)
   const [paused, setPaused] = useState(false)
   const n = HERO_SLIDES.length
-  const { go } = useRouter()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (paused) return
@@ -189,7 +189,7 @@ function Hero() {
                 display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap',
                 animation: i === idx ? 'fadeUp 1.1s var(--ease-out) 0.7s both' : 'none',
               }}>
-                <button className="btn btn-gold" onClick={() => go('products')}>{slide.cta1}</button>
+                <button className="btn btn-gold" onClick={() => navigate('/products')}>{slide.cta1}</button>
                 <button className="btn btn-ghost">{slide.cta2}</button>
               </div>
             </div>
@@ -345,10 +345,10 @@ const BENTO_CATS = [
 
 function BentoCard({ cat, span }) {
   const [hover, setHover] = useState(false)
-  const { go } = useRouter()
+  const navigate = useNavigate()
   const isDark = cat.color === 'var(--ivory)'
   return (
-    <article onClick={() => go('products')} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+    <article onClick={() => navigate('/products')} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       style={{
         ...span, background: cat.bg, color: cat.color, position: 'relative',
         overflow: 'hidden', cursor: 'pointer',
@@ -636,7 +636,7 @@ const BESTSELLERS = [
 ]
 
 function BestSellers() {
-  const { go } = useRouter()
+  const navigate = useNavigate()
   const [hovered, setHovered] = useState(null)
   return (
     <section style={{ background: 'var(--paper)', padding: '160px 0', position: 'relative' }}>
@@ -646,13 +646,13 @@ function BestSellers() {
             <p className="eyebrow" style={{ color: 'var(--emerald)', marginBottom: 18 }}>★★★★★ · OUR MOST LOVED</p>
             <h2 className="display" style={{ fontSize: 'clamp(56px, 7vw, 104px)', lineHeight: 1, fontWeight: 400 }}>Best sellers.</h2>
           </div>
-          <button className="btn btn-ghost-dark" onClick={() => go('products')}>View All Products →</button>
+          <button className="btn btn-ghost-dark" onClick={() => navigate('/products')}>View All Products →</button>
         </header>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
           {BESTSELLERS.map((p, i) => {
             const isHov = hovered === i
             return (
-              <article key={i} onClick={() => go('product')} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: 'pointer', position: 'relative' }}>
+              <article key={i} onClick={() => navigate('/product')} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: 'pointer', position: 'relative' }}>
                 <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, aspectRatio: '3/4' }}>
                   <Img label={`${p.name.toUpperCase()} · FRONT`} src={p.src} style={{ height: '100%', transition: 'all 0.6s var(--ease-out)', transform: isHov ? 'scale(1.04)' : 'scale(1)', opacity: isHov ? 0 : 1 }}/>
                   <Img label={`${p.name.toUpperCase()} · DETAIL`} src={p.src} variant="dark" style={{ position: 'absolute', inset: 0, height: '100%', opacity: isHov ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}/>

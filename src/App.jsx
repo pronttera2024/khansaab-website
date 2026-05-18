@@ -1,75 +1,88 @@
-import { useState, useEffect } from 'react'
-import { RouterContext } from './context/RouterContext.jsx'
-import { ModalsContext } from './context/ModalsContext.jsx'
+import { useState } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { RouterProvider } from './context/RouterContext.jsx'
+import { ModalsProvider, useModals } from './context/ModalsContext.jsx'
+
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
+import AtelierDialog from './components/AtelierDialog.jsx'
+import SizeGuideDrawer from './components/SizeGuideDrawer.jsx'
+import TweaksPanel from './components/TweaksPanel.jsx'
+
 import HomePage from './pages/HomePage.jsx'
 import ProductsPage from './pages/ProductsPage.jsx'
 import ProductDetailPage from './pages/ProductDetailPage.jsx'
 import StoryPage from './pages/StoryPage.jsx'
-import LegalPage, { LEGAL_PAGES } from './pages/LegalPage.jsx'
-import TweaksPanel from './components/TweaksPanel.jsx'
-import AtelierDialog from './components/AtelierDialog.jsx'
-import SizeGuideDrawer from './components/SizeGuideDrawer.jsx'
+import LegalPage from './pages/LegalPage.jsx'
 
-const TWEAK_DEFAULTS = {
-  accent: '#0F3B2E',
-  rtl: false,
+// Reads modal state from context and renders the dialogs.
+// Must be a child of ModalsProvider.
+function Modals() {
+  const { atelierOpen, closeAtelier, sizeGuideOpen, closeSizeGuide } = useModals()
+  return (
+    <>
+      <AtelierDialog   open={atelierOpen}   onClose={closeAtelier} />
+      <SizeGuideDrawer open={sizeGuideOpen} onClose={closeSizeGuide} />
+    </>
+  )
 }
 
-export default function App() {
-  const [route, setRoute] = useState('home')
-  const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
-  const [atelierOpen, setAtelierOpen] = useState(false)
-  const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
+// TweaksPanel route dropdown → real path
+const ROUTE_MAP = {
+  home:                  '/',
+  products:              '/products',
+  product:               '/product',
+  story:                 '/story',
+  'legal-terms':         '/legal/legal-terms',
+  'legal-privacy':       '/legal/legal-privacy',
+  'legal-cookies':       '/legal/legal-cookies',
+  'legal-accessibility': '/legal/legal-accessibility',
+  'legal-shipping':      '/legal/legal-shipping',
+  'legal-returns':       '/legal/legal-returns',
+  'legal-care':          '/legal/legal-care',
+}
 
-  const setTweak = (key, val) => setTweaks(prev => ({ ...prev, [key]: val }))
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--emerald', tweaks.accent)
-  }, [tweaks.accent])
-
-  useEffect(() => {
-    document.documentElement.dir = tweaks.rtl ? 'rtl' : 'ltr'
-  }, [tweaks.rtl])
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
-  }, [route])
-
-  const isLegal = route.startsWith('legal-')
-  const screenLabel =
-    route === 'home' ? '01 Home' :
-    route === 'products' ? '02 Products' :
-    route === 'product' ? '03 Product Detail' :
-    route === 'story' ? '04 Story' :
-    `05 ${(LEGAL_PAGES[route] || {}).title || 'Legal'}`
-
-  const modalsValue = {
-    openAtelier: () => setAtelierOpen(true),
-    openSizeGuide: () => setSizeGuideOpen(true),
+// Inner shell — needs useNavigate, which requires BrowserRouter above it.
+// RouterProvider also needs BrowserRouter, so both live here.
+function AppShell() {
+  const navigate = useNavigate()
+  const [tweaks, setTweaks] = useState({ rtl: false, accent: '#0F3B2E', currentRoute: 'home' })
+  const setTweak = (key, val) => setTweaks(t => ({ ...t, [key]: val }))
+  const setRoute = (name) => {
+    setTweak('currentRoute', name)
+    navigate(ROUTE_MAP[name] ?? '/')
   }
 
   return (
-    <RouterContext.Provider value={{ route, go: setRoute }}>
-      <ModalsContext.Provider value={modalsValue}>
-        <div data-screen-label={screenLabel}>
-          <Nav light={route !== 'home'} />
+    <RouterProvider>
+      <ModalsProvider>
+        {/* Nav sits above all pages — always visible */}
+        <Nav />
 
-          {route === 'home' && <HomePage />}
-          {route === 'products' && <ProductsPage />}
-          {route === 'product' && <ProductDetailPage />}
-          {route === 'story' && <StoryPage />}
-          {isLegal && <LegalPage slug={route} />}
+        {/* Page-level routes */}
+        <Routes>
+          <Route path="/"            element={<HomePage />} />
+          <Route path="/products"    element={<ProductsPage />} />
+          <Route path="/product"     element={<ProductDetailPage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/story"       element={<StoryPage />} />
+          <Route path="/legal/:slug" element={<LegalPage />} />
+          <Route path="*"            element={<HomePage />} />
+        </Routes>
 
-          <Footer />
-        </div>
+        {/* Footer sits below all pages — always visible */}
+        <Footer />
 
-        <AtelierDialog open={atelierOpen} onClose={() => setAtelierOpen(false)} />
-        <SizeGuideDrawer open={sizeGuideOpen} onClose={() => setSizeGuideOpen(false)} />
+        {/* Global overlays — rendered once, controlled by ModalsContext */}
+        <Modals />
 
-        <TweaksPanel title="Tweaks" tweaks={{ ...tweaks, currentRoute: route }} setTweak={setTweak} setRoute={setRoute} />
-      </ModalsContext.Provider>
-    </RouterContext.Provider>
+        {/* Dev helper — TweaksPanel */}
+        <TweaksPanel tweaks={tweaks} setTweak={setTweak} setRoute={setRoute} />
+      </ModalsProvider>
+    </RouterProvider>
   )
+}
+
+export default function App() {
+  return <AppShell />
 }

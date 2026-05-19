@@ -6,18 +6,18 @@ import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 
 const ALL_PRODUCTS = [
-  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/assets/thobe_ivory.png' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/assets/hero_1.png' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/assets/bisht_black.png' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/assets/jubba_emerald.png' },
-  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/assets/ref_5.jpg' },
-  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/assets/reel_6.png' },
-  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/assets/kandura_white.png' },
-  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/assets/ref_4.jpg' },
-  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/assets/ref_3.jpg' },
-  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/assets/ref_2.jpg' },
-  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/assets/reel_4.png' },
-  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/assets/ref_1.jpg' },
+  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/image-1.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/src/data/images/set-1/Gemini_Generated_Image_ifukpsifukpsifuk (1).png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/src/data/images/set-2/Gemini_Generated_Image_8c8jpj8c8jpj8c8j (1).png' },
+  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/src/data/images/set-3/Gemini_Generated_Image_6zag946zag946zag.png' },
+  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/src/data/images/set-3/Gemini_Generated_Image_a0pf84a0pf84a0pf (1).png' },
+  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/src/data/images/set-4/Gemini_Generated_Image_iagrwiiagrwiiagr (1).png' },
+  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/src/data/images/set-4/Gemini_Generated_Image_3zsn33zsn33zsn33.png' },
+  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/src/data/images/set-5/Gemini_Generated_Image_kf3htvkf3htvkf3h (1).png' },
+  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-5/Gemini_Generated_Image_efdq7xefdq7xefdq.png' },
+  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/src/data/images/set-1/image-1.png' },
+  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
 ]
 
 function FilterGroup({ title, options, value, onChange }) {

@@ -629,10 +629,10 @@ function Reels() {
 
 /* ---- Best Sellers ---- */
 const BESTSELLERS = [
-  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER', src: '/assets/thobe_ivory.png' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK", src: '/assets/kandura_white.png' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER', src: '/assets/bisht_black.png' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW', src: '/assets/jubba_emerald.png' },
+  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER', src: '/src/data/images/set-1/image-1.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK", src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER', src: '/src/data/images/set-3/Gemini_Generated_Image_6zag946zag946zag.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW', src: '/src/data/images/set-4/Gemini_Generated_Image_iagrwiiagrwiiagr (1).png' },
 ]
 
 function BestSellers() {

@@ -887,10 +887,10 @@ export default function HomePage() {
   return (
     <>
       <Hero/>
-      <HorizontalAbout/>
       <CategoriesBento/>
-      <Reels/>
+      <HorizontalAbout/>
       <BestSellers/>
+      <Reels/>
       <Collections/>
       <Testimonials/>
       <CustomizeCTA/>

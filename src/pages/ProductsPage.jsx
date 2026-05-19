@@ -51,7 +51,7 @@ function ProductCard({ p, view, compact }) {
     const reviews = 40 + (p.price % 280)
     const discount = p.old ? Math.round(((p.old - p.price) / p.old) * 100) : 0
     return (
-      <article onClick={() => navigate('/products/ivory-sovereign')} style={{
+      <article onClick={() => navigate('/product')} style={{
         cursor: 'pointer', position: 'relative',
         background: 'var(--paper)',
         borderRadius: 10,
@@ -111,7 +111,7 @@ function ProductCard({ p, view, compact }) {
 
   if (view === 'list') {
     return (
-      <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/products/ivory-sovereign')}
+      <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/product')}
         style={{ display: 'grid', gridTemplateColumns: '240px 1fr auto', gap: 32, padding: 20, border: '1px solid rgba(10,9,8,0.08)', background: 'var(--paper)', cursor: 'pointer', transition: 'all 0.4s' }}>
         <Img src={p.src} label={p.name.toUpperCase()} style={{ aspectRatio: '3/4' }}/>
         <div style={{ paddingTop: 12 }}>
@@ -131,7 +131,7 @@ function ProductCard({ p, view, compact }) {
   }
 
   return (
-    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/products/ivory-sovereign')} style={{ cursor: 'pointer', position: 'relative' }}>
+    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/product')} style={{ cursor: 'pointer', position: 'relative' }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: compact ? 10 : 20 }}>
         <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)', opacity: hov && !compact ? 0 : 1 }}/>
         {!compact && <Img variant="dark" src={p.src} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}

@@ -17,7 +17,7 @@ const HERO_SLIDES = [
     body: "Hand-stitched thobes, kanduras and bishts of uncommon quality — cut from the finest Japanese cottons and Italian wools, finished in our Dubai atelier.",
     cta1: "Shop the Collection",
     cta2: "Book Made-to-Measure",
-    video: "/src/data/videos/hero/1.mp4",
+    image: "/src/data/images/set-1/1.png",
     label: "MODEL · WHITE EMIRATI KANDURA · GHUTRA",
     bg: "linear-gradient(180deg, #2a2520 0%, #0a0908 70%)",
     chapter: "Eternal Emirates",
@@ -33,7 +33,7 @@ const HERO_SLIDES = [
     body: "Hand-woven camel-wool bishts with bullion embroidery. Four months on the loom, three weeks at the bench, one wedding morning to remember.",
     cta1: "Shop the Bishts",
     cta2: "Bespoke Consultation",
-    video: "/src/data/videos/hero/2.mp4",
+    image: "/src/data/images/set-2/1.png",
     label: "GROOM · OBSIDIAN BISHT · STAIRCASE",
     bg: "linear-gradient(180deg, #0F3B2E 0%, #082019 100%)",
     chapter: "The Ceremonial",
@@ -49,7 +49,7 @@ const HERO_SLIDES = [
     body: "Crease-resistant Japanese cotton in our signature cuts — designed to leave a 14-hour cabin looking like the first morning of a fitting.",
     cta1: "Shop Diplomatic",
     cta2: "Find Your Cut",
-    video: "/src/data/videos/hero/3.mov",
+    image: "/src/data/images/set-3/1.png",
     label: "EXECUTIVE · CHARCOAL THOBE · LOUNGE",
     bg: "linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)",
     chapter: "Diplomatic",
@@ -65,7 +65,7 @@ const HERO_SLIDES = [
     body: "From the groom's bisht to the entire wedding party — our atelier handles every measurement, every embroidery and every garment delivery in one heirloom box.",
     cta1: "Book Wedding Consult",
     cta2: "See the Look Book",
-    video: "/src/data/videos/hero/1.mp4",
+    image: "/src/data/images/set-4/1.png",
     label: "GROOM · GOLD BISHT · COURTYARD",
     bg: "linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)",
     chapter: "The Wedding",
@@ -122,13 +122,10 @@ function Hero() {
               transition: "transform 6s var(--ease-out)",
             }}
           >
-            {slide.video && (
-              <video
-                src={slide.video}
-                autoPlay
-                muted
-                loop
-                playsInline
+            {slide.image && (
+              <img
+                src={slide.image}
+                alt={slide.label}
                 style={{
                   position: "absolute",
                   inset: 0,

@@ -1,4 +1,4 @@
-import { useRouter } from '../context/RouterContext.jsx'
+import { useNavigate } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import KhanSaabLogo from './shared/KhanSaabLogo.jsx'
 
@@ -46,7 +46,7 @@ function FooterLinks({ title, items }) {
 }
 
 export default function Footer() {
-  const { go } = useRouter()
+  const navigate = useNavigate()
   const { openAtelier, openSizeGuide } = useModals()
 
   return (
@@ -107,32 +107,32 @@ export default function Footer() {
             </p>
           </div>
           <FooterLinks title="Collection" items={[
-            { label: 'Thobes', onClick: () => go('products') },
-            { label: 'Kanduras', onClick: () => go('products') },
-            { label: 'Bishts', onClick: () => go('products') },
-            { label: 'Jubbas', onClick: () => go('products') },
-            { label: 'Shemaghs', onClick: () => go('products') },
-            { label: 'Gift Cards', onClick: () => go('products') },
+            { label: 'Thobes', onClick: () => navigate('/products') },
+            { label: 'Kanduras', onClick: () => navigate('/products') },
+            { label: 'Bishts', onClick: () => navigate('/products') },
+            { label: 'Jubbas', onClick: () => navigate('/products') },
+            { label: 'Shemaghs', onClick: () => navigate('/products') },
+            { label: 'Gift Cards', onClick: () => navigate('/products') },
           ]} />
           <FooterLinks title="House" items={[
-            { label: 'Our Story', onClick: () => go('story') },
+            { label: 'Our Story', onClick: () => navigate('/story') },
             { label: 'The Atelier', onClick: openAtelier },
-            { label: 'Craftsmanship', onClick: () => go('story') },
-            { label: 'Journal', onClick: () => go('story') },
-            { label: 'Press', onClick: () => go('story') },
+            { label: 'Craftsmanship', onClick: () => navigate('/story') },
+            { label: 'Journal', onClick: () => navigate('/story') },
+            { label: 'Press', onClick: () => navigate('/story') },
           ]} />
           <FooterLinks title="Service" items={[
             { label: 'Made to Measure', onClick: openAtelier },
             { label: 'Size Guide', onClick: openSizeGuide },
-            { label: 'Shipping', onClick: () => go('legal-shipping') },
-            { label: 'Returns', onClick: () => go('legal-returns') },
-            { label: 'Care Guide', onClick: () => go('legal-care') },
+            { label: 'Shipping', onClick: () => navigate('/legal/legal-shipping') },
+            { label: 'Returns', onClick: () => navigate('/legal/legal-returns') },
+            { label: 'Care Guide', onClick: () => navigate('/legal/legal-care') },
           ]} />
           <FooterLinks title="Legal" items={[
-            { label: 'Terms', onClick: () => go('legal-terms') },
-            { label: 'Privacy', onClick: () => go('legal-privacy') },
-            { label: 'Cookies', onClick: () => go('legal-cookies') },
-            { label: 'Accessibility', onClick: () => go('legal-accessibility') },
+            { label: 'Terms', onClick: () => navigate('/legal/legal-terms') },
+            { label: 'Privacy', onClick: () => navigate('/legal/legal-privacy') },
+            { label: 'Cookies', onClick: () => navigate('/legal/legal-cookies') },
+            { label: 'Accessibility', onClick: () => navigate('/legal/legal-accessibility') },
           ]} />
         </div>
 

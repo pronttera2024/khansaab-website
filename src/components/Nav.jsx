@@ -1,5 +1,5 @@
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useRouter } from '../context/RouterContext.jsx'
 import { useModals } from '../context/ModalsContext.jsx'
 import KhanSaabLogo from './shared/KhanSaabLogo.jsx'
 import AnnouncementBar from './AnnouncementBar.jsx'
@@ -13,7 +13,8 @@ function openWhatsApp(msg) {
 }
 
 export default function Nav({ light = false }) {
-  const { route, go } = useRouter()
+  const navigate = useNavigate()
+  const location = useLocation()
   const { openAtelier } = useModals()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -30,15 +31,18 @@ export default function Nav({ light = false }) {
   }, [open])
 
   const links = [
-    { id: 'home', label: 'Home', num: '01' },
-    { id: 'products', label: 'Collection', num: '02' },
-    { id: 'story', label: 'Our Story', num: '03' },
-  ]
+  { path: '/', label: 'Home', num: '01' },
+  { path: '/products', label: 'Collection', num: '02' },
+  { path: '/story', label: 'Our Story', num: '03' },
+]
 
   const transparent = !scrolled && !light
   const tone = transparent ? 'var(--ivory)' : 'var(--ink)'
 
-  const goAndClose = (id) => { go(id); setOpen(false) }
+  const goAndClose = (path) => {
+  navigate(path)
+  setOpen(false)
+}
 
   return (
     <>
@@ -64,15 +68,17 @@ export default function Nav({ light = false }) {
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <nav className="nav-desktop" style={{ display: 'flex', gap: 36 }}>
                 {links.map(l => (
-                  <button key={l.id} onClick={() => go(l.id)}
+                  <button
+  key={l.path}
+  onClick={() => navigate(l.path)}
                     style={{
                       fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', fontWeight: 500,
-                      color: route === l.id ? 'var(--gold)' : 'inherit',
+                      color: location.pathname === l.path ? 'var(--gold)' : 'inherit',
                       position: 'relative',
                       paddingBottom: 4,
                     }}>
                     {l.label}
-                    {route === l.id && (
+                    {location.pathname === l.path && (
                       <span style={{
                         position: 'absolute', left: 0, right: 0, bottom: 0, height: 1,
                         background: 'var(--gold)'
@@ -86,7 +92,7 @@ export default function Nav({ light = false }) {
               </nav>
             </div>
 
-            <button onClick={() => go('home')} style={{ display: 'flex', justifyContent: 'center' }} data-logo>
+            <button onClick={() => navigate('/')}style={{ display: 'flex', justifyContent: 'center' }} data-logo>
               <span data-logo-word><KhanSaabLogo size={44} color={tone} invert={transparent} /></span>
               <span style={{ display: 'none' }} data-logo-mark className="mobile-only-logo">
                 <KhanSaabLogo size={32} color={tone} invert={transparent} />
@@ -147,9 +153,9 @@ export default function Nav({ light = false }) {
         <nav style={{ display: 'flex', flexDirection: 'column' }}>
           {links.map(l => (
             <button
-              key={l.id}
-              onClick={() => goAndClose(l.id)}
-              className={`mobile-drawer-link ${route === l.id ? 'active' : ''}`}>
+              key={l.path}
+              onClick={() => goAndClose(l.path)}
+              className={`mobile-drawer-link ${location.pathname === l.path ? 'active' : ''}`}>
               <span>{l.label}</span>
               <span className="num">{l.num}</span>
             </button>

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { RouterProvider } from './context/RouterContext.jsx'
 import { ModalsProvider, useModals } from './context/ModalsContext.jsx'
 
@@ -14,6 +14,12 @@ import ProductsPage from './pages/ProductsPage.jsx'
 import ProductDetailPage from './pages/ProductDetailPage.jsx'
 import StoryPage from './pages/StoryPage.jsx'
 import LegalPage from './pages/LegalPage.jsx'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
 // Reads modal state from context and renders the dialogs.
 // Must be a child of ModalsProvider.
@@ -58,6 +64,8 @@ function AppShell() {
       <ModalsProvider>
         {/* Nav sits above all pages — always visible */}
         <Nav />
+
+        <ScrollToTop />
 
         {/* Page-level routes */}
         <Routes>

@@ -11,7 +11,7 @@ const PRODUCT = {
   arabic: 'الثوب الملكي',
   cat: 'Saudi Thobe · Hand-stitched',
   sku: 'KS-TH-IVS-2026',
-  price: 1240, old: 1380,
+  price: 2200, old: 3000,
   rating: 4.9, reviews: 247,
   tag: 'BEST SELLER',
   desc: 'Our signature ankle-length Saudi thobe in heavyweight ivory Japanese cotton. Hand-cut by a single artisan, finished over 14 working days, and signed on the inner placket. The Sovereign features our quartet collar, mother-of-pearl tarboosh and pearl-stitched cuffs.',
@@ -187,9 +187,9 @@ export default function ProductDetailPage() {
           <p className="mono" style={{ opacity: 0.55, marginBottom: 20, fontSize: isPhone ? 10 : 11 }}>{PRODUCT.cat}</p>
 
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 12, paddingBottom: isPhone ? 20 : 28, borderBottom: '1px solid rgba(10,9,8,0.1)', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: isPhone ? 28 : 36, fontWeight: 600, fontFamily: 'var(--f-display)' }}>${PRODUCT.price.toLocaleString()}</span>
-            {PRODUCT.old && <span style={{ fontSize: isPhone ? 15 : 18, textDecoration: 'line-through', opacity: 0.45 }}>${PRODUCT.old.toLocaleString()}</span>}
-            <span style={{ marginLeft: 'auto', padding: '4px 10px', background: 'var(--emerald)', color: 'var(--ivory)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 600 }}>SAVE ${PRODUCT.old - PRODUCT.price}</span>
+            <span style={{ fontSize: isPhone ? 28 : 36, fontWeight: 600, fontFamily: 'var(--f-display)' }}>₹{PRODUCT.price.toLocaleString()}</span>
+            {PRODUCT.old && <span style={{ fontSize: isPhone ? 15 : 18, textDecoration: 'line-through', opacity: 0.45 }}>₹{PRODUCT.old.toLocaleString()}</span>}
+            <span style={{ marginLeft: 'auto', padding: '4px 10px', background: 'var(--emerald)', color: 'var(--ivory)', fontSize: 10, letterSpacing: '0.2em', fontWeight: 600 }}>SAVE ₹{PRODUCT.old - PRODUCT.price}</span>
           </div>
 
           <p style={{ fontSize: isPhone ? 14 : 15, lineHeight: 1.7, opacity: 0.78, marginTop: 20, marginBottom: 28 }}>{PRODUCT.desc}</p>
@@ -450,7 +450,7 @@ export default function ProductDetailPage() {
         }}>
           <div style={{ flex: '0 0 auto', minWidth: 0 }}>
             <p className="mono" style={{ fontSize: 9.5, opacity: 0.55, letterSpacing: '0.18em' }}>EU {activeSize} · {PRODUCT.colors[activeColor].name}</p>
-            <p style={{ fontSize: 18, fontWeight: 600, fontFamily: 'var(--f-display)', lineHeight: 1.1 }}>${PRODUCT.price.toLocaleString()}</p>
+            <p style={{ fontSize: 18, fontWeight: 600, fontFamily: 'var(--f-display)', lineHeight: 1.1 }}>₹{PRODUCT.price.toLocaleString()}</p>
           </div>
           <button onClick={ctaHandler} className="btn btn-gold" style={{
             flex: 1, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'center',

@@ -98,8 +98,8 @@ function ProductCard({ p, view, compact }) {
             <span className="mono" style={{ fontSize: 10, opacity: 0.55 }}>({reviews})</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>${p.price.toLocaleString()}</span>
-            {p.old && <span style={{ fontSize: 11, textDecoration: 'line-through', opacity: 0.45 }}>${p.old}</span>}
+            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>₹{p.price.toLocaleString()}</span>
+            {p.old && <span style={{ fontSize: 11, textDecoration: 'line-through', opacity: 0.45 }}>₹{p.old}</span>}
           </div>
           <p style={{ fontSize: 10, color: 'var(--emerald)', marginTop: 6, fontWeight: 600 }}>
             ✦ Free express delivery
@@ -122,8 +122,8 @@ function ProductCard({ p, view, compact }) {
         </div>
         <div style={{ textAlign: 'right', paddingTop: 12, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 14 }}>
           <div style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
-            <span style={{ fontSize: 24, fontWeight: 600 }}>${p.price.toLocaleString()}</span>
-            {p.old && <span style={{ fontSize: 14, textDecoration: 'line-through', opacity: 0.4 }}>${p.old}</span>}
+            <span style={{ fontSize: 24, fontWeight: 600 }}>₹{p.price.toLocaleString()}</span>
+            {p.old && <span style={{ fontSize: 14, textDecoration: 'line-through', opacity: 0.4 }}>₹{p.old}</span>}
           </div>
         </div>
       </article>
@@ -145,8 +145,8 @@ function ProductCard({ p, view, compact }) {
         </div>
         <h3 className="display" style={{ fontSize: compact ? 16 : 22, lineHeight: 1.15, marginBottom: 6, fontWeight: 500 }}>{p.name}</h3>
         <div style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
-          <span style={{ fontSize: compact ? 14 : 17, fontWeight: 600 }}>${p.price.toLocaleString()}</span>
-          {p.old && <span style={{ fontSize: compact ? 11 : 13, textDecoration: 'line-through', opacity: 0.4 }}>${p.old}</span>}
+          <span style={{ fontSize: compact ? 14 : 17, fontWeight: 600 }}>₹{p.price.toLocaleString()}</span>
+          {p.old && <span style={{ fontSize: compact ? 11 : 13, textDecoration: 'line-through', opacity: 0.4 }}>₹{p.old}</span>}
         </div>
       </div>
     </article>

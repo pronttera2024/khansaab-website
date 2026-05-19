@@ -6,18 +6,18 @@ import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 
 const ALL_PRODUCTS = [
-  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/image-1.png' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/src/data/images/set-1/Gemini_Generated_Image_ifukpsifukpsifuk (1).png' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/src/data/images/set-2/Gemini_Generated_Image_8c8jpj8c8jpj8c8j (1).png' },
-  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/src/data/images/set-3/Gemini_Generated_Image_6zag946zag946zag.png' },
-  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/src/data/images/set-3/Gemini_Generated_Image_a0pf84a0pf84a0pf (1).png' },
-  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/src/data/images/set-4/Gemini_Generated_Image_iagrwiiagrwiiagr (1).png' },
-  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/src/data/images/set-4/Gemini_Generated_Image_3zsn33zsn33zsn33.png' },
-  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/src/data/images/set-5/Gemini_Generated_Image_kf3htvkf3htvkf3h (1).png' },
-  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-5/Gemini_Generated_Image_efdq7xefdq7xefdq.png' },
-  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/src/data/images/set-1/image-1.png' },
-  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
+  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
+  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/src/data/images/set-5/1.png', src2: '/src/data/images/set-5/2.png' },
+  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
+  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
+  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
+  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/src/data/images/set-5/1.png', src2: '/src/data/images/set-5/2.png' },
+  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
+  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
+  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
 ]
 
 function FilterGroup({ title, options, value, onChange }) {
@@ -133,8 +133,8 @@ function ProductCard({ p, view, compact }) {
   return (
     <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/product')} style={{ cursor: 'pointer', position: 'relative' }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: compact ? 10 : 20 }}>
-        <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)', opacity: hov && !compact ? 0 : 1 }}/>
-        {!compact && <Img variant="dark" src={p.src} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
+        <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)' }}/>
+        {!compact && <Img src={p.src2} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
         {p.tag && <div style={{ position: 'absolute', top: compact ? 8 : 14, left: compact ? 8 : 14, background: 'var(--ink)', color: 'var(--ivory)', padding: compact ? '3px 7px' : '5px 10px', fontSize: compact ? 8 : 9, letterSpacing: '0.18em', fontWeight: 600 }}>{p.tag}</div>}
         {!compact && <button style={{ position: 'absolute', top: 14, right: 14, width: 34, height: 34, borderRadius: '50%', background: 'rgba(245,239,227,0.92)' }}>♡</button>}
       </div>
@@ -466,7 +466,7 @@ export default function ProductsPage() {
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : (view === 'grid' ? 'repeat(3, 1fr)' : '1fr'), gap: isPhone ? 12 : (view === 'grid' ? 28 : 16), padding: isPhone ? '0 12px' : 0 }}>
-            {matches.map((p, i) => <ProductCard key={i} p={p} view={isPhone ? 'grid' : view} compact={isPhone}/>)}
+            {matches.slice(0, 5).map((p, i) => <ProductCard key={i} p={p} view={isPhone ? 'grid' : view} compact={isPhone}/>)}
             {matches.length === 0 && (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 60, opacity: 0.5 }}>
                 <p className="display" style={{ fontSize: 28 }}>No garments match.</p>

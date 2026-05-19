@@ -14,7 +14,7 @@ const HERO_SLIDES = [
     titleBot: 'Made for', titleBotAccent: 'you.',
     body: 'Hand-stitched thobes, kanduras and bishts of uncommon quality — cut from the finest Japanese cottons and Italian wools, finished in our Dubai atelier.',
     cta1: 'Shop the Collection', cta2: 'Book Made-to-Measure',
-    image: '/assets/hero_1.png',
+    video: '/src/data/videos/hero/1.mp4',
     label: 'MODEL · WHITE EMIRATI KANDURA · GHUTRA',
     bg: 'linear-gradient(180deg, #2a2520 0%, #0a0908 70%)',
     chapter: 'Eternal Emirates', season: 'Spring · 2026',
@@ -26,7 +26,7 @@ const HERO_SLIDES = [
     titleBot: 'A garment of', titleBotAccent: 'a lifetime.',
     body: 'Hand-woven camel-wool bishts with bullion embroidery. Four months on the loom, three weeks at the bench, one wedding morning to remember.',
     cta1: 'Shop the Bishts', cta2: 'Bespoke Consultation',
-    image: '/assets/bisht_black.png',
+    video: '/src/data/videos/hero/2.mp4',
     label: 'GROOM · OBSIDIAN BISHT · STAIRCASE',
     bg: 'linear-gradient(180deg, #0F3B2E 0%, #082019 100%)',
     chapter: 'The Ceremonial', season: 'Year-round',
@@ -38,7 +38,7 @@ const HERO_SLIDES = [
     titleBot: 'London &', titleBotAccent: 'Geneva.',
     body: 'Crease-resistant Japanese cotton in our signature cuts — designed to leave a 14-hour cabin looking like the first morning of a fitting.',
     cta1: 'Shop Diplomatic', cta2: 'Find Your Cut',
-    image: '/assets/reel_6.png',
+    video: '/src/data/videos/hero/3.mov',
     label: 'EXECUTIVE · CHARCOAL THOBE · LOUNGE',
     bg: 'linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)',
     chapter: 'Diplomatic', season: 'Permanent',
@@ -50,7 +50,7 @@ const HERO_SLIDES = [
     titleBot: 'unforgettable', titleBotAccent: 'morning.',
     body: 'From the groom\'s bisht to the entire wedding party — our atelier handles every measurement, every embroidery and every garment delivery in one heirloom box.',
     cta1: 'Book Wedding Consult', cta2: 'See the Look Book',
-    image: '/assets/reel_4.png',
+    video: '/src/data/videos/hero/1.mp4',
     label: 'GROOM · GOLD BISHT · COURTYARD',
     bg: 'linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)',
     chapter: 'The Wedding', season: 'By appointment',
@@ -62,6 +62,7 @@ function Hero() {
   const [paused, setPaused] = useState(false)
   const n = HERO_SLIDES.length
   const navigate = useNavigate()
+  const { openAtelier } = useModals()
 
   useEffect(() => {
     if (paused) return
@@ -91,12 +92,13 @@ function Hero() {
             transform: i === idx ? 'scale(1)' : 'scale(1.06)',
             transition: 'transform 6s var(--ease-out)',
           }}>
-            {slide.image && (
-              <img
-                src={slide.image}
-                alt={slide.label}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                onError={(e) => { e.currentTarget.style.display = 'none' }}
+            {slide.video && (
+              <video
+                src={slide.video}
+                autoPlay
+                muted
+                loop
+                playsInline
                 style={{
                   position: 'absolute', inset: 0,
                   width: '100%', height: '100%', objectFit: 'cover',
@@ -190,7 +192,7 @@ function Hero() {
                 animation: i === idx ? 'fadeUp 1.1s var(--ease-out) 0.7s both' : 'none',
               }}>
                 <button className="btn btn-gold" onClick={() => navigate('/products')}>{slide.cta1}</button>
-                <button className="btn btn-ghost">{slide.cta2}</button>
+                <button className="btn btn-ghost" onClick={openAtelier}>{slide.cta2}</button>
               </div>
             </div>
           ))}
@@ -251,31 +253,20 @@ function HorizontalAbout() {
   }, [])
 
   const panels = [
-    {
-      no: 'I', arabic: 'من نحن', title: 'Who we are', kicker: 'A house of master tailors',
-      body: 'KhanSaab was founded in 2014 by a third-generation tailor from the Bastakiya quarter of Dubai. What began as a single sewing room is today a 40-person atelier dressing diplomats, executives and grooms across three continents.',
-      stat: '12 years · 3 generations · 1 craft', bg: 'var(--emerald)', img: 'ATELIER · MASTER TAILOR HANDS · CUTTING IVORY POPLIN', src: '/assets/about_1.png',
-    },
-    {
-      no: 'II', arabic: 'ماذا نفعل', title: 'What we do', kicker: 'Heritage menswear, modernised',
-      body: 'Every thobe, kandura and bisht is cut from a paper pattern, fitted on the body, and finished by a single artisan who signs the inner placket. We refuse mass production. We refuse compromise.',
-      stat: '0 factories · 100% atelier-finished', bg: 'var(--ink)', img: 'DETAIL · GOLD-THREAD EMBROIDERY ON COLLAR · MACRO', src: '/assets/about_2.png',
-    },
-    {
-      no: 'III', arabic: 'لماذا نفعل', title: 'Why we do it', kicker: 'Because tradition deserves devotion',
-      body: 'Khaleeji menswear is one of the world\'s oldest living dress codes. We exist to keep it alive — to make a thobe that your grandson will inherit and wear with the same pride you did on your wedding day.',
-      stat: 'Made to last a lifetime · Made to be passed on', bg: 'var(--navy)', img: 'FATHER & SON · WHITE THOBES · SHARED MIRROR', src: '/assets/about_3.png',
-    },
+    { d: 'Day 01', t: 'Pattern', body: 'A paper pattern is cut to your measurements.', src: '/assets/reel_6.png', bg: 'var(--emerald)' },
+    { d: 'Day 02–04', t: 'Cloth', body: 'Heavyweight cotton is laid, marked and cut by hand.', src: '/assets/about_1.png', bg: 'var(--ink)' },
+    { d: 'Day 05–11', t: 'Stitch', body: '60 stitches per cm. By a single artisan.', src: '/assets/reel_1.png', bg: 'var(--navy)' },
+    { d: 'Day 12–14', t: 'Finish', body: 'Pressed, packed and signed on the inner placket.', src: '/assets/reel_7.png', bg: 'var(--charcoal)' },
   ]
 
   return (
-    <div ref={wrapRef} data-horizontal-about style={{ height: '300vh', position: 'relative', background: 'var(--ink)' }}>
+    <div ref={wrapRef} data-horizontal-about style={{ height: '400vh', position: 'relative', background: 'var(--ink)' }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', color: 'var(--ivory)' }}>
         <div data-horizontal-about-progress style={{
           position: 'absolute', top: 96, left: 48, right: 48,
           display: 'flex', alignItems: 'center', gap: 16, zIndex: 5,
         }}>
-          <span className="eyebrow" style={{ color: 'var(--gold)' }}>ABOUT THE HOUSE</span>
+          <span className="eyebrow" style={{ color: 'var(--gold)' }}>THE BESPOKE PROCESS</span>
           <div style={{ flex: 1, height: 1, background: 'rgba(245,239,227,0.15)', position: 'relative' }}>
             <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${progress * 100}%`, background: 'var(--gold)', transition: 'width 0.1s linear' }}/>
           </div>
@@ -295,29 +286,20 @@ function HorizontalAbout() {
               <div className="geo-overlay" style={{ opacity: 0.07 }}/>
               <div style={{ position: 'relative', maxWidth: 620 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, marginBottom: 32 }}>
-                  <span className="display" style={{ fontSize: 96, color: 'var(--gold)', fontStyle: 'italic', lineHeight: 1 }}>{p.no}</span>
-                  <span className="arabic" style={{ fontSize: 36, color: 'var(--gold-light)', opacity: 0.85 }}>{p.arabic}</span>
+                  <span className="mono" style={{ fontSize: 14, color: 'var(--gold)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>{p.d}</span>
                 </div>
-                <p className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 20 }}>{p.kicker}</p>
-                <h2 className="display" style={{ fontSize: 'clamp(56px, 7vw, 104px)', lineHeight: 0.95, marginBottom: 32, fontWeight: 400 }}>{p.title}.</h2>
+                <h2 className="display" style={{ fontSize: 'clamp(56px, 7vw, 104px)', lineHeight: 0.95, marginBottom: 32, fontWeight: 400 }}>{p.t}.</h2>
                 <p style={{ fontSize: 18, lineHeight: 1.7, opacity: 0.78, marginBottom: 36, maxWidth: 520 }}>{p.body}</p>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 12,
-                  padding: '12px 22px', border: '1px solid rgba(201,169,97,0.35)', borderRadius: 999,
-                  fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.18em', color: 'var(--gold-light)',
-                }}>
-                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)' }}/>
-                  {p.stat}
-                </div>
               </div>
               <div data-horizontal-about-image style={{ position: 'relative', height: '70vh' }}>
-                <Img variant="dark" label={p.img} src={p.src} style={{ height: '100%' }}/>
+                <Img variant="dark" label={p.t} src={p.src} style={{ height: '100%' }}/>
                 <div style={{
                   position: 'absolute', bottom: -24, right: -24, width: 120, height: 120,
                   border: '1px solid var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: 'var(--f-display)', fontStyle: 'italic', fontSize: 32, color: 'var(--gold)', background: p.bg,
+                  fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', background: p.bg,
+                  textAlign: 'center', padding: 8,
                 }}>
-                  Chapter<br/>&nbsp;{p.no}
+                  {p.d}
                 </div>
               </div>
             </div>
@@ -426,13 +408,12 @@ function CategoriesBento() {
 
 /* ---- Reels carousel ---- */
 const REELS_DATA = [
-  { label: 'Hand-stitching the cuff', caption: '60 stitches per centimetre. By hand.', duration: '0:42', views: '184K', likes: '12.4K', src: '/assets/reel_1.png' },
-  { label: 'Fabric selection · Japan', caption: 'Sea Island cotton from Suruga.', duration: '1:08', views: '92K', likes: '8.1K', src: '/assets/reel_2.png' },
-  { label: 'Lookbook · Eternal Emirates', caption: 'Spring 2026, in three minutes.', duration: '0:35', views: '256K', likes: '18.7K', src: '/assets/reel_3.png' },
-  { label: 'How to wear a bisht', caption: 'The shoulder drape, explained.', duration: '1:24', views: '318K', likes: '24.2K', src: '/assets/reel_4.png' },
-  { label: 'Inside the embroidery room', caption: 'Three artisans. One placket.', duration: '0:58', views: '147K', likes: '9.6K', src: '/assets/reel_1.png' },
-  { label: 'Customer fitting · London', caption: 'Mayfair atelier · trunk show.', duration: '0:48', views: '73K', likes: '5.3K', src: '/assets/reel_6.png' },
-  { label: 'The gold-thread room', caption: '24k bullion, hand-couched.', duration: '1:12', views: '201K', likes: '15.8K', src: '/assets/reel_7.png' },
+  { label: 'Hand-stitching the cuff', caption: '60 stitches per centimetre. By hand.', duration: '0:42', views: '184K', likes: '12.4K', ytId: 'SfS2RHwTMbk' },
+  { label: 'Fabric selection · Japan', caption: 'Sea Island cotton from Suruga.', duration: '1:08', views: '92K', likes: '8.1K', ytId: 'GTpRxobJaUQ' },
+  { label: 'Lookbook · Eternal Emirates', caption: 'Spring 2026, in three minutes.', duration: '0:35', views: '256K', likes: '18.7K', ytId: 'yZdVC2RWbeQ' },
+  { label: 'How to wear a bisht', caption: 'The shoulder drape, explained.', duration: '1:24', views: '318K', likes: '24.2K', ytId: 'DI210pV74xI' },
+  { label: 'Inside the embroidery room', caption: 'Three artisans. One placket.', duration: '0:58', views: '147K', likes: '9.6K', ytId: 'Yi6x2rAJPmk' },
+  { label: 'Customer fitting · London', caption: 'Mayfair atelier · trunk show.', duration: '0:48', views: '73K', likes: '5.3K', ytId: '8OhXwibCvvA' },
 ]
 
 function Reels() {
@@ -530,25 +511,34 @@ function Reels() {
                 transition: 'transform 0.4s var(--ease-out), box-shadow 0.4s',
                 cursor: 'pointer',
               }}>
-                <Img variant="dark" label={r.label} src={r.src} style={{ height: '100%' }}/>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
-                <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold), var(--gold-warm))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ink)', fontSize: 11, fontWeight: 600, fontFamily: 'var(--f-display)' }}>K</div>
-                    <span style={{ fontSize: 11, fontWeight: 500 }}>khansaab</span>
-                  </div>
-                  <div style={{ background: 'rgba(10,9,8,0.6)', padding: '4px 9px', borderRadius: 4, fontSize: 10, fontFamily: 'var(--f-mono)', color: 'var(--gold-light)' }}>{r.duration}</div>
-                </div>
-                {isActive && (
-                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 60, height: 60, borderRadius: '50%', border: '1px solid var(--gold)', background: 'rgba(201,169,97,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)' }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L20 12 L8 19 Z"/></svg>
-                  </div>
+                {isActive ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+                  />
+                ) : (
+                  <>
+                    <img src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`} alt={r.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
+                    <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                        <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold), var(--gold-warm))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ink)', fontSize: 11, fontWeight: 600, fontFamily: 'var(--f-display)' }}>K</div>
+                        <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--ivory)' }}>khansaab</span>
+                      </div>
+                      <div style={{ background: 'rgba(10,9,8,0.6)', padding: '4px 9px', borderRadius: 4, fontSize: 10, fontFamily: 'var(--f-mono)', color: 'var(--gold-light)' }}>{r.duration}</div>
+                    </div>
+                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 52, height: 52, borderRadius: '50%', border: '1px solid var(--gold)', background: 'rgba(201,169,97,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)' }}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L20 12 L8 19 Z"/></svg>
+                    </div>
+                    <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16 }}>
+                      <p style={{ fontSize: 14, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: 'var(--ivory)' }}>{r.label}</p>
+                      <p style={{ fontSize: 11, opacity: 0.75, marginBottom: 6, color: 'var(--ivory)' }}>{r.caption}</p>
+                      <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: 'var(--ivory)' }}>{r.views} views · ♡ {r.likes}</p>
+                    </div>
+                  </>
                 )}
-                <div style={{ position: 'absolute', bottom: 16, left: 16, right: 16 }}>
-                  <p style={{ fontSize: 14, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: 'var(--ivory)' }}>{r.label}</p>
-                  <p style={{ fontSize: 11, opacity: 0.75, marginBottom: 6, color: 'var(--ivory)' }}>{r.caption}</p>
-                  <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: 'var(--ivory)' }}>{r.views} views · ♡ {r.likes}</p>
-                </div>
               </article>
             )
           })}
@@ -576,41 +566,33 @@ function Reels() {
               overflow: 'hidden', background: 'var(--ink-soft)',
               boxShadow: isActive ? '0 30px 80px rgba(0,0,0,0.5)' : 'none', borderRadius: 6,
             }}>
-              <Img variant="dark" label={r.label} src={r.src} style={{ height: '100%' }}/>
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
-              <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold), var(--gold-warm))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ink)', fontSize: 11, fontWeight: 600, fontFamily: 'var(--f-display)' }}>K</div>
-                  <span style={{ fontSize: 11, fontWeight: 500 }}>khansaab</span>
-                </div>
-                <div style={{ background: 'rgba(10,9,8,0.6)', backdropFilter: 'blur(8px)', padding: '4px 9px', borderRadius: 4, fontSize: 10, fontFamily: 'var(--f-mono)', color: 'var(--gold-light)' }}>{r.duration}</div>
-              </div>
-              {isActive && (
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 72, height: 72, borderRadius: '50%', border: '1px solid var(--gold)', background: 'rgba(201,169,97,0.18)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)', animation: 'fadeIn 0.5s var(--ease-out) 0.3s both' }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L20 12 L8 19 Z"/></svg>
-                </div>
-              )}
-              {isActive && (
-                <div style={{ position: 'absolute', right: 14, bottom: 100, display: 'flex', flexDirection: 'column', gap: 18, alignItems: 'center', color: 'var(--ivory)', animation: 'fadeUp 0.7s var(--ease-out) 0.4s both' }}>
-                  <button style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 21s-7-4.5-9.5-9C1 8 3 5 6 5c2 0 3.5 1 6 3.5C14.5 6 16 5 18 5c3 0 5 3 3.5 7-2.5 4.5-9.5 9-9.5 9z"/></svg>
-                    <span style={{ fontSize: 10, fontFamily: 'var(--f-mono)' }}>{r.likes}</span>
-                  </button>
-                  <button style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
-                    <span style={{ fontSize: 10, fontFamily: 'var(--f-mono)' }}>248</span>
-                  </button>
-                </div>
-              )}
-              <div style={{ position: 'absolute', bottom: 18, left: 18, right: isActive ? 70 : 18 }}>
-                <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4, lineHeight: 1.25 }}>{r.label}</p>
-                <p style={{ fontSize: 12, opacity: 0.75, marginBottom: 8 }}>{r.caption}</p>
-                <p className="mono" style={{ opacity: 0.55, fontSize: 10 }}>{r.views} views</p>
-              </div>
-              {isActive && !paused && (
-                <div key={`p-${active}`} style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: 'rgba(245,239,227,0.2)' }}>
-                  <div style={{ height: '100%', background: 'var(--gold)', animation: 'heroProgress 4s linear forwards' }}/>
-                </div>
+              {isActive ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+                />
+              ) : (
+                <>
+                  <img src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`} alt={r.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)' }}/>
+                  <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                      <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold), var(--gold-warm))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--ink)', fontSize: 11, fontWeight: 600, fontFamily: 'var(--f-display)' }}>K</div>
+                      <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--ivory)' }}>khansaab</span>
+                    </div>
+                    <div style={{ background: 'rgba(10,9,8,0.6)', backdropFilter: 'blur(8px)', padding: '4px 9px', borderRadius: 4, fontSize: 10, fontFamily: 'var(--f-mono)', color: 'var(--gold-light)' }}>{r.duration}</div>
+                  </div>
+                  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 72, height: 72, borderRadius: '50%', border: '1px solid var(--gold)', background: 'rgba(201,169,97,0.18)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold)' }}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5 L20 12 L8 19 Z"/></svg>
+                  </div>
+                  <div style={{ position: 'absolute', bottom: 18, left: 18, right: 18 }}>
+                    <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: 'var(--ivory)' }}>{r.label}</p>
+                    <p style={{ fontSize: 12, opacity: 0.75, marginBottom: 8, color: 'var(--ivory)' }}>{r.caption}</p>
+                    <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: 'var(--ivory)' }}>{r.views} views</p>
+                  </div>
+                </>
               )}
             </article>
           )
@@ -629,10 +611,10 @@ function Reels() {
 
 /* ---- Best Sellers ---- */
 const BESTSELLERS = [
-  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER', src: '/src/data/images/set-1/image-1.png' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK", src: '/src/data/images/set-2/Gemini_Generated_Image_f9iy1vf9iy1vf9iy.png' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER', src: '/src/data/images/set-3/Gemini_Generated_Image_6zag946zag946zag.png' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW', src: '/src/data/images/set-4/Gemini_Generated_Image_iagrwiiagrwiiagr (1).png' },
+  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, sizes: ['48', '50', '52', '54', '56'], tag: 'BEST SELLER', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve · Tarboosh', price: 980, sizes: ['S', 'M', 'L', 'XL'], tag: "EDITORS' PICK", src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, sizes: ['54', '56', '58'], tag: 'MADE TO ORDER', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, sizes: ['M', 'L', 'XL'], tag: 'NEW', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
 ]
 
 function BestSellers() {
@@ -654,8 +636,8 @@ function BestSellers() {
             return (
               <article key={i} onClick={() => navigate('/product')} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} style={{ cursor: 'pointer', position: 'relative' }}>
                 <div style={{ position: 'relative', overflow: 'hidden', marginBottom: 24, aspectRatio: '3/4' }}>
-                  <Img label={`${p.name.toUpperCase()} · FRONT`} src={p.src} style={{ height: '100%', transition: 'all 0.6s var(--ease-out)', transform: isHov ? 'scale(1.04)' : 'scale(1)', opacity: isHov ? 0 : 1 }}/>
-                  <Img label={`${p.name.toUpperCase()} · DETAIL`} src={p.src} variant="dark" style={{ position: 'absolute', inset: 0, height: '100%', opacity: isHov ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}/>
+                  <Img label={`${p.name.toUpperCase()} · FRONT`} src={p.src} style={{ height: '100%', transition: 'transform 0.6s var(--ease-out)', transform: isHov ? 'scale(1.04)' : 'scale(1)' }}/>
+                  <Img label={`${p.name.toUpperCase()} · DETAIL`} src={p.src2} style={{ position: 'absolute', inset: 0, height: '100%', opacity: isHov ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}/>
                   <div style={{
                     position: 'absolute', top: 16, left: 16,
                     background: p.tag === 'BEST SELLER' ? 'var(--ink)' : p.tag === 'NEW' ? 'var(--emerald)' : p.tag === 'MADE TO ORDER' ? 'var(--gold)' : 'var(--ivory)',
@@ -696,42 +678,84 @@ function BestSellers() {
 }
 
 /* ---- Collections ---- */
-const COLLECTIONS_DATA = [
-  { no: '01', arabic: 'مجموعة العيد', name: 'Eid Royal', subtitle: 'Festive · Spring \'26', desc: 'Twelve ceremonial garments for the holy festival. Hand-embroidered in pearl-silver thread on cream and emerald cottons.', cta: 'Discover the collection', bg: 'var(--emerald)', img: 'MODEL · WHITE EID THOBE · MOSQUE COURTYARD', src: '/assets/thobe_ivory.png', align: 'left' },
-  { no: '02', arabic: 'مجموعة الزفاف', name: 'Wedding Atelier', subtitle: 'Made-to-Measure · Year-round', desc: 'From the groom\'s bisht to the entire wedding party. Six measurements, four fittings, one unforgettable garment.', cta: 'Book a consultation', bg: 'var(--ink)', img: 'GROOM · GOLD BISHT · STAIRCASE', src: '/assets/bisht_black.png', align: 'right' },
-  { no: '03', arabic: 'مجموعة السفر', name: 'Diplomatic', subtitle: 'Travel · Permanent', desc: 'Crease-resistant Japanese cotton in our signature cuts. For executives between Riyadh, London and Geneva.', cta: 'Shop diplomatic', bg: 'var(--navy)', img: 'EXECUTIVE · CHARCOAL THOBE · AIRPORT LOUNGE', src: '/assets/ref_2.jpg', align: 'left' },
+const COLLECTIONS_PRODUCTS = [
+  { name: 'The Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'Saudi Thobe · Hand-stitched', price: 1240, old: 1380, tag: 'BEST SELLER', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
+  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'Emirati · Long sleeve', price: 980, tag: "EDITORS' PICK", src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
+  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'Ceremonial · 24k gold thread', price: 4280, tag: 'MADE TO ORDER', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
+  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'Moroccan cut · Wool blend', price: 1640, old: 1840, tag: 'NEW', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
+  { name: 'Classic Saudi Thobe', arabic: 'ثوب سعودي', cat: 'Saudi Thobe · Cotton', price: 1060, tag: 'BEST SELLER', src: '/src/data/images/set-5/1.png', src2: '/src/data/images/set-5/2.png' },
+  { name: 'Charcoal Diplomat Thobe', arabic: 'الدبلوماسي', cat: 'Travel · Japanese cotton', price: 1180, tag: 'DIPLOMATIC', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
 ]
 
-function Collections() {
+function CollectionProductCard({ p }) {
+  const [hovered, setHovered] = useState(false)
+  const navigate = useNavigate()
   return (
-    <section style={{ background: 'var(--ivory)' }}>
-      {COLLECTIONS_DATA.map((c, i) => (
-        <div key={i} style={{ background: c.bg, color: 'var(--ivory)', padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
-          <div className="geo-overlay" style={{ opacity: 0.07 }}/>
-          <div className="container" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center', direction: c.align === 'right' ? 'rtl' : 'ltr' }}>
-            <div data-collection-image style={{ direction: 'ltr' }}><Img variant="dark" label={c.img} src={c.src} style={{ aspectRatio: '4/5', height: 'auto' }}/></div>
-            <div data-collection-content style={{ direction: 'ltr', maxWidth: 540 }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, marginBottom: 28 }}>
-                <span className="display-italic" style={{ fontSize: 80, color: 'var(--gold)', lineHeight: 1 }}>{c.no}</span>
-                <div style={{ width: 60, height: 1, background: 'var(--gold)', opacity: 0.5 }}/>
-                <span className="arabic" style={{ fontSize: 26, color: 'var(--gold-light)' }}>{c.arabic}</span>
-              </div>
-              <p className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 18 }}>{c.subtitle}</p>
-              <h2 data-collection-title className="display" style={{ fontSize: 'clamp(64px, 7vw, 112px)', lineHeight: 0.95, marginBottom: 32, fontWeight: 400 }}>{c.name}</h2>
-              <p data-collection-desc style={{ fontSize: 17, opacity: 0.75, lineHeight: 1.75, marginBottom: 40 }}>{c.desc}</p>
-              <button className="btn btn-gold">{c.cta} →</button>
-              <div style={{ marginTop: 56, display: 'flex', gap: 32 }}>
-                {[{ v: '12', l: 'Pieces' }, { v: '4-6', l: 'Weeks lead' }, { v: '100%', l: 'Hand-finished' }].map(s => (
-                  <div key={s.l}>
-                    <div className="display" style={{ fontSize: 36, color: 'var(--gold)' }}>{s.v}</div>
-                    <div className="mono" style={{ opacity: 0.55 }}>{s.l}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+    <article
+      onClick={() => navigate('/product')}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ cursor: 'pointer', position: 'relative' }}
+    >
+      <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: 20 }}>
+        <img
+          src={p.src}
+          alt={p.name}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', transform: hovered ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)' }}
+        />
+        <img
+          src={p.src2}
+          alt={p.name}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: hovered ? 1 : 0, transition: 'opacity 0.5s var(--ease-out)' }}
+        />
+        {p.tag && (
+          <div style={{
+            position: 'absolute', top: 14, left: 14,
+            background: p.tag === 'BEST SELLER' ? 'var(--ink)' : p.tag === 'NEW' ? 'var(--emerald)' : p.tag === 'MADE TO ORDER' ? 'var(--gold)' : 'var(--ivory)',
+            color: p.tag === 'MADE TO ORDER' ? 'var(--ink)' : p.tag === "EDITORS' PICK" ? 'var(--ink)' : 'var(--ivory)',
+            padding: '6px 12px', fontSize: 9, letterSpacing: '0.2em', fontWeight: 600,
+          }}>{p.tag}</div>
+        )}
+        <button
+          onClick={(e) => e.stopPropagation()}
+          style={{ position: 'absolute', top: 14, right: 14, width: 38, height: 38, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="M8 14 C8 14 1 9.5 1 5 C1 3 2.5 1.5 4.5 1.5 C6 1.5 7.2 2.5 8 3.8 C8.8 2.5 10 1.5 11.5 1.5 C13.5 1.5 15 3 15 5 C15 9.5 8 14 8 14 Z"/></svg>
+        </button>
+      </div>
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+          <span className="mono" style={{ opacity: 0.55, fontSize: 10 }}>{p.cat}</span>
+          <span className="arabic" style={{ fontSize: 18, color: 'var(--emerald)', opacity: 0.8 }}>{p.arabic}</span>
         </div>
-      ))}
+        <h3 className="display" style={{ fontSize: 22, lineHeight: 1.15, marginBottom: 14, fontWeight: 500 }}>{p.name}</h3>
+        <div style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
+          <span style={{ fontSize: 18, fontWeight: 600 }}>${p.price.toLocaleString()}</span>
+          {p.old && <span style={{ fontSize: 13, textDecoration: 'line-through', opacity: 0.45 }}>${p.old}</span>}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function Collections() {
+  const navigate = useNavigate()
+  return (
+    <section style={{ background: 'var(--paper)', padding: '160px 0', position: 'relative' }}>
+      <div className="container">
+        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 80 }}>
+          <div>
+            <p className="eyebrow" style={{ color: 'var(--emerald)', marginBottom: 18 }}>THE ETERNAL EMIRATES COLLECTION · VOL. VII</p>
+            <h2 className="display" style={{ fontSize: 'clamp(56px, 7vw, 104px)', lineHeight: 1, fontWeight: 400 }}>Collections.</h2>
+          </div>
+          <button className="btn btn-ghost-dark" onClick={() => navigate('/products')}>View All →</button>
+        </header>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {COLLECTIONS_PRODUCTS.map((p, i) => (
+            <CollectionProductCard key={i} p={p} />
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

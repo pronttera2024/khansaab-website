@@ -1008,7 +1008,7 @@ const REELS_DATA = [
 
 function Reels() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const n = REELS_DATA.length;
   const { isPhone, width } = useViewport();
   const cardW = isPhone ? Math.min(260, Math.max(220, width - 80)) : 320;

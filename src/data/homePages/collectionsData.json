@@ -1,0 +1,38 @@
+[
+  {
+    "no": "01",
+    "arabic": "مجموعة العيد",
+    "name": "Eid Royal",
+    "subtitle": "Festive · Spring '26",
+    "desc": "Twelve ceremonial garments for the holy festival. Hand-embroidered in pearl-silver thread on cream and emerald cottons.",
+    "cta": "Discover the collection",
+    "bg": "var(--emerald)",
+    "img": "MODEL · WHITE EID THOBE · MOSQUE COURTYARD",
+    "src": "/assets/thobe_ivory.png",
+    "align": "left"
+  },
+  {
+    "no": "02",
+    "arabic": "مجموعة الزفاف",
+    "name": "Wedding Atelier",
+    "subtitle": "Made-to-Measure · Year-round",
+    "desc": "From the groom's bisht to the entire wedding party. Six measurements, four fittings, one unforgettable garment.",
+    "cta": "Book a consultation",
+    "bg": "var(--ink)",
+    "img": "GROOM · GOLD BISHT · STAIRCASE",
+    "src": "/assets/bisht_black.png",
+    "align": "right"
+  },
+  {
+    "no": "03",
+    "arabic": "مجموعة السفر",
+    "name": "Diplomatic",
+    "subtitle": "Travel · Permanent",
+    "desc": "Crease-resistant Japanese cotton in our signature cuts. For executives between Riyadh, London and Geneva.",
+    "cta": "Shop diplomatic",
+    "bg": "var(--navy)",
+    "img": "EXECUTIVE · CHARCOAL THOBE · AIRPORT LOUNGE",
+    "src": "/assets/ref_2.jpg",
+    "align": "left"
+  }
+]

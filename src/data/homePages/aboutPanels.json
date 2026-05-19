@@ -1,0 +1,35 @@
+[
+  {
+    "no": "I",
+    "arabic": "من نحن",
+    "title": "Who we are",
+    "kicker": "A house of master tailors",
+    "body": "KhanSaab was founded in 2014 by a third-generation tailor from the Bastakiya quarter of Dubai. What began as a single sewing room is today a 40-person atelier dressing diplomats, executives and grooms across three continents.",
+    "stat": "12 years · 3 generations · 1 craft",
+    "bg": "var(--emerald)",
+    "img": "ATELIER · MASTER TAILOR HANDS · CUTTING IVORY POPLIN",
+    "src": "/assets/about_1.png"
+  },
+  {
+    "no": "II",
+    "arabic": "ماذا نفعل",
+    "title": "What we do",
+    "kicker": "Heritage menswear, modernised",
+    "body": "Every thobe, kandura and bisht is cut from a paper pattern, fitted on the body, and finished by a single artisan who signs the inner placket. We refuse mass production. We refuse compromise.",
+    "stat": "0 factories · 100% atelier-finished",
+    "bg": "var(--ink)",
+    "img": "DETAIL · GOLD-THREAD EMBROIDERY ON COLLAR · MACRO",
+    "src": "/assets/about_2.png"
+  },
+  {
+    "no": "III",
+    "arabic": "لماذا نفعل",
+    "title": "Why we do it",
+    "kicker": "Because tradition deserves devotion",
+    "body": "Khaleeji menswear is one of the world's oldest living dress codes. We exist to keep it alive — to make a thobe that your grandson will inherit and wear with the same pride you did on your wedding day.",
+    "stat": "Made to last a lifetime · Made to be passed on",
+    "bg": "var(--navy)",
+    "img": "FATHER & SON · WHITE THOBES · SHARED MIRROR",
+    "src": "/assets/about_3.png"
+  }
+]

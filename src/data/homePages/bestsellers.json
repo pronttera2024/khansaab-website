@@ -1,0 +1,40 @@
+[
+  {
+    "name": "The Ivory Sovereign Thobe",
+    "arabic": "الثوب الملكي",
+    "cat": "Saudi Thobe · Hand-stitched",
+    "price": 1240,
+    "old": 1380,
+    "sizes": ["48", "50", "52", "54", "56"],
+    "tag": "BEST SELLER",
+    "src": "/assets/thobe_ivory.png"
+  },
+  {
+    "name": "Pearl Emirati Kandura",
+    "arabic": "كندورة اللؤلؤ",
+    "cat": "Emirati · Long sleeve · Tarboosh",
+    "price": 980,
+    "sizes": ["S", "M", "L", "XL"],
+    "tag": "EDITORS' PICK",
+    "src": "/assets/kandura_white.png"
+  },
+  {
+    "name": "Obsidian Royal Bisht",
+    "arabic": "بشت أسود",
+    "cat": "Ceremonial · 24k gold thread",
+    "price": 4280,
+    "sizes": ["54", "56", "58"],
+    "tag": "MADE TO ORDER",
+    "src": "/assets/bisht_black.png"
+  },
+  {
+    "name": "Emerald Hooded Jubba",
+    "arabic": "جبة خضراء",
+    "cat": "Moroccan cut · Wool blend",
+    "price": 1640,
+    "old": 1840,
+    "sizes": ["M", "L", "XL"],
+    "tag": "NEW",
+    "src": "/assets/jubba_emerald.png"
+  }
+]

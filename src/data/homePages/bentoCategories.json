@@ -1,0 +1,69 @@
+[
+  {
+    "id": "thobes",
+    "name": "Thobes",
+    "arabic": "ثوب",
+    "desc": "Classical ankle-length robes in cotton, linen and silk-blends.",
+    "count": 64,
+    "bg": "var(--ivory)",
+    "color": "var(--ink)",
+    "img": "IVORY THOBE · FULL BODY",
+    "src": "/assets/thobe_ivory.png",
+    "featured": true
+  },
+  {
+    "id": "kanduras",
+    "name": "Kanduras",
+    "arabic": "كندورة",
+    "desc": "The signature Emirati silhouette — crisp, tasseled, untouchable.",
+    "count": 42,
+    "bg": "var(--bone)",
+    "color": "var(--ink)",
+    "img": "WHITE KANDURA · TASSEL",
+    "src": "/assets/kandura_white.png"
+  },
+  {
+    "id": "bishts",
+    "name": "Bishts",
+    "arabic": "بشت",
+    "desc": "Hand-woven ceremonial cloaks in camel wool with bullion trim.",
+    "count": 18,
+    "bg": "var(--ink)",
+    "color": "var(--ivory)",
+    "img": "BLACK BISHT · GOLD TRIM",
+    "src": "/assets/bisht_black.png"
+  },
+  {
+    "id": "jubbas",
+    "name": "Jubbas",
+    "arabic": "جبة",
+    "desc": "Moroccan-influenced robes for Friday and feast days.",
+    "count": 26,
+    "bg": "var(--emerald)",
+    "color": "var(--ivory)",
+    "img": "EMERALD JUBBA · HOOD",
+    "src": "/assets/jubba_emerald.png"
+  },
+  {
+    "id": "shemaghs",
+    "name": "Shemaghs & Ghutras",
+    "arabic": "شماغ",
+    "desc": "Headwraps in the finest Yemeni and Kashmiri weaves.",
+    "count": 38,
+    "bg": "var(--sand)",
+    "color": "var(--ink)",
+    "img": "WHITE GHUTRA + AGAL",
+    "src": "/assets/shemagh.png"
+  },
+  {
+    "id": "accessories",
+    "name": "Accessories",
+    "arabic": "إكسسوارات",
+    "desc": "Agals, cufflinks, prayer beads & oud-scented pochettes.",
+    "count": 52,
+    "bg": "var(--navy)",
+    "color": "var(--ivory)",
+    "img": "AGAL + AMBER MISBAHA",
+    "src": "/assets/accessories.png"
+  }
+]

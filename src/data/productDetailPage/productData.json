@@ -1,0 +1,89 @@
+{
+  "name": "The Ivory Sovereign Thobe",
+  "arabic": "الثوب الملكي",
+  "cat": "Saudi Thobe · Hand-stitched",
+  "sku": "KS-TH-IVS-2026",
+  "price": 1240,
+  "old": 1380,
+  "rating": 4.9,
+  "reviews": 247,
+  "tag": "BEST SELLER",
+  "desc": "Our signature ankle-length Saudi thobe in heavyweight ivory Japanese cotton. Hand-cut by a single artisan, finished over 14 working days, and signed on the inner placket. The Sovereign features our quartet collar, mother-of-pearl tarboosh and pearl-stitched cuffs.",
+  "fabrics": [
+    { "name": "Heavyweight cotton", "arabic": "قطن ثقيل", "desc": "260 GSM · Suruga, Japan" },
+    { "name": "Lightweight linen", "arabic": "كتان خفيف", "desc": "Belgium · Summer cut" },
+    { "name": "Silk-cotton blend", "arabic": "حرير و قطن", "desc": "70/30 · Ceremonial" }
+  ],
+  "sizes": ["48", "50", "52", "54", "56", "58"],
+  "colors": [
+    { "name": "Ivory", "hex": "#F5EFE3" },
+    { "name": "Pearl", "hex": "#EAE2D1" },
+    { "name": "Sand", "hex": "#D4C2A1" },
+    { "name": "Stone", "hex": "#9A8B6F" }
+  ],
+  "gallery": [
+    { "label": "IVORY SOVEREIGN · FRONT FULL", "src": "/assets/thobe_ivory.png" },
+    { "label": "IVORY SOVEREIGN · COLLAR DETAIL", "src": "/assets/about_2.png" },
+    { "label": "IVORY SOVEREIGN · CUFF + TARBOOSH", "src": "/assets/reel_1.png" },
+    { "label": "IVORY SOVEREIGN · BACK · STUDIO", "src": "/assets/ref_1.jpg" },
+    { "label": "IVORY SOVEREIGN · WORN · OUTDOOR", "src": "/assets/about_3.png" }
+  ],
+  "features": [
+    { "i": "✦", "t": "Quartet collar", "d": "Four-piece tailored collar with mother-of-pearl tarboosh." },
+    { "i": "✦", "t": "Hand-stitched cuffs", "d": "60 stitches per cm in pearl-grey silk thread." },
+    { "i": "✦", "t": "Signed placket", "d": "The maker's name stitched on the inside." },
+    { "i": "✦", "t": "14-day finish", "d": "From cutting bench to your box, signed and dated." }
+  ],
+  "shippingPerks": [
+    { "i": "✦", "t": "Free worldwide shipping", "d": "Express · 3-5 days" },
+    { "i": "✦", "t": "Lifetime alterations", "d": "Free re-fit at any age" },
+    { "i": "✦", "t": "30-day returns", "d": "Full refund · No questions" },
+    { "i": "✦", "t": "Heirloom box", "d": "Hand-folded in tissue" }
+  ],
+  "accordion": [
+    {
+      "id": "details",
+      "t": "The detail",
+      "type": "features"
+    },
+    {
+      "id": "fit",
+      "t": "Fit & sizing",
+      "body": "The Sovereign sits true to size. A six-foot-one wearer with a 102 cm chest fits EU 52. For a roomier silhouette, size up one. For made-to-measure, book a 30-minute video appointment."
+    },
+    {
+      "id": "care",
+      "t": "Care",
+      "body": "Dry-clean only. Press inside out on a low setting. Avoid direct sunlight when stored. We will press and refresh your garment free of charge at any KhanSaab atelier."
+    },
+    {
+      "id": "ship",
+      "t": "Shipping & returns",
+      "body": "Complimentary express shipping worldwide. UAE: 1-2 days. Gulf: 2-4 days. Rest of world: 3-7 days. Returns accepted within 30 days. Made-to-measure orders are final sale."
+    }
+  ],
+  "makingSteps": [
+    { "d": "Day 01",    "t": "Pattern", "body": "A paper pattern is cut to your measurements.",          "src": "/assets/reel_6.png" },
+    { "d": "Day 02-04", "t": "Cloth",   "body": "Heavyweight cotton is laid, marked and cut by hand.",   "src": "/assets/about_1.png" },
+    { "d": "Day 05-11", "t": "Stitch",  "body": "60 stitches per cm. By a single artisan.",              "src": "/assets/reel_1.png" },
+    { "d": "Day 12-14", "t": "Finish",  "body": "Pressed, packed and signed on the inner placket.",      "src": "/assets/reel_7.png" }
+  ],
+  "reviews": {
+    "rating": 4.9,
+    "total": 247,
+    "breakdown": [
+      [5, 218], [4, 22], [3, 5], [2, 1], [1, 1]
+    ],
+    "items": [
+      { "stars": 5, "t": "Worth every dirham",       "b": "The fit is impeccable. Three fittings, one perfect garment. I will not buy a thobe elsewhere again.", "n": "Hassan A.", "v": "Verified · Bought EU 52" },
+      { "stars": 5, "t": "Wedding-ready in 14 days", "b": "Ordered in a panic for my brother's wedding. Arrived on day 12, signed and pressed. Made me cry, honestly.", "n": "Tariq M.", "v": "Verified · Bought EU 50" },
+      { "stars": 5, "t": "Best thobe I have owned",  "b": "Compared side by side with three other 'luxury' brands. KhanSaab wins on cloth, stitch and shoulder. Effortless.", "n": "Omar K.", "v": "Verified · Bought EU 54" }
+    ]
+  },
+  "relatedProducts": [
+    { "name": "Pearl Emirati Kandura", "arabic": "كندورة اللؤلؤ", "cat": "kanduras", "fabric": "cotton", "price": 980,  "tag": "EDITORS' PICK",   "src": "/assets/hero_1.png" },
+    { "name": "Obsidian Royal Bisht",  "arabic": "بشت أسود",       "cat": "bishts",   "fabric": "wool",   "price": 4280, "tag": "MADE TO ORDER",   "src": "/assets/bisht_black.png" },
+    { "name": "White Yemeni Shemagh",  "arabic": "شماغ يمني",      "cat": "accessories","fabric": "cotton","price": 240,                             "src": "/assets/shemagh.png" },
+    { "name": "Amber Misbaha Set",     "arabic": "مسبحة عنبر",     "cat": "accessories","fabric": "amber", "price": 380,  "old": 440, "tag": "NEW", "src": "/assets/accessories.png" }
+  ]
+}

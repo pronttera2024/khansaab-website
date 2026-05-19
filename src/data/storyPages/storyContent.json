@@ -1,0 +1,52 @@
+{
+  "ribbon1": {
+    "words": ["Heritage", "Craftsmanship", "Devotion", "Khaleej", "Atelier"],
+    "color": "var(--gold)",
+    "bg": "var(--ink)",
+    "direction": "left"
+  },
+  "ribbon2": {
+    "words": ["Made by hand", "Made to last", "Made to be passed on"],
+    "color": "var(--ink)",
+    "bg": "var(--gold)",
+    "direction": "right"
+  },
+  "archivalImage": {
+    "label": "DUBAI · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL",
+    "src": "/assets/about_1.png",
+    "caption": "BASTAKIYA QUARTER · 1972",
+    "quote": "\"Our grandfather, Khan, opened a single sewing room behind the gold souk. He stitched 14 hours a day.\""
+  },
+  "founderLetter": {
+    "eyebrow": "A LETTER FROM THE ATELIER",
+    "heading": "From a single sewing room to forty pairs of hands.",
+    "paragraphs": [
+      "n 1972 my grandfather Khan opened a sewing room behind the Dubai gold souk with two needles, a kerosene lamp and the conviction that a man's garment ought to outlast him. He hand-stitched 14 hours a day, six days a week, for the merchants of the old quarter.",
+      "He never advertised. Word travelled — first to neighbouring emirates, then to Riyadh, Doha and Kuwait City. By 1988 his appointment book required three months of waiting.",
+      "My father inherited the bench in 1995 and added the second floor. He insisted on English shears, Japanese cotton, and the unbroken rule that every garment leaves the atelier with the maker's name stitched on the inside placket.",
+      "I joined in 2014 — not to change anything, but to extend it. KhanSaab today dresses forty men a week and ships to forty-seven countries. The shears, the cotton and the placket remain the same.",
+      "We do not run advertisements. We do not chase seasons. We make heritage garments for men who know the difference."
+    ],
+    "signature": {
+      "initial": "S",
+      "name": "Saif Khan",
+      "role": "MASTER TAILOR · THIRD GENERATION"
+    }
+  },
+  "doubleBleed": [
+    {
+      "label": "HAND CUTTING · CHALK MARKS · POPLIN",
+      "src": "/assets/about_1.png",
+      "chapter": "CHAPTER I",
+      "title": "The Cloth.",
+      "variant": "light"
+    },
+    {
+      "label": "GOLD THREAD EMBROIDERY · COLLAR DETAIL · MACRO",
+      "src": "/assets/about_2.png",
+      "chapter": "CHAPTER II",
+      "title": "The Thread.",
+      "variant": "dark"
+    }
+  ]
+}

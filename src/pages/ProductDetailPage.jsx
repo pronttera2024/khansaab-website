@@ -1,45 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useParams } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import { useViewport } from '../hooks/useViewport.js'
 import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 import { ContactStrip, ProductCard } from './ProductsPage.jsx'
-
-
-const PRODUCT = {
-  name: 'The Ivory Sovereign Thobe',
-  arabic: 'الثوب الملكي',
-  cat: 'Saudi Thobe · Hand-stitched',
-  sku: 'KS-TH-IVS-2026',
-  price: 2200, old: 3000,
-  rating: 4.9, reviews: 247,
-  tag: 'BEST SELLER',
-  desc: 'Our signature ankle-length Saudi thobe in heavyweight ivory Japanese cotton. Hand-cut by a single artisan, finished over 14 working days, and signed on the inner placket. The Sovereign features our quartet collar, mother-of-pearl tarboosh and pearl-stitched cuffs.',
-  fabrics: [
-    { name: 'Heavyweight cotton', arabic: 'قطن ثقيل', desc: '260 GSM · Suruga, Japan' },
-    { name: 'Lightweight linen', arabic: 'كتان خفيف', desc: 'Belgium · Summer cut' },
-    { name: 'Silk-cotton blend', arabic: 'حرير و قطن', desc: '70/30 · Ceremonial' },
-  ],
-  sizes: ['48', '50', '52', '54', '56', '58'],
-  colors: [
-    { name: 'Ivory', hex: '#F5EFE3' }, { name: 'Pearl', hex: '#EAE2D1' },
-    { name: 'Sand', hex: '#D4C2A1' }, { name: 'Stone', hex: '#9A8B6F' },
-  ],
-  gallery: [
-    { label: 'IVORY SOVEREIGN · FRONT FULL', src: '/src/data/product-details/1.png' },
-    { label: 'IVORY SOVEREIGN · COLLAR DETAIL', src: '/src/data/product-details/2.png' },
-    { label: 'IVORY SOVEREIGN · CUFF + TARBOOSH', src: '/src/data/product-details/3.png' },
-    { label: 'IVORY SOVEREIGN · BACK · STUDIO', src: '/src/data/product-details/4.png' },
-    { label: 'IVORY SOVEREIGN · WORN · OUTDOOR', src: '/src/data/product-details/5.png' },
-    { label: 'IVORY SOVEREIGN · DETAIL · ATELIER', src: '/src/data/product-details/6.png' },
-  ],
-  features: [
-    { i: '✦', t: 'Quartet collar', d: 'Four-piece tailored collar with mother-of-pearl tarboosh.' },
-    { i: '✦', t: 'Hand-stitched cuffs', d: '60 stitches per cm in pearl-grey silk thread.' },
-    { i: '✦', t: 'Signed placket', d: "The maker's name stitched on the inside." },
-    { i: '✦', t: '14-day finish', d: 'From cutting bench to your box, signed and dated.' },
-  ],
-}
+import { getProductById, getProductForPDP, RELATED_PRODUCTS } from '../data/products.js'
+import { PRODUCT_REVIEWS, REVIEW_HISTOGRAM } from '../data/testimonials.js'
+import { SHIPPING_BADGES, PDP_MAKING_STEPS } from '../data/content.js'
+import { WHATSAPP_MESSAGES, CONTACT } from '../data/site-config.js'
 
 function Selector({ label, sub, action, children }) {
   return (
@@ -93,11 +62,6 @@ function MobileGallery({ images, tag, active, setActive }) {
       {tag && (
         <div style={{ position: 'absolute', top: 14, left: 14, background: 'var(--ink)', color: 'var(--ivory)', padding: '7px 12px', fontSize: 9.5, letterSpacing: '0.22em', fontWeight: 600 }}>{tag}</div>
       )}
-      <button aria-label="Save" style={{
-        position: 'absolute', top: 12, right: 14, width: 40, height: 40, borderRadius: '50%',
-        background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>♡</button>
       <div style={{
         position: 'absolute', bottom: 14, left: '50%', transform: 'translateX(-50%)',
         display: 'flex', gap: 6, padding: '6px 10px',
@@ -116,15 +80,15 @@ function MobileGallery({ images, tag, active, setActive }) {
 }
 
 export default function ProductDetailPage() {
+  const { id } = useParams()
+  const PRODUCT = getProductForPDP(getProductById(id))
   const { openSizeGuide } = useModals()
   const { isPhone } = useViewport()
   const [activeImg, setActiveImg] = useState(0)
-  const [activeFabric, setActiveFabric] = useState(0)
-  const [activeSize, setActiveSize] = useState('52')
-  const [activeColor, setActiveColor] = useState(0)
+  const [activeSize, setActiveSize] = useState(PRODUCT.sizes[0] || 'M')
   const [acc, setAcc] = useState('details')
 
-  const ctaHandler = () => openWhatsApp(`Hello KhanSaab — I'd like to book a fitting for the ${PRODUCT.name} (size EU ${activeSize}).`)
+  const ctaHandler = () => openWhatsApp(WHATSAPP_MESSAGES.fitting(PRODUCT.name, activeSize))
 
   return (
     <main style={{
@@ -165,7 +129,6 @@ export default function ProductDetailPage() {
               <div style={{ position: 'relative', aspectRatio: '3/4', width: '100%', overflow: 'hidden' }}>
                 <Img label={PRODUCT.gallery[activeImg].label} src={PRODUCT.gallery[activeImg].src} style={{ aspectRatio: '3/4', width: '100%', height: '100%' }}/>
                 {PRODUCT.tag && <div style={{ position: 'absolute', top: 16, left: 16, background: 'var(--ink)', color: 'var(--ivory)', padding: '8px 14px', fontSize: 10, letterSpacing: '0.22em', fontWeight: 600, zIndex: 2, pointerEvents: 'none' }}>{PRODUCT.tag}</div>}
-                <button onClick={(e) => e.stopPropagation()} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16, zIndex: 2 }}>♡</button>
                 <div style={{ position: 'absolute', bottom: 16, right: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)', zIndex: 2, pointerEvents: 'none' }}>
                   {String(activeImg + 1).padStart(2, '0')} / {String(PRODUCT.gallery.length).padStart(2, '0')}
                 </div>
@@ -179,7 +142,6 @@ export default function ProductDetailPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: isPhone ? 8 : 14, marginBottom: 14, flexWrap: 'wrap' }}>
             <div style={{ color: 'var(--gold)', letterSpacing: '0.1em', fontSize: 14 }}>★★★★★</div>
             <span className="mono" style={{ opacity: 0.6, fontSize: isPhone ? 10 : 11 }}>{PRODUCT.rating} · {PRODUCT.reviews} reviews</span>
-            {!isPhone && <span className="mono" style={{ opacity: 0.45 }}>· SKU {PRODUCT.sku}</span>}
           </div>
 
           <p className="arabic" style={{ fontSize: isPhone ? 22 : 28, color: 'var(--emerald)', opacity: 0.85, marginBottom: 6 }}>{PRODUCT.arabic}</p>
@@ -194,29 +156,7 @@ export default function ProductDetailPage() {
 
           <p style={{ fontSize: isPhone ? 14 : 15, lineHeight: 1.7, opacity: 0.78, marginTop: 20, marginBottom: 28 }}>{PRODUCT.desc}</p>
 
-          <Selector label="Colour" sub={PRODUCT.colors[activeColor].name}>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              {PRODUCT.colors.map((c, i) => (
-                <button key={i} onClick={() => setActiveColor(i)} title={c.name} aria-label={c.name} style={{ width: 40, height: 40, borderRadius: '50%', background: c.hex, border: i === activeColor ? '2px solid var(--ink)' : '1px solid rgba(10,9,8,0.15)', boxShadow: i === activeColor ? '0 0 0 3px var(--ivory) inset' : 'none', transition: 'all 0.3s' }}/>
-              ))}
-            </div>
-          </Selector>
-
-          <Selector label="Fabric" sub={PRODUCT.fabrics[activeFabric].name}>
-            <div style={{ display: 'grid', gridTemplateColumns: isPhone ? '1fr' : '1fr 1fr 1fr', gap: 8 }}>
-              {PRODUCT.fabrics.map((f, i) => (
-                <button key={i} onClick={() => setActiveFabric(i)} style={{ padding: '14px 16px', border: i === activeFabric ? '1px solid var(--ink)' : '1px solid rgba(10,9,8,0.15)', background: i === activeFabric ? 'var(--ink)' : 'transparent', color: i === activeFabric ? 'var(--ivory)' : 'var(--ink)', textAlign: 'left', transition: 'all 0.3s', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
-                  <div>
-                    <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 3 }}>{f.name}</div>
-                    <div style={{ fontSize: 10, opacity: 0.65, fontFamily: 'var(--f-mono)' }}>{f.desc}</div>
-                  </div>
-                  {isPhone && i === activeFabric && <span style={{ color: 'var(--gold)' }}>✓</span>}
-                </button>
-              ))}
-            </div>
-          </Selector>
-
-          <Selector label="Size" sub={isPhone ? `EU ${activeSize}` : `EU ${activeSize} · 6 ft 1 in fits ${activeSize}`}
+          <Selector label="Size" sub={isPhone ? `${activeSize}` : `${activeSize}`}
             action={<button onClick={openSizeGuide} style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'underline' }}>Size guide ↗</button>}>
             <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(6, 1fr)' : 'none', gap: 8, gridAutoFlow: isPhone ? 'row' : undefined }}>
               {!isPhone ? (
@@ -247,7 +187,7 @@ export default function ProductDetailPage() {
                 </svg>
                 Book a Fitting Appointment
               </button>
-              <p className="mono" style={{ marginTop: 10, fontSize: 11, opacity: 0.55, textAlign: 'center' }}>Opens WhatsApp · +91 89750 48440 · Replies within an hour</p>
+              <p className="mono" style={{ marginTop: 10, fontSize: 11, opacity: 0.55, textAlign: 'center' }}>Opens WhatsApp · {CONTACT.phoneDisplay} · {CONTACT.sla}</p>
             </>
           )}
 
@@ -260,12 +200,7 @@ export default function ProductDetailPage() {
             borderTop: '1px solid rgba(10,9,8,0.1)',
             borderBottom: '1px solid rgba(10,9,8,0.1)',
           }}>
-            {[
-              { i: '✦', t: 'Free worldwide shipping', d: 'Express · 3-5 days' },
-              { i: '✦', t: 'Lifetime alterations', d: 'Free re-fit at any age' },
-              { i: '✦', t: '30-day returns', d: 'Full refund · No questions' },
-              { i: '✦', t: 'Heirloom box', d: 'Hand-folded in tissue' },
-            ].map((s, i) => (
+            {SHIPPING_BADGES.map((s, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                 <span style={{ color: 'var(--gold)' }}>{s.i}</span>
                 <div>
@@ -290,7 +225,7 @@ export default function ProductDetailPage() {
               )},
               { id: 'fit', t: 'Fit & sizing', body: <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.75, paddingTop: 8 }}>The Sovereign sits true to size. A six-foot-one wearer with a 102 cm chest fits EU 52. For a roomier silhouette, size up one. For made-to-measure, book a 30-minute video appointment.</p> },
               { id: 'care', t: 'Care', body: <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.75, paddingTop: 8 }}>Dry-clean only. Press inside out on a low setting. Avoid direct sunlight when stored. We will press and refresh your garment free of charge at any KhanSaab atelier.</p> },
-              { id: 'ship', t: 'Shipping & returns', body: <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.75, paddingTop: 8 }}>Complimentary express shipping worldwide. UAE: 1-2 days. Gulf: 2-4 days. Rest of world: 3-7 days. Returns accepted within 30 days. Made-to-measure orders are final sale.</p> },
+              { id: 'ship', t: 'Shipping & returns', body: <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.75, paddingTop: 8 }}>Free shipping across India. Delivery within 5-7 business days. Metro cities may receive earlier. Returns accepted within 10 days of delivery in original condition. Made-to-measure orders are final sale.</p> },
             ].map(a => (
               <div key={a.id} style={{ borderTop: '1px solid rgba(10,9,8,0.1)' }}>
                 <button onClick={() => setAcc(acc === a.id ? '' : a.id)} style={{ width: '100%', padding: '20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
@@ -314,12 +249,7 @@ export default function ProductDetailPage() {
             </h2>
           </header>
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isPhone ? 18 : 24 }}>
-            {[
-              { d: 'Day 01', t: 'Pattern', body: 'A paper pattern is cut to your measurements.', src: '/assets/reel_6.png' },
-              { d: 'Day 02-04', t: 'Cloth', body: 'Heavyweight cotton is laid, marked and cut by hand.', src: '/assets/about_1.png' },
-              { d: 'Day 05-11', t: 'Stitch', body: '60 stitches per cm. By a single artisan.', src: '/assets/reel_1.png' },
-              { d: 'Day 12-14', t: 'Finish', body: 'Pressed, packed and signed on the inner placket.', src: '/assets/reel_7.png' },
-            ].map((s, i) => (
+            {PDP_MAKING_STEPS.map((s, i) => (
               <div key={i}>
                 <Img label={`STEP ${i + 1}`} src={s.src} style={{ aspectRatio: '16/9', marginBottom: 14 }}/>
                 <p className="mono" style={{ color: 'var(--gold-warm)', marginBottom: 6, fontSize: isPhone ? 10 : 11 }}>{s.d}</p>
@@ -341,7 +271,6 @@ export default function ProductDetailPage() {
                 What men <span className="display-italic" style={{ color: 'var(--emerald)' }}>say.</span>
               </h2>
             </div>
-            <button className="btn btn-ghost-dark">Write a review</button>
           </header>
           <div style={{
             display: 'grid',
@@ -360,10 +289,10 @@ export default function ProductDetailPage() {
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignSelf: 'center', width: '100%' }}>
-              {[[5, 218], [4, 22], [3, 5], [2, 1], [1, 1]].map(([n, c]) => (
+              {REVIEW_HISTOGRAM.distribution.map(([n, c]) => (
                 <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <span className="mono" style={{ minWidth: 32, fontSize: isPhone ? 10 : 11 }}>{n}★</span>
-                  <div style={{ flex: 1, height: 6, background: 'rgba(10,9,8,0.08)' }}><div style={{ width: `${(c / 247) * 100}%`, height: '100%', background: 'var(--emerald)' }}/></div>
+                  <div style={{ flex: 1, height: 6, background: 'rgba(10,9,8,0.08)' }}><div style={{ width: `${(c / REVIEW_HISTOGRAM.total) * 100}%`, height: '100%', background: 'var(--emerald)' }}/></div>
                   <span className="mono" style={{ opacity: 0.55, minWidth: 32, textAlign: 'right', fontSize: isPhone ? 10 : 11 }}>{c}</span>
                 </div>
               ))}
@@ -376,11 +305,7 @@ export default function ProductDetailPage() {
               marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)',
               padding: '0 24px',
             }}>
-              {[
-                { stars: 5, t: 'Worth every dirham', b: 'The fit is impeccable. Three fittings, one perfect garment. I will not buy a thobe elsewhere again.', n: 'Hassan A.', v: 'Verified · Bought EU 52' },
-                { stars: 5, t: 'Wedding-ready in 14 days', b: "Ordered in a panic for my brother's wedding. Arrived on day 12, signed and pressed. Made me cry, honestly.", n: 'Tariq M.', v: 'Verified · Bought EU 50' },
-                { stars: 5, t: 'Best thobe I have owned', b: "Compared side by side with three other 'luxury' brands. KhanSaab wins on cloth, stitch and shoulder. Effortless.", n: 'Omar K.', v: 'Verified · Bought EU 54' },
-              ].map((r, i) => (
+              {PRODUCT_REVIEWS.map((r, i) => (
                 <article key={i} style={{ flex: '0 0 82%', scrollSnapAlign: 'center', padding: 22, background: 'var(--paper)', border: '1px solid rgba(10,9,8,0.06)' }}>
                   <p style={{ color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 14 }}>{'★'.repeat(r.stars)}</p>
                   <h3 className="display" style={{ fontSize: 20, marginBottom: 12 }}>{r.t}</h3>
@@ -394,11 +319,7 @@ export default function ProductDetailPage() {
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-              {[
-                { stars: 5, t: 'Worth every dirham', b: 'The fit is impeccable. Three fittings, one perfect garment. I will not buy a thobe elsewhere again.', n: 'Hassan A.', v: 'Verified · Bought EU 52' },
-                { stars: 5, t: 'Wedding-ready in 14 days', b: "Ordered in a panic for my brother's wedding. Arrived on day 12, signed and pressed. Made me cry, honestly.", n: 'Tariq M.', v: 'Verified · Bought EU 50' },
-                { stars: 5, t: 'Best thobe I have owned', b: "Compared side by side with three other 'luxury' brands. KhanSaab wins on cloth, stitch and shoulder. Effortless.", n: 'Omar K.', v: 'Verified · Bought EU 54' },
-              ].map((r, i) => (
+              {PRODUCT_REVIEWS.map((r, i) => (
                 <article key={i} style={{ padding: 28, background: 'var(--paper)', border: '1px solid rgba(10,9,8,0.06)' }}>
                   <p style={{ color: 'var(--gold)', letterSpacing: '0.1em', marginBottom: 16 }}>{'★'.repeat(r.stars)}</p>
                   <h3 className="display" style={{ fontSize: 22, marginBottom: 14 }}>{r.t}</h3>
@@ -424,12 +345,7 @@ export default function ProductDetailPage() {
             </h2>
           </header>
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isPhone ? 12 : 24 }}>
-            {[
-              { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", src: '/assets/hero_1.png' },
-              { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', src: '/assets/bisht_black.png' },
-              { name: 'White Yemeni Shemagh', arabic: 'شماغ يمني', cat: 'accessories', fabric: 'cotton', price: 240, src: '/assets/shemagh.png' },
-              { name: 'Amber Misbaha Set', arabic: 'مسبحة عنبر', cat: 'accessories', fabric: 'amber', price: 380, old: 440, tag: 'NEW', src: '/assets/accessories.png' },
-            ].map((p, i) => (
+            {RELATED_PRODUCTS.map((p, i) => (
               <ProductCard key={i} p={p} view="grid" compact={isPhone}/>
             ))}
           </div>
@@ -449,7 +365,7 @@ export default function ProductDetailPage() {
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           <div style={{ flex: '0 0 auto', minWidth: 0 }}>
-            <p className="mono" style={{ fontSize: 9.5, opacity: 0.55, letterSpacing: '0.18em' }}>EU {activeSize} · {PRODUCT.colors[activeColor].name}</p>
+            <p className="mono" style={{ fontSize: 9.5, opacity: 0.55, letterSpacing: '0.18em' }}>{activeSize}</p>
             <p style={{ fontSize: 18, fontWeight: 600, fontFamily: 'var(--f-display)', lineHeight: 1.1 }}>₹{PRODUCT.price.toLocaleString()}</p>
           </div>
           <button onClick={ctaHandler} className="btn btn-gold" style={{

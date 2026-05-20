@@ -4,6 +4,9 @@ import { Ornament, CornerOrnament } from "../components/shared/Ornament.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 import { useViewport } from "../hooks/useViewport.js";
 import { ContactStrip } from "./ProductsPage.jsx";
+import { TIMELINE_EVENTS } from "../data/timeline.js";
+import { TEAM } from "../data/team.js";
+import { STORY_RIBBONS } from "../data/content.js";
 
 function TextRibbon({
   words,
@@ -89,58 +92,6 @@ function RevealText({ text, className, style, delay = 0 }) {
     </span>
   );
 }
-
-const TIMELINE_EVENTS = [
-  {
-    year: "1972",
-    title: "The first stitch",
-    desc: "Khan opens a sewing room behind the Dubai gold souk with two needles and a kerosene lamp.",
-    img: "1972 · WORKSHOP",
-    src: "/assets/reel_1.png"
-  },
-  {
-    year: "1988",
-    title: "Beyond the Emirates",
-    desc: "Waiting list extends to Riyadh, Doha and Kuwait City. Six tailors are hired.",
-    img: "1988 · APPOINTMENT BOOK",
-    src: "/assets/about_1.png"
-  },
-  {
-    year: "1995",
-    title: "Second generation",
-    desc: "Saif's father, Rashid, takes the bench. The atelier moves to Al Wasl Road.",
-    img: "1995 · RASHID KHAN",
-    src: "/assets/ref_2.jpg"
-  },
-  {
-    year: "2003",
-    title: "The Bisht Room",
-    desc: "A dedicated atelier for ceremonial cloaks opens — 24k gold-thread embroidery a specialty.",
-    img: "2003 · BISHT ROOM",
-    src: "/assets/reel_7.png"
-  },
-  {
-    year: "2014",
-    title: "KhanSaab is born",
-    desc: "Saif joins. The house is formally named KhanSaab and begins serving international clientele.",
-    img: "2014 · SAIF KHAN",
-    src: "/assets/reel_6.png"
-  },
-  {
-    year: "2019",
-    title: "Diplomatic",
-    desc: "The Diplomatic line launches — crease-resistant travel thobes worn from Geneva to Tokyo.",
-    img: "2019 · DIPLOMATIC LINE",
-    src: "/assets/ref_5.jpg"
-  },
-  {
-    year: "2026",
-    title: "Forty hands, one craft",
-    desc: "Today: 40 artisans, 47 countries shipped, 12,400+ five-star reviews — and the same shears.",
-    img: "2026 · THE ATELIER",
-    src: "/assets/about_1.png"
-  },
-];
 
 function MobileTimelineItem({ e, i, total }) {
   const [ref, visible] = useReveal(0.2);
@@ -591,43 +542,6 @@ function Timeline() {
   );
 }
 
-const TEAM = [
-  {
-    name: "Saif Khan",
-    role: "Head of House · Master Tailor",
-    arabic: "سيف خان",
-    since: "2014",
-    quote:
-      "A garment is a thirty-year conversation between a man and his cloth.",
-    src: "/assets/hero_1.png"
-  },
-  {
-    name: "Rashid Khan",
-    role: "Founder · Chairman",
-    arabic: "راشد خان",
-    since: "1995",
-    quote: "We make heritage. The seasons are someone else's problem.",
-    src: "/assets/ref_1.jpg"
-  },
-  {
-    name: "Aisha Al-Nuaimi",
-    role: "Creative Director",
-    arabic: "عائشة النعيمي",
-    since: "2018",
-    quote: "Tradition is not what we preserve. It is what we choose to extend.",
-    src: "/assets/about_3.png"
-  },
-  {
-    name: "Tariq Mansouri",
-    role: "Bisht Master · 24k Gold",
-    arabic: "طارق المنصوري",
-    since: "2003",
-    quote:
-      "A bisht should weigh on the shoulders the way honour does — gently, firmly.",
-    src: "/assets/reel_4.png"
-  },
-];
-
 function TeamCard({ member }) {
   const [hov, setHov] = useState(false);
   const { isPhone } = useViewport();
@@ -969,9 +883,9 @@ export default function StoryPage() {
       </section>
 
       <TextRibbon
-        words={["Heritage", "Craftsmanship", "Devotion", "Khaleej", "Atelier"]}
-        color="var(--gold)"
-        bg="var(--ink)"
+        words={STORY_RIBBONS.ribbon1.words}
+        color={STORY_RIBBONS.ribbon1.color}
+        bg={STORY_RIBBONS.ribbon1.bg}
       />
 
       {/* Archival image */}
@@ -1260,10 +1174,10 @@ export default function StoryPage() {
       </section>
 
       <TextRibbon
-        words={["Made by hand", "Made to last", "Made to be passed on"]}
-        direction="right"
-        color="var(--ink)"
-        bg="var(--gold)"
+        words={STORY_RIBBONS.ribbon2.words}
+        direction={STORY_RIBBONS.ribbon2.direction}
+        color={STORY_RIBBONS.ribbon2.color}
+        bg={STORY_RIBBONS.ribbon2.bg}
       />
 
       <Timeline />

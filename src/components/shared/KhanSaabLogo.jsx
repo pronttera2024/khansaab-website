@@ -15,8 +15,8 @@ export default function KhanSaabLogo({ size = 56, color = 'currentColor', showWo
       />
       {showWord && (
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-          <span className="display" style={{ fontSize: 22, letterSpacing: '0.06em', fontWeight: 500 }}>
-            KHAN<span style={{ color: 'var(--gold)' }}>SAAB</span>
+          <span style={{ fontFamily: '"Times New Roman", Times, serif', fontSize: 22, letterSpacing: '0.06em', fontWeight: 500 }}>
+            KHANSAAB
           </span>
           <span className="arabic" style={{ fontSize: 13, opacity: 0.7, marginTop: 2, letterSpacing: 0 }}>
             خان صاحب

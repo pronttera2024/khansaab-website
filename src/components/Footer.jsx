@@ -1,14 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import KhanSaabLogo from './shared/KhanSaabLogo.jsx'
-
-const WHATSAPP_NUMBER = '918975048440'
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
-
-function openWhatsApp(msg) {
-  const u = msg ? `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}` : WHATSAPP_URL
-  window.open(u, '_blank', 'noopener,noreferrer')
-}
+import { openWhatsApp } from '../utils/whatsapp.js'
+import { CONTACT, BRAND, PAYMENT_METHODS, WHATSAPP_MESSAGES } from '../data/site-config.js'
+import { FOOTER_LINKS } from '../data/navigation.js'
 
 function FooterBlock({ label, lines }) {
   return (
@@ -78,15 +73,15 @@ export default function Footer() {
             </p>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <button className="btn btn-gold" onClick={openAtelier}>Book an Appointment</button>
-              <button className="btn btn-ghost" onClick={() => openWhatsApp("Hello KhanSaab — I'd like to chat.")}>Send a Message</button>
+              <button className="btn btn-ghost" onClick={() => openWhatsApp(WHATSAPP_MESSAGES.general)}>Send a Message</button>
             </div>
           </div>
 
           <div data-footer-info style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-            <FooterBlock label="Atelier" lines={['12 Al Wasl Road', 'Jumeirah, Dubai', 'United Arab Emirates']} />
-            <FooterBlock label="Studio Hours" lines={['Mon — Sat', '10:00 — 21:00 GST', 'Sunday by appointment']} />
-            <FooterBlock label="Phone" lines={['+971 4 555 0911', '+44 20 7946 0011']} />
-            <FooterBlock label="Email" lines={['concierge@khansaab.com', 'press@khansaab.com']} />
+            <FooterBlock label="Atelier" lines={[CONTACT.address.street, CONTACT.address.area, CONTACT.address.country]} />
+            <FooterBlock label="Studio Hours" lines={[CONTACT.hours.weekday, CONTACT.hours.time, CONTACT.hours.weekend]} />
+            <FooterBlock label="Phone" lines={CONTACT.phone} />
+            <FooterBlock label="Email" lines={[CONTACT.email.concierge, CONTACT.email.press]} />
           </div>
         </div>
 
@@ -99,41 +94,21 @@ export default function Footer() {
           <div>
             <KhanSaabLogo size={48} color="var(--ivory)" />
             <p style={{ marginTop: 24, opacity: 0.55, fontSize: 14, lineHeight: 1.7, maxWidth: 320 }}>
-              Heritage menswear of the Khaleej — designed in Dubai, hand-finished by master tailors of the
-              old quarters. Established 2014.
+              {BRAND.description}
             </p>
             <p className="arabic" style={{ marginTop: 18, fontSize: 22, color: 'var(--gold)' }}>
-              فنّ اللباس الرفيع
+              {BRAND.taglineArabic}
             </p>
           </div>
-          <FooterLinks title="Collection" items={[
-            { label: 'Thobes', onClick: () => navigate('/products') },
-            { label: 'Kanduras', onClick: () => navigate('/products') },
-            { label: 'Bishts', onClick: () => navigate('/products') },
-            { label: 'Jubbas', onClick: () => navigate('/products') },
-            { label: 'Shemaghs', onClick: () => navigate('/products') },
-            { label: 'Gift Cards', onClick: () => navigate('/products') },
-          ]} />
-          <FooterLinks title="House" items={[
-            { label: 'Our Story', onClick: () => navigate('/story') },
-            { label: 'The Atelier', onClick: openAtelier },
-            { label: 'Craftsmanship', onClick: () => navigate('/story') },
-            { label: 'Journal', onClick: () => navigate('/story') },
-            { label: 'Press', onClick: () => navigate('/story') },
-          ]} />
-          <FooterLinks title="Service" items={[
-            { label: 'Made to Measure', onClick: openAtelier },
-            { label: 'Size Guide', onClick: openSizeGuide },
-            { label: 'Shipping', onClick: () => navigate('/legal/legal-shipping') },
-            { label: 'Returns', onClick: () => navigate('/legal/legal-returns') },
-            { label: 'Care Guide', onClick: () => navigate('/legal/legal-care') },
-          ]} />
-          <FooterLinks title="Legal" items={[
-            { label: 'Terms', onClick: () => navigate('/legal/legal-terms') },
-            { label: 'Privacy', onClick: () => navigate('/legal/legal-privacy') },
-            { label: 'Cookies', onClick: () => navigate('/legal/legal-cookies') },
-            { label: 'Accessibility', onClick: () => navigate('/legal/legal-accessibility') },
-          ]} />
+          {Object.values(FOOTER_LINKS).map(group => {
+            const actions = { openAtelier, openSizeGuide }
+            return (
+              <FooterLinks key={group.title} title={group.title} items={group.items.map(item => ({
+                label: item.label,
+                onClick: item.action ? actions[item.action] : () => navigate(item.path),
+              }))} />
+            )
+          })}
         </div>
 
         <div data-footer-newsletter style={{
@@ -178,13 +153,12 @@ export default function Footer() {
           fontSize: 12,
           opacity: 0.55,
         }}>
-          <div>© 2026 KhanSaab Atelier. All rights reserved.</div>
+          <div>{BRAND.copyright}</div>
           <div style={{ display: 'flex', gap: 20 }}>
-            <span>Visa</span><span>Mastercard</span><span>Amex</span>
-            <span>Apple Pay</span><span>Tabby</span><span>Tamara</span>
+            {PAYMENT_METHODS.map(m => <span key={m}>{m}</span>)}
           </div>
           <div style={{ display: 'flex', gap: 18 }}>
-            <span>Instagram</span><span>YouTube</span><span>TikTok</span><span>Pinterest</span>
+            <span>Instagram</span>
           </div>
         </div>
       </div>

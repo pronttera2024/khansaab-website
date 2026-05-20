@@ -4,21 +4,12 @@ import { useModals } from '../context/ModalsContext.jsx'
 import { useViewport } from '../hooks/useViewport.js'
 import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
+import { ALL_PRODUCTS, toCardFormat } from '../data/products.js'
+import { FILTER_OPTIONS, SORT_OPTIONS } from '../data/categories.js'
+import { SEARCH_PLACEHOLDERS } from '../data/content.js'
+import { WHATSAPP_MESSAGES } from '../data/site-config.js'
 
-const ALL_PRODUCTS = [
-  { name: 'Ivory Sovereign Thobe', arabic: 'الثوب الملكي', cat: 'thobes', fabric: 'cotton', price: 1240, old: 1380, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
-  { name: 'Pearl Emirati Kandura', arabic: 'كندورة اللؤلؤ', cat: 'kanduras', fabric: 'cotton', price: 980, tag: "EDITORS' PICK", occasion: 'everyday', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
-  { name: 'Obsidian Royal Bisht', arabic: 'بشت أسود', cat: 'bishts', fabric: 'wool', price: 4280, tag: 'MADE TO ORDER', occasion: 'wedding', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
-  { name: 'Emerald Hooded Jubba', arabic: 'جبة خضراء', cat: 'jubbas', fabric: 'wool-blend', price: 1640, old: 1840, tag: 'NEW', occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
-  { name: 'Sand Linen Thobe', arabic: 'ثوب الرمل', cat: 'thobes', fabric: 'linen', price: 890, occasion: 'everyday', src: '/src/data/images/set-5/1.png', src2: '/src/data/images/set-5/2.png' },
-  { name: 'Charcoal Diplomat', arabic: 'الدبلوماسي', cat: 'thobes', fabric: 'cotton', price: 1180, tag: 'DIPLOMATIC', occasion: 'business', src: '/src/data/images/set-3/1.png', src2: '/src/data/images/set-3/2.png' },
-  { name: 'Cream Festive Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'silk-blend', price: 1480, occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
-  { name: 'Navy Ceremonial Bisht', arabic: 'بشت كحلي', cat: 'bishts', fabric: 'wool', price: 3680, tag: 'WEDDING', occasion: 'wedding', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
-  { name: 'Sage Hooded Jubba', arabic: 'جبة بحرية', cat: 'jubbas', fabric: 'wool-blend', price: 1540, occasion: 'festive', src: '/src/data/images/set-5/1.png', src2: '/src/data/images/set-5/2.png' },
-  { name: 'Royal Saudi Thobe', arabic: 'ثوب سعودي', cat: 'thobes', fabric: 'cotton', price: 1060, tag: 'BEST SELLER', occasion: 'everyday', src: '/src/data/images/set-1/1.png', src2: '/src/data/images/set-1/2.png' },
-  { name: 'Black Eid Kandura', arabic: 'كندورة العيد', cat: 'kanduras', fabric: 'cotton', price: 1120, tag: 'EID', occasion: 'festive', src: '/src/data/images/set-4/1.png', src2: '/src/data/images/set-4/2.png' },
-  { name: 'Beige Camel Bisht', arabic: 'بشت جمل', cat: 'bishts', fabric: 'wool', price: 3940, occasion: 'wedding', src: '/src/data/images/set-2/1.png', src2: '/src/data/images/set-2/2.png' },
-]
+const PRODUCTS_LIST = ALL_PRODUCTS.map(toCardFormat)
 
 function FilterGroup({ title, options, value, onChange }) {
   return (
@@ -43,7 +34,6 @@ function FilterGroup({ title, options, value, onChange }) {
 
 function ProductCard({ p, view, compact }) {
   const [hov, setHov] = useState(false)
-  const [wish, setWish] = useState(false)
   const navigate = useNavigate()
 
   if (compact) {
@@ -51,7 +41,7 @@ function ProductCard({ p, view, compact }) {
     const reviews = 40 + (p.price % 280)
     const discount = p.old ? Math.round(((p.old - p.price) / p.old) * 100) : 0
     return (
-      <article onClick={() => navigate('/product')} style={{
+      <article onClick={() => navigate(`/product/${p.id}`)} style={{
         cursor: 'pointer', position: 'relative',
         background: 'var(--paper)',
         borderRadius: 10,
@@ -70,21 +60,6 @@ function ProductCard({ p, view, compact }) {
               -{discount}%
             </div>
           )}
-          <button
-            onClick={(e) => { e.stopPropagation(); setWish(w => !w) }}
-            aria-label="Add to wishlist"
-            style={{
-              position: 'absolute', bottom: 8, right: 8,
-              width: 32, height: 32, borderRadius: '50%',
-              background: 'rgba(245,239,227,0.95)',
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.12)',
-              color: wish ? 'var(--emerald)' : 'rgba(10,9,8,0.55)',
-            }}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill={wish ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.4">
-              <path d="M8 14 C8 14 1 9.5 1 5 C1 3 2.5 1.5 4.5 1.5 C6 1.5 7.2 2.5 8 3.8 C8.8 2.5 10 1.5 11.5 1.5 C13.5 1.5 15 3 15 5 C15 9.5 8 14 8 14 Z"/>
-            </svg>
-          </button>
         </div>
         <div style={{ padding: '10px 10px 12px' }}>
           <h3 style={{
@@ -111,14 +86,14 @@ function ProductCard({ p, view, compact }) {
 
   if (view === 'list') {
     return (
-      <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/product')}
+      <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate(`/product/${p.id}`)}
         style={{ display: 'grid', gridTemplateColumns: '240px 1fr auto', gap: 32, padding: 20, border: '1px solid rgba(10,9,8,0.08)', background: 'var(--paper)', cursor: 'pointer', transition: 'all 0.4s' }}>
         <Img src={p.src} label={p.name.toUpperCase()} style={{ aspectRatio: '3/4' }}/>
         <div style={{ paddingTop: 12 }}>
           {p.tag && <span style={{ fontSize: 9, letterSpacing: '0.2em', fontWeight: 600, color: 'var(--emerald)', marginBottom: 8, display: 'inline-block' }}>{p.tag}</span>}
           <h3 className="display" style={{ fontSize: 28, marginBottom: 8 }}>{p.name}</h3>
           <p className="arabic" style={{ fontSize: 22, color: 'var(--emerald)', opacity: 0.7, marginBottom: 12 }}>{p.arabic}</p>
-          <p className="mono" style={{ opacity: 0.55 }}>{p.fabric.toUpperCase()} · {p.cat.toUpperCase()} · {p.occasion.toUpperCase()}</p>
+          <p className="mono" style={{ opacity: 0.55 }}>{p.cat.toUpperCase()}</p>
         </div>
         <div style={{ textAlign: 'right', paddingTop: 12, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 14 }}>
           <div style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
@@ -131,16 +106,15 @@ function ProductCard({ p, view, compact }) {
   }
 
   return (
-    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate('/product')} style={{ cursor: 'pointer', position: 'relative' }}>
+    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate(`/product/${p.id}`)} style={{ cursor: 'pointer', position: 'relative' }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: compact ? 10 : 20 }}>
         <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)' }}/>
         {!compact && <Img src={p.src2} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
         {p.tag && <div style={{ position: 'absolute', top: compact ? 8 : 14, left: compact ? 8 : 14, background: 'var(--ink)', color: 'var(--ivory)', padding: compact ? '3px 7px' : '5px 10px', fontSize: compact ? 8 : 9, letterSpacing: '0.18em', fontWeight: 600 }}>{p.tag}</div>}
-        {!compact && <button style={{ position: 'absolute', top: 14, right: 14, width: 34, height: 34, borderRadius: '50%', background: 'rgba(245,239,227,0.92)' }}>♡</button>}
       </div>
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 6 }}>
-          <span className="mono" style={{ opacity: 0.55, fontSize: compact ? 9 : 10 }}>{p.fabric.toUpperCase()}</span>
+          <span className="mono" style={{ opacity: 0.55, fontSize: compact ? 9 : 10 }}>{p.cat.toUpperCase()}</span>
           <span className="arabic" style={{ fontSize: compact ? 13 : 16, color: 'var(--emerald)', opacity: 0.7 }}>{p.arabic}</span>
         </div>
         <h3 className="display" style={{ fontSize: compact ? 16 : 22, lineHeight: 1.15, marginBottom: 6, fontWeight: 500 }}>{p.name}</h3>
@@ -223,7 +197,7 @@ function ContactStrip() {
           </h3>
         </div>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-          <button onClick={() => openWhatsApp('Hello KhanSaab — I\'d like concierge help.')} className="btn btn-gold">WhatsApp Concierge</button>
+          <button onClick={() => openWhatsApp(WHATSAPP_MESSAGES.concierge)} className="btn btn-gold">WhatsApp Concierge</button>
           <button onClick={openAtelier} className="btn btn-ghost">Book a Call</button>
         </div>
       </div>
@@ -236,20 +210,14 @@ export { ContactStrip, ProductCard }
 export default function ProductsPage() {
   const { isPhone } = useViewport()
   const { openAtelier } = useModals()
-  const [filters, setFilters] = useState({ category: 'all', fabric: 'all', price: 'all', occasion: 'all' })
+  const [filters, setFilters] = useState({ category: 'all' })
   const [sort, setSort] = useState('featured')
   const [view, setView] = useState('grid')
   const [filterOpen, setFilterOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
   const [query, setQuery] = useState('')
 
-  const PLACEHOLDERS = [
-    'Search "ivory thobe"…',
-    'Try "bisht with gold"',
-    'Search "linen kandura"',
-    'Try "wedding"',
-    'Search "Saudi thobe"',
-  ]
+  const PLACEHOLDERS = SEARCH_PLACEHOLDERS
   const [phIdx, setPhIdx] = useState(0)
   useEffect(() => {
     const t = setInterval(() => setPhIdx(i => (i + 1) % PLACEHOLDERS.length), 2800)
@@ -264,25 +232,22 @@ export default function ProductsPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const SORTS = [
-    { v: 'featured', label: 'Featured' },
-    { v: 'new', label: 'Newest' },
-    { v: 'price-asc', label: 'Price: Low to High' },
-    { v: 'price-desc', label: 'Price: High to Low' },
-  ]
+  const SORTS = SORT_OPTIONS
   const sortLabel = SORTS.find(s => s.v === sort)?.label || 'Featured'
 
   const q = query.trim().toLowerCase()
-  const matches = ALL_PRODUCTS.filter(p =>
+  const matches = PRODUCTS_LIST.filter(p =>
     (filters.category === 'all' || p.cat === filters.category) &&
-    (filters.fabric === 'all' || p.fabric === filters.fabric) &&
-    (filters.price === 'all' ||
-      (filters.price === 'u1000' && p.price < 1000) ||
-      (filters.price === '1000-2000' && p.price >= 1000 && p.price <= 2000) ||
-      (filters.price === '2000+' && p.price > 2000)) &&
-    (filters.occasion === 'all' || p.occasion === filters.occasion) &&
-    (q === '' || p.name.toLowerCase().includes(q) || p.cat.includes(q) || p.fabric.includes(q))
+    (q === '' || p.name.toLowerCase().includes(q) || p.cat.includes(q))
   )
+
+  const PER_PAGE = isPhone ? 6 : 9
+  const [page, setPage] = useState(1)
+  const totalPages = Math.max(1, Math.ceil(matches.length / PER_PAGE))
+  const paged = matches.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+
+  // Reset to page 1 when filters/query change
+  useEffect(() => { setPage(1) }, [filters.category, query])
 
   const activeFilterCount = Object.values(filters).filter(v => v !== 'all').length
 
@@ -290,21 +255,15 @@ export default function ProductsPage() {
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
         <p className="eyebrow" style={{ color: 'var(--emerald)' }}>Refine</p>
-        <button onClick={() => setFilters({ category: 'all', fabric: 'all', price: 'all', occasion: 'all' })} style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.55 }}>Reset</button>
+        <button onClick={() => setFilters({ category: 'all' })} style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.55 }}>Reset</button>
       </div>
       <FilterGroup title="Category" value={filters.category} onChange={v => setFilters({ ...filters, category: v })}
-        options={[['all', 'All garments'], ['thobes', 'Thobes'], ['kanduras', 'Kanduras'], ['bishts', 'Bishts'], ['jubbas', 'Jubbas']]}/>
-      <FilterGroup title="Fabric" value={filters.fabric} onChange={v => setFilters({ ...filters, fabric: v })}
-        options={[['all', 'All fabrics'], ['cotton', 'Cotton'], ['linen', 'Linen'], ['wool', 'Wool'], ['wool-blend', 'Wool blend'], ['silk-blend', 'Silk blend']]}/>
-      <FilterGroup title="Price" value={filters.price} onChange={v => setFilters({ ...filters, price: v })}
-        options={[['all', 'Any'], ['u1000', 'Under $1,000'], ['1000-2000', '$1,000 – $2,000'], ['2000+', '$2,000 and above']]}/>
-      <FilterGroup title="Occasion" value={filters.occasion} onChange={v => setFilters({ ...filters, occasion: v })}
-        options={[['all', 'Any occasion'], ['everyday', 'Everyday'], ['festive', 'Festive · Eid'], ['wedding', 'Wedding'], ['business', 'Business · Diplomatic']]}/>
+        options={FILTER_OPTIONS.category}/>
       <div style={{ marginTop: 40, padding: 20, background: 'var(--emerald)', color: 'var(--ivory)', position: 'relative', overflow: 'hidden' }}>
         <div className="geo-overlay" style={{ opacity: 0.1 }}/>
         <p className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 10 }}>Need help?</p>
         <p style={{ fontSize: 14, opacity: 0.85, marginBottom: 18, lineHeight: 1.55 }}>Our concierge will pick three pieces tailored to your event.</p>
-        <button onClick={() => openWhatsApp("Hi! I'd like help finding a garment.")} style={{ fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)', paddingBottom: 4, borderBottom: '1px solid var(--gold)' }}>Chat with concierge →</button>
+        <button onClick={() => openWhatsApp(WHATSAPP_MESSAGES.findGarment)} style={{ fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--gold)', paddingBottom: 4, borderBottom: '1px solid var(--gold)' }}>Chat with concierge →</button>
       </div>
     </>
   )
@@ -320,7 +279,7 @@ export default function ProductsPage() {
               The full <span className="display-italic" style={{ color: 'var(--emerald)' }}>collection.</span>
             </h1>
             <p style={{ marginTop: 20, maxWidth: 540, fontSize: 16, opacity: 0.65 }}>
-              <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{matches.length}</span> of <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{ALL_PRODUCTS.length}</span> hand-finished garments. Updated weekly.
+              Showing <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{paged.length}</span> of <span style={{ fontWeight: 600, color: 'var(--ink)' }}>{matches.length}</span> garments{totalPages > 1 && ` · Page ${page} of ${totalPages}`}
             </p>
           </div>
         </section>
@@ -414,7 +373,7 @@ export default function ProductsPage() {
           {/* Row 2: selected filter chips */}
           {activeFilterCount > 0 && (
             <div style={{ display: 'flex', gap: 6, overflowX: 'auto', padding: '0 12px 10px', scrollbarWidth: 'none' }} data-no-scrollbar>
-              <button onClick={() => setFilters({ category: 'all', fabric: 'all', price: 'all', occasion: 'all' })} style={{
+              <button onClick={() => setFilters({ category: 'all', price: 'all' })} style={{
                 flex: '0 0 auto', height: 28, padding: '0 12px', borderRadius: 999,
                 border: '1px solid rgba(10,9,8,0.18)', background: 'transparent',
                 color: 'rgba(10,9,8,0.6)', fontSize: 11, fontWeight: 600, whiteSpace: 'nowrap',
@@ -466,7 +425,7 @@ export default function ProductsPage() {
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : (view === 'grid' ? 'repeat(3, 1fr)' : '1fr'), gap: isPhone ? 12 : (view === 'grid' ? 28 : 16), padding: isPhone ? '0 12px' : 0 }}>
-            {matches.slice(0, 5).map((p, i) => <ProductCard key={i} p={p} view={isPhone ? 'grid' : view} compact={isPhone}/>)}
+            {paged.map((p, i) => <ProductCard key={p.id || i} p={p} view={isPhone ? 'grid' : view} compact={isPhone}/>)}
             {matches.length === 0 && (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 60, opacity: 0.5 }}>
                 <p className="display" style={{ fontSize: 28 }}>No garments match.</p>
@@ -474,11 +433,13 @@ export default function ProductsPage() {
               </div>
             )}
           </div>
-          {matches.length > 0 && (
+          {totalPages > 1 && (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6, marginTop: isPhone ? 40 : 80, paddingTop: isPhone ? 24 : 40, borderTop: '1px solid rgba(10,9,8,0.08)', flexWrap: 'wrap', padding: isPhone ? '24px 16px 0' : '40px 0 0' }}>
-              {['←', '1', '2', '3', '…', '8', '→'].map((b, i) => (
-                <button key={i} style={{ minWidth: isPhone ? 38 : 44, height: isPhone ? 38 : 44, border: '1px solid rgba(10,9,8,0.15)', background: b === '1' ? 'var(--ink)' : 'transparent', color: b === '1' ? 'var(--ivory)' : 'inherit', fontSize: 13, borderRadius: 999 }}>{b}</button>
+              <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} style={{ minWidth: isPhone ? 38 : 44, height: isPhone ? 38 : 44, border: '1px solid rgba(10,9,8,0.15)', background: 'transparent', fontSize: 13, borderRadius: 999, opacity: page === 1 ? 0.3 : 1, cursor: page === 1 ? 'default' : 'pointer' }}>←</button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                <button key={n} onClick={() => setPage(n)} style={{ minWidth: isPhone ? 38 : 44, height: isPhone ? 38 : 44, border: '1px solid rgba(10,9,8,0.15)', background: n === page ? 'var(--ink)' : 'transparent', color: n === page ? 'var(--ivory)' : 'inherit', fontSize: 13, borderRadius: 999, cursor: 'pointer' }}>{n}</button>
               ))}
+              <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} style={{ minWidth: isPhone ? 38 : 44, height: isPhone ? 38 : 44, border: '1px solid rgba(10,9,8,0.15)', background: 'transparent', fontSize: 13, borderRadius: 999, opacity: page === totalPages ? 0.3 : 1, cursor: page === totalPages ? 'default' : 'pointer' }}>→</button>
             </div>
           )}
         </div>

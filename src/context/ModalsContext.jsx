@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback } from 'react'
+import { markAtelierDismissed } from '../hooks/useAutoPopup.js'
 
 const ModalsContext = createContext(null)
 
@@ -7,7 +8,7 @@ export function ModalsProvider({ children }) {
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
 
   const openAtelier    = useCallback(() => setAtelierOpen(true),    [])
-  const closeAtelier   = useCallback(() => setAtelierOpen(false),   [])
+  const closeAtelier   = useCallback(() => { setAtelierOpen(false); markAtelierDismissed() }, [])
   const openSizeGuide  = useCallback(() => setSizeGuideOpen(true),  [])
   const closeSizeGuide = useCallback(() => setSizeGuideOpen(false), [])
 

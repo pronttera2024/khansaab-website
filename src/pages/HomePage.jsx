@@ -1349,8 +1349,6 @@ function Reels() {
       ) : (
         <div
           data-reels-viewport
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
           style={{
             position: "relative",
             height: 640,

@@ -751,7 +751,7 @@ function Team() {
         }}
       >
         <Img
-          label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · DUBAI 2026"
+          label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
           src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
@@ -774,7 +774,7 @@ function Team() {
               letterSpacing: "0.22em",
             }}
           >
-            THE FULL ATELIER · DUBAI · MARCH 2026
+            THE FULL ATELIER · PUNE · MARCH 2026
           </p>
         </div>
       </div>
@@ -801,7 +801,7 @@ export default function StoryPage() {
             className="eyebrow"
             style={{ color: "var(--emerald)", marginBottom: isPhone ? 14 : 20 }}
           >
-            EST. MMXIV · DUBAI
+            EST. MMXIV · HYDERABAD
           </p>
           <p
             className="arabic"
@@ -845,7 +845,7 @@ export default function StoryPage() {
             }}
           >
             A short letter from three generations of tailors — on the cloth, the
-            city and the men who taught us how to dress the modern Khaleeji.
+            city and the men who taught us how to dress the modern Indian man.
           </p>
           {isPhone && (
             <p
@@ -894,7 +894,7 @@ export default function StoryPage() {
       >
         <Img
           variant="dark"
-          label="DUBAI · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
+          label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
           src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
@@ -931,7 +931,7 @@ export default function StoryPage() {
               color: "var(--gold-light)",
             }}
           >
-            BASTAKIYA QUARTER · 1972
+            CHARMINAR QUARTER · 1972
           </div>
           <div
             style={{
@@ -944,8 +944,8 @@ export default function StoryPage() {
               opacity: 0.95,
             }}
           >
-            "Our grandfather, Khan, opened a single sewing room behind the gold
-            souk. He stitched 14 hours a day."
+            "Our grandfather, Khan, opened a single tailoring workshop in the
+            lanes of Old Hyderabad. He stitched 14 hours a day."
           </div>
         </div>
       </section>
@@ -1001,27 +1001,27 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n 1972 my grandfather Khan opened a sewing room behind the Dubai
-              gold souk with two needles, a kerosene lamp and the conviction
-              that a man's garment ought to outlast him. He hand-stitched 14
-              hours a day, six days a week, for the merchants of the old
-              quarter.
+              n 1972 my grandfather Khan opened a tailoring workshop in the
+              narrow lanes of Old Hyderabad with two needles, a kerosene lamp
+              and the conviction that a man's garment ought to outlast him. He
+              hand-stitched 14 hours a day, six days a week, for the nawabs and
+              merchants of the Charminar quarter.
             </p>
             <p style={{ marginBottom: 22 }}>
-              He never advertised. Word travelled — first to neighbouring
-              emirates, then to Riyadh, Doha and Kuwait City. By 1988 his
-              appointment book required three months of waiting.
+              He never advertised. Word travelled — first to Lucknow and Delhi,
+              then to the Gulf and beyond. By 1988 his appointment book required
+              three months of waiting.
             </p>
             <p style={{ marginBottom: 22 }}>
-              My father inherited the bench in 1995 and added the second floor.
-              He insisted on English shears, Japanese cotton, and the unbroken
-              rule that every garment leaves the atelier with the maker's name
+              My father inherited the bench in 1995 and moved the atelier to
+              Pune. He insisted on Benarasi silk, Japanese cotton, and the
+              unbroken rule that every garment leaves with the maker's name
               stitched on the inside placket.
             </p>
             <p style={{ marginBottom: 22 }}>
               I joined in 2014 — not to change anything, but to extend it.
               KhanSaab today dresses forty men a week and ships to forty-seven
-              countries. The shears, the cotton and the placket remain the same.
+              countries. The shears, the silk and the placket remain the same.
             </p>
             <p style={{ marginBottom: 0 }}>
               We do not run advertisements. We do not chase seasons. We make

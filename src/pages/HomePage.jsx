@@ -597,7 +597,7 @@ function BentoCard({ cat, span }) {
   const isDark = cat.color === "var(--ivory)";
   return (
     <article
-      onClick={() => navigate("/products")}
+      onClick={() => navigate(`/products?category=${cat.id}`)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -861,7 +861,7 @@ function Reels() {
               className="eyebrow"
               style={{ color: "var(--gold)", marginBottom: 16 }}
             >
-              FROM THE ATELIER · @KHANSAAB
+              FROM THE ATELIER · @KHANSAABSTORE
             </p>
             <h2
               className="display"
@@ -882,7 +882,7 @@ function Reels() {
               }}
             >
               A weekly window into the studio. Tap a reel to watch — or follow
-              along on Instagram.
+              along on <a href="https://www.instagram.com/khansaabstore/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>Instagram</a>.
             </p>
           </div>
           {!isPhone && (
@@ -1830,7 +1830,7 @@ function Collections() {
               className="eyebrow"
               style={{ color: "var(--emerald)", marginBottom: 18 }}
             >
-              THE ETERNAL EMIRATES COLLECTION · VOL. VII
+              THE HERITAGE INDIAN COLLECTION · VOL. VII
             </p>
             <h2
               className="display"
@@ -2376,7 +2376,7 @@ function B2BSection() {
         >
           {[
             { v: "200+", l: "Retail partners" },
-            { v: "12", l: "States covered" },
+            { v: "28", l: "States covered" },
             { v: "48hr", l: "Dispatch time" },
             { v: "30%+", l: "Retailer margins" },
           ].map((s, k) => (

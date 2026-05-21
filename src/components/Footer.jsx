@@ -68,8 +68,8 @@ export default function Footer() {
               A garment that speaks <span className="display-italic" style={{ color: 'var(--gold)' }}>your story.</span>
             </h2>
             <p style={{ fontSize: 16, opacity: 0.7, maxWidth: 520, marginBottom: 36 }}>
-              Our atelier team is available across timezones. For made-to-measure consultations, private appointments
-              or wholesale inquiries — please write to us.
+              From our atelier in Pune, we serve discerning gentlemen across India and beyond.
+              Whether it's a bespoke thobe, bulk orders or a private fitting — we'd love to hear from you.
             </p>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <button className="btn btn-gold" onClick={openAtelier}>Book an Appointment</button>
@@ -158,7 +158,7 @@ export default function Footer() {
             {PAYMENT_METHODS.map(m => <span key={m}>{m}</span>)}
           </div>
           <div style={{ display: 'flex', gap: 18 }}>
-            <span>Instagram</span>
+            <a href="https://www.instagram.com/khansaabstore/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>Instagram</a>
           </div>
         </div>
       </div>

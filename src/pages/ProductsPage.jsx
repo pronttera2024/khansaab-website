@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import { useViewport } from '../hooks/useViewport.js'
 import Img from '../components/shared/Img.jsx'
@@ -210,7 +210,8 @@ export { ContactStrip, ProductCard }
 export default function ProductsPage() {
   const { isPhone } = useViewport()
   const { openAtelier } = useModals()
-  const [filters, setFilters] = useState({ category: 'all' })
+  const [searchParams] = useSearchParams()
+  const [filters, setFilters] = useState({ category: searchParams.get('category') || 'all' })
   const [sort, setSort] = useState('featured')
   const [view, setView] = useState('grid')
   const [filterOpen, setFilterOpen] = useState(false)

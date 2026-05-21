@@ -2,34 +2,36 @@
 // Single source of truth for contact info, social links, and brand metadata.
 // Ready to be replaced by a CMS or env variables.
 
-export const WHATSAPP_NUMBER = '918975048440'
+export const CLOUDINARY_BASE = `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_CLOUD}/image/upload`
+
+export const WHATSAPP_NUMBER = '919834449478'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
 
 export const CONTACT = {
-  phone: ['+971 4 555 0911', '+44 20 7946 0011'],
-  phoneDisplay: '+91 89750 48440',
+  phone: ['+91 9834449478'],
+  phoneDisplay: '+91 98344 49478',
   email: {
-    concierge: 'concierge@khansaab.com',
-    press: 'press@khansaab.com',
-    privacy: 'privacy@khansaab.com',
-    returns: 'returns@khansaab.com',
-    accessibility: 'access@khansaab.com',
+    concierge: 'khansaabstoreoffical@gmail.com',
+    press: 'khansaabstoreoffical@gmail.com',
+    privacy: 'khansaabstoreoffical@gmail.com',
+    returns: 'khansaabstoreoffical@gmail.com',
+    accessibility: 'khansaabstoreoffical@gmail.com',
   },
   address: {
-    street: '12 Al Wasl Road',
-    area: 'Jumeirah, Dubai',
-    country: 'United Arab Emirates',
+    street: 'Kausar Bhagh',
+    area: 'Kondwha, Pune',
+    country: 'India',
   },
   hours: {
     weekday: 'Mon — Sat',
-    time: '10:00 — 21:00 GST',
+    time: '10:00 — 21:00 IST',
     weekend: 'Sunday by appointment',
   },
   sla: 'Replies within an hour',
 }
 
 export const SOCIAL = {
-  instagram: '#',
+  instagram: 'https://www.instagram.com/khansaabstore/',
   youtube: '#',
   tiktok: '#',
 }
@@ -42,7 +44,7 @@ export const BRAND = {
   taglineArabic: 'فنّ اللباس الرفيع',
   established: 2014,
   copyright: `© ${new Date().getFullYear()} KhanSaab Atelier. All rights reserved.`,
-  description: 'Heritage menswear of the Khaleej — designed in Dubai, hand-finished by master tailors of the old quarters. Established 2014.',
+  description: 'Heritage menswear rooted in Indian craftsmanship — designed in Pune, hand-finished by master tailors of Old Hyderabad. Established 2014.',
 }
 
 export const WHATSAPP_MESSAGES = {

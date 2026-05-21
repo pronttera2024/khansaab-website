@@ -106,11 +106,12 @@ function ProductCard({ p, view, compact }) {
   }
 
   return (
-    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => navigate(`/product/${p.id}`)} style={{ cursor: 'pointer', position: 'relative' }}>
+    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} onClick={() => !p.outOfStock && navigate(`/product/${p.id}`)} style={{ cursor: p.outOfStock ? 'default' : 'pointer', position: 'relative', opacity: p.outOfStock ? 0.6 : 1 }}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', marginBottom: compact ? 10 : 20 }}>
-        <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)' }}/>
-        {!compact && <Img src={p.src2} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov ? 1 : 0, transition: 'opacity 0.5s' }}/>}
-        {p.tag && <div style={{ position: 'absolute', top: compact ? 8 : 14, left: compact ? 8 : 14, background: 'var(--ink)', color: 'var(--ivory)', padding: compact ? '3px 7px' : '5px 10px', fontSize: compact ? 8 : 9, letterSpacing: '0.18em', fontWeight: 600 }}>{p.tag}</div>}
+        <Img src={p.src} label={p.name.toUpperCase()} style={{ height: '100%', transform: hov && !p.outOfStock ? 'scale(1.04)' : 'scale(1)', transition: 'transform 0.6s var(--ease-out)', filter: p.outOfStock ? 'grayscale(0.5)' : 'none' }}/>
+        {!compact && <Img src={p.src2} label={`${p.name.toUpperCase()} · DETAIL`} style={{ position: 'absolute', inset: 0, height: '100%', opacity: hov && !p.outOfStock ? 1 : 0, transition: 'opacity 0.5s' }}/>}
+        {p.tag && <div style={{ position: 'absolute', top: compact ? 8 : 14, left: compact ? 8 : 14, background: p.outOfStock ? 'rgba(10,9,8,0.7)' : 'var(--ink)', color: p.outOfStock ? 'var(--ivory)' : 'var(--ivory)', padding: compact ? '3px 7px' : '5px 10px', fontSize: compact ? 8 : 9, letterSpacing: '0.18em', fontWeight: 600 }}>{p.tag}</div>}
+        {p.outOfStock && <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ background: 'rgba(10,9,8,0.75)', color: 'var(--ivory)', padding: '10px 20px', fontSize: 11, letterSpacing: '0.25em', fontWeight: 600, textTransform: 'uppercase' }}>Sold Out</span></div>}
       </div>
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4, gap: 6 }}>

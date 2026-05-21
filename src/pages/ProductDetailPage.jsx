@@ -85,7 +85,7 @@ export default function ProductDetailPage() {
   const { openSizeGuide } = useModals()
   const { isPhone } = useViewport()
   const [activeImg, setActiveImg] = useState(0)
-  const [activeSize, setActiveSize] = useState(PRODUCT.sizes[0] || 'M')
+  const [activeSize, setActiveSize] = useState((PRODUCT.sizes && PRODUCT.sizes[0]) || '')
   const [acc, setAcc] = useState('details')
 
   const ctaHandler = () => openWhatsApp(WHATSAPP_MESSAGES.fitting(PRODUCT.name, activeSize))
@@ -156,6 +156,7 @@ export default function ProductDetailPage() {
 
           <p style={{ fontSize: isPhone ? 14 : 15, lineHeight: 1.7, opacity: 0.78, marginTop: 20, marginBottom: 28 }}>{PRODUCT.desc}</p>
 
+          {PRODUCT.sizes.length > 0 && (
           <Selector label="Size" sub={isPhone ? `${activeSize}` : `${activeSize}`}
             action={<button onClick={openSizeGuide} style={{ fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', textDecoration: 'underline' }}>Size guide ↗</button>}>
             <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(6, 1fr)' : 'none', gap: 8, gridAutoFlow: isPhone ? 'row' : undefined }}>
@@ -176,6 +177,7 @@ export default function ProductDetailPage() {
               )}
             </div>
           </Selector>
+          )}
 
           {!isPhone && (
             <>

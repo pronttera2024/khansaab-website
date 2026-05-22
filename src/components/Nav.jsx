@@ -36,7 +36,8 @@ export default function Nav({ light = false }) {
   { path: '/story', label: 'Our Story', num: '03' },
 ]
 
-  const transparent = !scrolled && !light
+  const forceSolid = location.pathname !== '/'
+  const transparent = !scrolled && !light && !forceSolid
   const tone = transparent ? 'var(--ivory)' : 'var(--ink)'
 
   const goAndClose = (path) => {

@@ -75,23 +75,19 @@ const HERO_SLIDES = [
 
 function Hero() {
   const [idx, setIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
   const n = HERO_SLIDES.length;
   const navigate = useNavigate();
   const { openAtelier } = useModals();
 
   useEffect(() => {
-    if (paused) return;
     const t = setInterval(() => setIdx((i) => (i + 1) % n), 5500);
     return () => clearInterval(t);
-  }, [paused, n]);
+  }, [n]);
 
   const advance = (delta) => setIdx((i) => (i + delta + n) % n);
 
   return (
     <section
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       style={{
         position: "relative",
         height: "100vh",
@@ -380,6 +376,7 @@ function Hero() {
               borderRadius: "50%",
               border: "1px solid rgba(245,239,227,0.3)",
               color: "var(--ivory)",
+              cursor: "pointer",
             }}
           >
             ←
@@ -393,16 +390,14 @@ function Hero() {
             }}
           >
             <div
-              key={`bar-${idx}-${paused}`}
+              key={`bar-${idx}`}
               style={{
                 position: "absolute",
                 left: 0,
                 top: 0,
                 bottom: 0,
                 background: "var(--gold)",
-                animation: paused
-                  ? "none"
-                  : "heroProgress 5.5s linear forwards",
+                animation: "heroProgress 5.5s linear forwards",
               }}
             />
           </div>
@@ -417,6 +412,7 @@ function Hero() {
               borderRadius: "50%",
               border: "1px solid rgba(245,239,227,0.3)",
               color: "var(--ivory)",
+              cursor: "pointer",
             }}
           >
             →
@@ -1006,7 +1002,12 @@ const REELS_DATA = [
 function Reels() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const n = REELS_DATA.length;
+
+  useEffect(() => {
+    setPlaying(false);
+  }, [active]);
   const { isPhone, width } = useViewport();
   const cardW = isPhone ? Math.min(260, Math.max(220, width - 80)) : 320;
   const cardGap = isPhone ? 14 : 24;
@@ -1168,7 +1169,7 @@ function Reels() {
             return (
               <article
                 key={i}
-                onClick={() => scrollTo(i)}
+                onClick={() => (isActive ? setPlaying(true) : scrollTo(i))}
                 style={{
                   flex: `0 0 ${cardW}px`,
                   height: cardH,
@@ -1183,7 +1184,7 @@ function Reels() {
                   cursor: "pointer",
                 }}
               >
-                {isActive ? (
+                {isActive && playing ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
                     allow="autoplay; encrypted-media"
@@ -1377,7 +1378,7 @@ function Reels() {
             return (
               <article
                 key={i}
-                onClick={() => setActive(i)}
+                onClick={() => (isActive ? setPlaying(true) : setActive(i))}
                 style={{
                   position: "absolute",
                   width: cardW,
@@ -1394,7 +1395,7 @@ function Reels() {
                   borderRadius: 6,
                 }}
               >
-                {isActive ? (
+                {isActive && playing ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
                     allow="autoplay; encrypted-media"
@@ -1708,6 +1709,7 @@ function BestSellers() {
                   <Img
                     label={`${p.name.toUpperCase()} · FRONT`}
                     src={p.src}
+                    showLabel={false}
                     style={{
                       height: "100%",
                       transition: "transform 0.6s var(--ease-out)",
@@ -1717,6 +1719,7 @@ function BestSellers() {
                   <Img
                     label={`${p.name.toUpperCase()} · DETAIL`}
                     src={p.src2}
+                    showLabel={false}
                     style={{
                       position: "absolute",
                       inset: 0,
@@ -1752,32 +1755,6 @@ function BestSellers() {
                   >
                     {p.tag}
                   </div>
-                  <button
-                    style={{
-                      position: "absolute",
-                      top: 16,
-                      right: 16,
-                      width: 38,
-                      height: 38,
-                      borderRadius: "50%",
-                      background: "rgba(245,239,227,0.92)",
-                      backdropFilter: "blur(8px)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.3"
-                    >
-                      <path d="M8 14 C8 14 1 9.5 1 5 C1 3 2.5 1.5 4.5 1.5 C6 1.5 7.2 2.5 8 3.8 C8.8 2.5 10 1.5 11.5 1.5 C13.5 1.5 15 3 15 5 C15 9.5 8 14 8 14 Z" />
-                    </svg>
-                  </button>
                   <div
                     style={{
                       position: "absolute",
@@ -2037,33 +2014,6 @@ function CollectionProductCard({ p }) {
             {p.tag}
           </div>
         )}
-        <button
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: "absolute",
-            top: 14,
-            right: 14,
-            width: 38,
-            height: 38,
-            borderRadius: "50%",
-            background: "rgba(245,239,227,0.92)",
-            backdropFilter: "blur(8px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.3"
-          >
-            <path d="M8 14 C8 14 1 9.5 1 5 C1 3 2.5 1.5 4.5 1.5 C6 1.5 7.2 2.5 8 3.8 C8.8 2.5 10 1.5 11.5 1.5 C13.5 1.5 15 3 15 5 C15 9.5 8 14 8 14 Z" />
-          </svg>
-        </button>
       </div>
       <div>
         <div

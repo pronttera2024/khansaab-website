@@ -93,11 +93,6 @@ function MobileGallery({ images, tag, active, setActive }) {
       {tag && (
         <div style={{ position: 'absolute', top: 14, left: 14, background: 'var(--ink)', color: 'var(--ivory)', padding: '7px 12px', fontSize: 9.5, letterSpacing: '0.22em', fontWeight: 600 }}>{tag}</div>
       )}
-      <button aria-label="Save" style={{
-        position: 'absolute', top: 12, right: 14, width: 40, height: 40, borderRadius: '50%',
-        background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>♡</button>
       <div style={{
         position: 'absolute', bottom: 14, left: '50%', transform: 'translateX(-50%)',
         display: 'flex', gap: 6, padding: '6px 10px',
@@ -165,7 +160,6 @@ export default function ProductDetailPage() {
               <div style={{ position: 'relative', aspectRatio: '3/4', width: '100%', overflow: 'hidden' }}>
                 <Img label={PRODUCT.gallery[activeImg].label} src={PRODUCT.gallery[activeImg].src} style={{ aspectRatio: '3/4', width: '100%', height: '100%' }}/>
                 {PRODUCT.tag && <div style={{ position: 'absolute', top: 16, left: 16, background: 'var(--ink)', color: 'var(--ivory)', padding: '8px 14px', fontSize: 10, letterSpacing: '0.22em', fontWeight: 600, zIndex: 2, pointerEvents: 'none' }}>{PRODUCT.tag}</div>}
-                <button onClick={(e) => e.stopPropagation()} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,239,227,0.92)', backdropFilter: 'blur(6px)', fontSize: 16, zIndex: 2 }}>♡</button>
                 <div style={{ position: 'absolute', bottom: 16, right: 16, padding: '6px 12px', background: 'rgba(10,9,8,0.65)', color: 'var(--ivory)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.15em', backdropFilter: 'blur(6px)', zIndex: 2, pointerEvents: 'none' }}>
                   {String(activeImg + 1).padStart(2, '0')} / {String(PRODUCT.gallery.length).padStart(2, '0')}
                 </div>

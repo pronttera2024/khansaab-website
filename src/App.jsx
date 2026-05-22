@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { RouterProvider } from './context/RouterContext.jsx'
 import { ModalsProvider, useModals } from './context/ModalsContext.jsx'
+import { useAutoPopup } from './hooks/useAutoPopup.js'
 
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
@@ -14,6 +15,7 @@ import ProductsPage from './pages/ProductsPage.jsx'
 import ProductDetailPage from './pages/ProductDetailPage.jsx'
 import StoryPage from './pages/StoryPage.jsx'
 import LegalPage from './pages/LegalPage.jsx'
+import WholesalePage from './pages/WholesalePage.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -24,7 +26,12 @@ function ScrollToTop() {
 // Reads modal state from context and renders the dialogs.
 // Must be a child of ModalsProvider.
 function Modals() {
-  const { atelierOpen, closeAtelier, sizeGuideOpen, closeSizeGuide } = useModals()
+  const { atelierOpen, closeAtelier, openAtelier, sizeGuideOpen, closeSizeGuide } = useModals()
+
+  // Auto-popup disabled for now — uncomment to re-enable
+  // const { pathname } = useLocation()
+  // useAutoPopup(atelierOpen, openAtelier, pathname === '/')
+
   return (
     <>
       <AtelierDialog   open={atelierOpen}   onClose={closeAtelier} />
@@ -37,7 +44,7 @@ function Modals() {
 const ROUTE_MAP = {
   home:                  '/',
   products:              '/products',
-  product:               '/product',
+  product:               '/product/ivory-sovereign-thobe',
   story:                 '/story',
   'legal-terms':         '/legal/legal-terms',
   'legal-privacy':       '/legal/legal-privacy',
@@ -71,9 +78,9 @@ function AppShell() {
         <Routes>
           <Route path="/"            element={<HomePage />} />
           <Route path="/products"    element={<ProductsPage />} />
-          <Route path="/product"     element={<ProductDetailPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/story"       element={<StoryPage />} />
+          <Route path="/wholesale"   element={<WholesalePage />} />
           <Route path="/legal/:slug" element={<LegalPage />} />
           <Route path="*"            element={<HomePage />} />
         </Routes>

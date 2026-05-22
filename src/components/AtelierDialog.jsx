@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { Ornament } from './shared/Ornament.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
+import { ATELIER_DIALOG } from '../data/content.js'
+import { WHATSAPP_MESSAGES } from '../data/site-config.js'
 
 export default function AtelierDialog({ open, onClose }) {
   useEffect(() => {
@@ -51,24 +53,23 @@ export default function AtelierDialog({ open, onClose }) {
         </div>
 
         <p className="arabic" style={{ fontSize: 28, color: 'var(--emerald)', textAlign: 'center', marginBottom: 6 }}>
-          خياطة على المقاس
+          {ATELIER_DIALOG.arabicTitle}
         </p>
         <p className="eyebrow" style={{ color: 'var(--emerald)', textAlign: 'center', marginBottom: 18 }}>
-          The KhanSaab Atelier
+          {ATELIER_DIALOG.eyebrow}
         </p>
         <h2 className="display" style={{
           fontSize: 'clamp(36px, 4.5vw, 52px)', lineHeight: 1.05,
           textAlign: 'center', marginBottom: 16, fontWeight: 400,
         }}>
-          Make custom-size <span className="display-italic" style={{ color: 'var(--emerald)' }}>cloth.</span>
+          {ATELIER_DIALOG.heading} <span className="display-italic" style={{ color: 'var(--emerald)' }}>{ATELIER_DIALOG.headingAccent}</span>
         </h2>
         <p style={{ fontSize: 15, lineHeight: 1.7, opacity: 0.75, textAlign: 'center', marginBottom: 32 }}>
-          Tell us your measurements, choose your fabric and silhouette — our master tailors will hand-finish a
-          garment cut entirely for you. Hand-stitched, signed, and delivered to your door.
+          {ATELIER_DIALOG.body}
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
-          {['Measure', 'Fabric', 'Stitch', 'Deliver'].map((s, i) => (
+          {ATELIER_DIALOG.processSteps.map((s, i) => (
             <span key={s} style={{
               padding: '8px 14px',
               border: '1px solid rgba(15,59,46,0.25)',
@@ -81,17 +82,17 @@ export default function AtelierDialog({ open, onClose }) {
         </div>
 
         <div data-sheet-footer>
-          <button onClick={() => openWhatsApp("Hello KhanSaab — I'd like to start a custom tailoring order.")}
+          <button onClick={() => openWhatsApp(WHATSAPP_MESSAGES.bespoke)}
             className="btn btn-gold"
             style={{ width: '100%', height: 56, fontSize: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-              <path d="M20.5 3.5A11 11 0 0 0 3.7 17.8L2.5 22l4.3-1.1A11 11 0 1 0 20.5 3.5Zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-2.6.7.7-2.5-.2-.3A9 9 0 1 1 12 20.5Zm5-6.7c-.3-.2-1.6-.8-1.9-.9-.3-.1-.5-.1-.7.2l-.9 1.2c-.2.2-.4.2-.7.1-1-.4-2-1-2.8-2-.2-.3-.2-.5 0-.7l.3-.4c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5l-.7-1.8c-.2-.5-.5-.4-.7-.4h-.5c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.2.2 2.1 3.2 5 4.4 1.5.6 2.1.6 2.9.5.5-.1 1.6-.7 1.9-1.4.2-.7.2-1.2.2-1.4 0-.2-.2-.3-.5-.5Z"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
-            Contact us on WhatsApp
+            {ATELIER_DIALOG.ctaLabel}
           </button>
 
           <p className="mono" style={{ marginTop: 14, fontSize: 11, opacity: 0.5, textAlign: 'center' }}>
-            +91 89750 48440 · Replies within an hour
+            {ATELIER_DIALOG.slaLine}
           </p>
         </div>
       </div>

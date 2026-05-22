@@ -1,0 +1,15 @@
+Options -MultiViews
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If the request is for an existing file, serve it
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise, serve index.html (SPA fallback)
+  RewriteRule ^ /index.html [L]
+</IfModule>

@@ -4,6 +4,9 @@ import { Ornament, CornerOrnament } from "../components/shared/Ornament.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 import { useViewport } from "../hooks/useViewport.js";
 import { ContactStrip } from "./ProductsPage.jsx";
+import { TIMELINE_EVENTS } from "../data/timeline.js";
+import { TEAM } from "../data/team.js";
+import { STORY_RIBBONS } from "../data/content.js";
 
 function TextRibbon({
   words,
@@ -89,58 +92,6 @@ function RevealText({ text, className, style, delay = 0 }) {
     </span>
   );
 }
-
-const TIMELINE_EVENTS = [
-  {
-    year: "1972",
-    title: "The first stitch",
-    desc: "Khan opens a sewing room behind the Dubai gold souk with two needles and a kerosene lamp.",
-    img: "1972 · WORKSHOP",
-    src: "/assets/reel_1.png"
-  },
-  {
-    year: "1988",
-    title: "Beyond the Emirates",
-    desc: "Waiting list extends to Riyadh, Doha and Kuwait City. Six tailors are hired.",
-    img: "1988 · APPOINTMENT BOOK",
-    src: "/assets/about_1.png"
-  },
-  {
-    year: "1995",
-    title: "Second generation",
-    desc: "Saif's father, Rashid, takes the bench. The atelier moves to Al Wasl Road.",
-    img: "1995 · RASHID KHAN",
-    src: "/assets/ref_2.jpg"
-  },
-  {
-    year: "2003",
-    title: "The Bisht Room",
-    desc: "A dedicated atelier for ceremonial cloaks opens — 24k gold-thread embroidery a specialty.",
-    img: "2003 · BISHT ROOM",
-    src: "/assets/reel_7.png"
-  },
-  {
-    year: "2014",
-    title: "KhanSaab is born",
-    desc: "Saif joins. The house is formally named KhanSaab and begins serving international clientele.",
-    img: "2014 · SAIF KHAN",
-    src: "/assets/reel_6.png"
-  },
-  {
-    year: "2019",
-    title: "Diplomatic",
-    desc: "The Diplomatic line launches — crease-resistant travel thobes worn from Geneva to Tokyo.",
-    img: "2019 · DIPLOMATIC LINE",
-    src: "/assets/ref_5.jpg"
-  },
-  {
-    year: "2026",
-    title: "Forty hands, one craft",
-    desc: "Today: 40 artisans, 47 countries shipped, 12,400+ five-star reviews — and the same shears.",
-    img: "2026 · THE ATELIER",
-    src: "/assets/about_1.png"
-  },
-];
 
 function MobileTimelineItem({ e, i, total }) {
   const [ref, visible] = useReveal(0.2);
@@ -591,43 +542,6 @@ function Timeline() {
   );
 }
 
-const TEAM = [
-  {
-    name: "Saif Khan",
-    role: "Head of House · Master Tailor",
-    arabic: "سيف خان",
-    since: "2014",
-    quote:
-      "A garment is a thirty-year conversation between a man and his cloth.",
-    src: "/assets/hero_1.png"
-  },
-  {
-    name: "Rashid Khan",
-    role: "Founder · Chairman",
-    arabic: "راشد خان",
-    since: "1995",
-    quote: "We make heritage. The seasons are someone else's problem.",
-    src: "/assets/ref_1.jpg"
-  },
-  {
-    name: "Aisha Al-Nuaimi",
-    role: "Creative Director",
-    arabic: "عائشة النعيمي",
-    since: "2018",
-    quote: "Tradition is not what we preserve. It is what we choose to extend.",
-    src: "/assets/about_3.png"
-  },
-  {
-    name: "Tariq Mansouri",
-    role: "Bisht Master · 24k Gold",
-    arabic: "طارق المنصوري",
-    since: "2003",
-    quote:
-      "A bisht should weigh on the shoulders the way honour does — gently, firmly.",
-    src: "/assets/reel_4.png"
-  },
-];
-
 function TeamCard({ member }) {
   const [hov, setHov] = useState(false);
   const { isPhone } = useViewport();
@@ -837,7 +751,7 @@ function Team() {
         }}
       >
         <Img
-          label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · DUBAI 2026"
+          label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
           src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
@@ -860,7 +774,7 @@ function Team() {
               letterSpacing: "0.22em",
             }}
           >
-            THE FULL ATELIER · DUBAI · MARCH 2026
+            THE FULL ATELIER · PUNE · MARCH 2026
           </p>
         </div>
       </div>
@@ -887,7 +801,7 @@ export default function StoryPage() {
             className="eyebrow"
             style={{ color: "var(--emerald)", marginBottom: isPhone ? 14 : 20 }}
           >
-            EST. MMXIV · DUBAI
+            EST. MMXIV · HYDERABAD
           </p>
           <p
             className="arabic"
@@ -931,7 +845,7 @@ export default function StoryPage() {
             }}
           >
             A short letter from three generations of tailors — on the cloth, the
-            city and the men who taught us how to dress the modern Khaleeji.
+            city and the men who taught us how to dress the modern Indian man.
           </p>
           {isPhone && (
             <p
@@ -969,9 +883,9 @@ export default function StoryPage() {
       </section>
 
       <TextRibbon
-        words={["Heritage", "Craftsmanship", "Devotion", "Khaleej", "Atelier"]}
-        color="var(--gold)"
-        bg="var(--ink)"
+        words={STORY_RIBBONS.ribbon1.words}
+        color={STORY_RIBBONS.ribbon1.color}
+        bg={STORY_RIBBONS.ribbon1.bg}
       />
 
       {/* Archival image */}
@@ -980,7 +894,7 @@ export default function StoryPage() {
       >
         <Img
           variant="dark"
-          label="DUBAI · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
+          label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
           src="/assets/about_1.png"
           style={{ height: "100%" }}
         />
@@ -1017,7 +931,7 @@ export default function StoryPage() {
               color: "var(--gold-light)",
             }}
           >
-            BASTAKIYA QUARTER · 1972
+            CHARMINAR QUARTER · 1972
           </div>
           <div
             style={{
@@ -1030,8 +944,8 @@ export default function StoryPage() {
               opacity: 0.95,
             }}
           >
-            "Our grandfather, Khan, opened a single sewing room behind the gold
-            souk. He stitched 14 hours a day."
+            "Our grandfather, Khan, opened a single tailoring workshop in the
+            lanes of Old Hyderabad. He stitched 14 hours a day."
           </div>
         </div>
       </section>
@@ -1087,27 +1001,27 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n 1972 my grandfather Khan opened a sewing room behind the Dubai
-              gold souk with two needles, a kerosene lamp and the conviction
-              that a man's garment ought to outlast him. He hand-stitched 14
-              hours a day, six days a week, for the merchants of the old
-              quarter.
+              n 1972 my grandfather Khan opened a tailoring workshop in the
+              narrow lanes of Old Hyderabad with two needles, a kerosene lamp
+              and the conviction that a man's garment ought to outlast him. He
+              hand-stitched 14 hours a day, six days a week, for the nawabs and
+              merchants of the Charminar quarter.
             </p>
             <p style={{ marginBottom: 22 }}>
-              He never advertised. Word travelled — first to neighbouring
-              emirates, then to Riyadh, Doha and Kuwait City. By 1988 his
-              appointment book required three months of waiting.
+              He never advertised. Word travelled — first to Lucknow and Delhi,
+              then to the Gulf and beyond. By 1988 his appointment book required
+              three months of waiting.
             </p>
             <p style={{ marginBottom: 22 }}>
-              My father inherited the bench in 1995 and added the second floor.
-              He insisted on English shears, Japanese cotton, and the unbroken
-              rule that every garment leaves the atelier with the maker's name
+              My father inherited the bench in 1995 and moved the atelier to
+              Pune. He insisted on Benarasi silk, Japanese cotton, and the
+              unbroken rule that every garment leaves with the maker's name
               stitched on the inside placket.
             </p>
             <p style={{ marginBottom: 22 }}>
               I joined in 2014 — not to change anything, but to extend it.
               KhanSaab today dresses forty men a week and ships to forty-seven
-              countries. The shears, the cotton and the placket remain the same.
+              countries. The shears, the silk and the placket remain the same.
             </p>
             <p style={{ marginBottom: 0 }}>
               We do not run advertisements. We do not chase seasons. We make
@@ -1260,10 +1174,10 @@ export default function StoryPage() {
       </section>
 
       <TextRibbon
-        words={["Made by hand", "Made to last", "Made to be passed on"]}
-        direction="right"
-        color="var(--ink)"
-        bg="var(--gold)"
+        words={STORY_RIBBONS.ribbon2.words}
+        direction={STORY_RIBBONS.ribbon2.direction}
+        color={STORY_RIBBONS.ribbon2.color}
+        bg={STORY_RIBBONS.ribbon2.bg}
       />
 
       <Timeline />

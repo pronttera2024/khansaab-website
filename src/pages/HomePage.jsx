@@ -5,73 +5,13 @@ import { useViewport } from "../hooks/useViewport.js";
 import Img from "../components/shared/Img.jsx";
 import { Ornament } from "../components/shared/Ornament.jsx";
 import { openWhatsApp } from "../utils/whatsapp.js";
-
-const HERO_SLIDES = [
-  {
-    arabic: "مجموعة الإمارات الخالدة",
-    eyebrow: "THE ETERNAL EMIRATES COLLECTION · VOL. VII",
-    titleTop: "Leader in",
-    titleAccent: "Thobe Craft.",
-    titleBot: "",
-    titleBotAccent: "",
-    body: "Hand-stitched thobes, kanduras and bishts of uncommon quality — cut from the finest Japanese cottons and Italian wools, finished in our Dubai atelier.",
-    cta1: "Shop the Collection",
-    cta2: "Book Made-to-Measure",
-    image: "/src/data/images/set-1/1.png",
-    label: "MODEL · WHITE EMIRATI KANDURA · GHUTRA",
-    bg: "linear-gradient(180deg, #2a2520 0%, #0a0908 70%)",
-    chapter: "Eternal Emirates",
-    season: "Spring · 2026",
-  },
-  {
-    arabic: "البشت الملكي",
-    eyebrow: "THE CEREMONIAL BISHT EDIT · 24K GOLD THREAD",
-    titleTop: "A cloak",
-    titleAccent: "of honour.",
-    titleBot: "A garment of",
-    titleBotAccent: "a lifetime.",
-    body: "Hand-woven camel-wool bishts with bullion embroidery. Four months on the loom, three weeks at the bench, one wedding morning to remember.",
-    cta1: "Shop the Bishts",
-    cta2: "Bespoke Consultation",
-    image: "/src/data/images/set-2/1.png",
-    label: "GROOM · OBSIDIAN BISHT · STAIRCASE",
-    bg: "linear-gradient(180deg, #0F3B2E 0%, #082019 100%)",
-    chapter: "The Ceremonial",
-    season: "Year-round",
-  },
-  {
-    arabic: "مجموعة الدبلوماسي",
-    eyebrow: "THE DIPLOMATIC LINE · TRAVEL-FIRST",
-    titleTop: "Between",
-    titleAccent: "Riyadh,",
-    titleBot: "London &",
-    titleBotAccent: "Geneva.",
-    body: "Crease-resistant Japanese cotton in our signature cuts — designed to leave a 14-hour cabin looking like the first morning of a fitting.",
-    cta1: "Shop Diplomatic",
-    cta2: "Find Your Cut",
-    image: "/src/data/images/set-3/1.png",
-    label: "EXECUTIVE · CHARCOAL THOBE · LOUNGE",
-    bg: "linear-gradient(180deg, #0F1B2D 0%, #1a1f2e 100%)",
-    chapter: "Diplomatic",
-    season: "Permanent",
-  },
-  {
-    arabic: "مجموعة الأعراس",
-    eyebrow: "THE WEDDING ATELIER · BY APPOINTMENT",
-    titleTop: "Six fittings.",
-    titleAccent: "One",
-    titleBot: "unforgettable",
-    titleBotAccent: "morning.",
-    body: "From the groom's bisht to the entire wedding party — our atelier handles every measurement, every embroidery and every garment delivery in one heirloom box.",
-    cta1: "Book Wedding Consult",
-    cta2: "See the Look Book",
-    image: "/src/data/images/set-4/1.png",
-    label: "GROOM · GOLD BISHT · COURTYARD",
-    bg: "linear-gradient(180deg, #5a2d22 0%, #2A2520 100%)",
-    chapter: "The Wedding",
-    season: "By appointment",
-  },
-];
+import { HERO_SLIDES } from "../data/hero.js";
+import { CATEGORIES } from "../data/categories.js";
+import { REELS_DATA } from "../data/reels.js";
+import { TESTIMONIALS, TRUST_METRICS } from "../data/testimonials.js";
+import { BESPOKE_PROCESS_PANELS, BESPOKE_PROCESS_STEPS, BESPOKE_BENEFITS } from "../data/content.js";
+import { WHATSAPP_MESSAGES } from "../data/site-config.js";
+import { getBestsellers, getCollectionProducts, toCardFormat } from "../data/products.js";
 
 function Hero() {
   const [idx, setIdx] = useState(0);
@@ -450,36 +390,7 @@ function HorizontalAbout() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const panels = [
-    {
-      d: "Day 01",
-      t: "Pattern",
-      body: "A paper pattern is cut to your measurements.",
-      src: "/assets/reel_6.png",
-      bg: "var(--emerald)",
-    },
-    {
-      d: "Day 02–04",
-      t: "Cloth",
-      body: "Heavyweight cotton is laid, marked and cut by hand.",
-      src: "/assets/about_1.png",
-      bg: "var(--ink)",
-    },
-    {
-      d: "Day 05–11",
-      t: "Stitch",
-      body: "60 stitches per cm. By a single artisan.",
-      src: "/assets/reel_1.png",
-      bg: "var(--navy)",
-    },
-    {
-      d: "Day 12–14",
-      t: "Finish",
-      body: "Pressed, packed and signed on the inner placket.",
-      src: "/assets/reel_7.png",
-      bg: "var(--charcoal)",
-    },
-  ];
+  const panels = BESPOKE_PROCESS_PANELS;
 
   return (
     <div
@@ -674,75 +585,7 @@ function HorizontalAbout() {
 }
 
 /* ---- Categories Bento ---- */
-const BENTO_CATS = [
-  {
-    id: "thobes",
-    name: "Thobes",
-    arabic: "ثوب",
-    desc: "Classical ankle-length robes in cotton, linen and silk-blends.",
-    count: 64,
-    bg: "var(--ivory)",
-    color: "var(--ink)",
-    img: "IVORY THOBE · FULL BODY",
-    src: "/assets/thobe_ivory.png",
-    featured: true,
-  },
-  {
-    id: "kanduras",
-    name: "Kanduras",
-    arabic: "كندورة",
-    desc: "The signature Emirati silhouette — crisp, tasseled, untouchable.",
-    count: 42,
-    bg: "var(--bone)",
-    color: "var(--ink)",
-    img: "WHITE KANDURA · TASSEL",
-    src: "/assets/kandura_white.png",
-  },
-  {
-    id: "bishts",
-    name: "Bishts",
-    arabic: "بشت",
-    desc: "Hand-woven ceremonial cloaks in camel wool with bullion trim.",
-    count: 18,
-    bg: "var(--ink)",
-    color: "var(--ivory)",
-    img: "BLACK BISHT · GOLD TRIM",
-    src: "/assets/bisht_black.png",
-  },
-  {
-    id: "jubbas",
-    name: "Jubbas",
-    arabic: "جبة",
-    desc: "Moroccan-influenced robes for Friday and feast days.",
-    count: 26,
-    bg: "var(--emerald)",
-    color: "var(--ivory)",
-    img: "EMERALD JUBBA · HOOD",
-    src: "/assets/jubba_emerald.png",
-  },
-  {
-    id: "shemaghs",
-    name: "Shemaghs & Ghutras",
-    arabic: "شماغ",
-    desc: "Headwraps in the finest Yemeni and Kashmiri weaves.",
-    count: 38,
-    bg: "var(--sand)",
-    color: "var(--ink)",
-    img: "WHITE GHUTRA + AGAL",
-    src: "/assets/shemagh.png",
-  },
-  {
-    id: "accessories",
-    name: "Accessories",
-    arabic: "إكسسوارات",
-    desc: "Agals, cufflinks, prayer beads & oud-scented pochettes.",
-    count: 52,
-    bg: "var(--navy)",
-    color: "var(--ivory)",
-    img: "AGAL + AMBER MISBAHA",
-    src: "/assets/accessories.png",
-  },
-];
+const BENTO_CATS = CATEGORIES;
 
 function BentoCard({ cat, span }) {
   const [hover, setHover] = useState(false);
@@ -750,7 +593,7 @@ function BentoCard({ cat, span }) {
   const isDark = cat.color === "var(--ivory)";
   return (
     <article
-      onClick={() => navigate("/products")}
+      onClick={() => navigate(`/products?category=${cat.id}`)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -936,10 +779,7 @@ function CategoriesBento() {
               span={{ gridColumn: "span 6", gridRow: "span 2" }}
             />
             <BentoCard cat={BENTO_CATS[1]} span={{ gridColumn: "span 6" }} />
-            <BentoCard cat={BENTO_CATS[2]} span={{ gridColumn: "span 3" }} />
-            <BentoCard cat={BENTO_CATS[3]} span={{ gridColumn: "span 3" }} />
-            <BentoCard cat={BENTO_CATS[4]} span={{ gridColumn: "span 6" }} />
-            <BentoCard cat={BENTO_CATS[5]} span={{ gridColumn: "span 6" }} />
+            <BentoCard cat={BENTO_CATS[2]} span={{ gridColumn: "span 6" }} />
           </div>
         )}
       </div>
@@ -948,56 +788,6 @@ function CategoriesBento() {
 }
 
 /* ---- Reels carousel ---- */
-const REELS_DATA = [
-  {
-    label: "Hand-stitching the cuff",
-    caption: "60 stitches per centimetre. By hand.",
-    duration: "0:42",
-    views: "184K",
-    likes: "12.4K",
-    ytId: "SfS2RHwTMbk",
-  },
-  {
-    label: "Fabric selection · Japan",
-    caption: "Sea Island cotton from Suruga.",
-    duration: "1:08",
-    views: "92K",
-    likes: "8.1K",
-    ytId: "GTpRxobJaUQ",
-  },
-  {
-    label: "Lookbook · Eternal Emirates",
-    caption: "Spring 2026, in three minutes.",
-    duration: "0:35",
-    views: "256K",
-    likes: "18.7K",
-    ytId: "yZdVC2RWbeQ",
-  },
-  {
-    label: "How to wear a bisht",
-    caption: "The shoulder drape, explained.",
-    duration: "1:24",
-    views: "318K",
-    likes: "24.2K",
-    ytId: "DI210pV74xI",
-  },
-  {
-    label: "Inside the embroidery room",
-    caption: "Three artisans. One placket.",
-    duration: "0:58",
-    views: "147K",
-    likes: "9.6K",
-    ytId: "Yi6x2rAJPmk",
-  },
-  {
-    label: "Customer fitting · London",
-    caption: "Mayfair atelier · trunk show.",
-    duration: "0:48",
-    views: "73K",
-    likes: "5.3K",
-    ytId: "8OhXwibCvvA",
-  },
-];
 
 function Reels() {
   const [active, setActive] = useState(0);
@@ -1072,7 +862,7 @@ function Reels() {
               className="eyebrow"
               style={{ color: "var(--gold)", marginBottom: 16 }}
             >
-              FROM THE ATELIER · @KHANSAAB
+              FROM THE ATELIER · @KHANSAABSTORE
             </p>
             <h2
               className="display"
@@ -1093,7 +883,7 @@ function Reels() {
               }}
             >
               A weekly window into the studio. Tap a reel to watch — or follow
-              along on Instagram.
+              along on <a href="https://www.instagram.com/khansaabstore/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>Instagram</a>.
             </p>
           </div>
           {!isPhone && (
@@ -1591,50 +1381,7 @@ function Reels() {
 }
 
 /* ---- Best Sellers ---- */
-const BESTSELLERS = [
-  {
-    name: "The Ivory Sovereign Thobe",
-    arabic: "الثوب الملكي",
-    cat: "Saudi Thobe · Hand-stitched",
-    price: 1240,
-    old: 1380,
-    sizes: ["48", "50", "52", "54", "56"],
-    tag: "BEST SELLER",
-    src: "/src/data/images/set-1/1.png",
-    src2: "/src/data/images/set-1/2.png",
-  },
-  {
-    name: "Pearl Emirati Kandura",
-    arabic: "كندورة اللؤلؤ",
-    cat: "Emirati · Long sleeve · Tarboosh",
-    price: 980,
-    sizes: ["S", "M", "L", "XL"],
-    tag: "EDITORS' PICK",
-    src: "/src/data/images/set-2/1.png",
-    src2: "/src/data/images/set-2/2.png",
-  },
-  {
-    name: "Obsidian Royal Bisht",
-    arabic: "بشت أسود",
-    cat: "Ceremonial · 24k gold thread",
-    price: 4280,
-    sizes: ["54", "56", "58"],
-    tag: "MADE TO ORDER",
-    src: "/src/data/images/set-3/1.png",
-    src2: "/src/data/images/set-3/2.png",
-  },
-  {
-    name: "Emerald Hooded Jubba",
-    arabic: "جبة خضراء",
-    cat: "Moroccan cut · Wool blend",
-    price: 1640,
-    old: 1840,
-    sizes: ["M", "L", "XL"],
-    tag: "NEW",
-    src: "/src/data/images/set-4/1.png",
-    src2: "/src/data/images/set-4/2.png",
-  },
-];
+const BESTSELLERS = getBestsellers().map(toCardFormat);
 
 function BestSellers() {
   const navigate = useNavigate();
@@ -1693,7 +1440,7 @@ function BestSellers() {
             return (
               <article
                 key={i}
-                onClick={() => navigate("/product")}
+                onClick={() => navigate(`/product/${p.id}`)}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{ cursor: "pointer", position: "relative" }}
@@ -1834,7 +1581,7 @@ function BestSellers() {
                       }}
                     >
                       <span style={{ fontSize: 18, fontWeight: 600 }}>
-                        ${p.price.toLocaleString()}
+                        ₹{p.price.toLocaleString()}
                       </span>
                       {p.old && (
                         <span
@@ -1844,7 +1591,7 @@ function BestSellers() {
                             opacity: 0.45,
                           }}
                         >
-                          ${p.old}
+                          ₹{p.old}
                         </span>
                       )}
                     </div>
@@ -1884,71 +1631,14 @@ function BestSellers() {
 }
 
 /* ---- Collections ---- */
-const COLLECTIONS_PRODUCTS = [
-  {
-    name: "The Ivory Sovereign Thobe",
-    arabic: "الثوب الملكي",
-    cat: "Saudi Thobe · Hand-stitched",
-    price: 1240,
-    old: 1380,
-    tag: "BEST SELLER",
-    src: "/src/data/images/set-1/1.png",
-    src2: "/src/data/images/set-1/2.png",
-  },
-  {
-    name: "Pearl Emirati Kandura",
-    arabic: "كندورة اللؤلؤ",
-    cat: "Emirati · Long sleeve",
-    price: 980,
-    tag: "EDITORS' PICK",
-    src: "/src/data/images/set-2/1.png",
-    src2: "/src/data/images/set-2/2.png",
-  },
-  {
-    name: "Obsidian Royal Bisht",
-    arabic: "بشت أسود",
-    cat: "Ceremonial · 24k gold thread",
-    price: 4280,
-    tag: "MADE TO ORDER",
-    src: "/src/data/images/set-3/1.png",
-    src2: "/src/data/images/set-3/2.png",
-  },
-  {
-    name: "Emerald Hooded Jubba",
-    arabic: "جبة خضراء",
-    cat: "Moroccan cut · Wool blend",
-    price: 1640,
-    old: 1840,
-    tag: "NEW",
-    src: "/src/data/images/set-4/1.png",
-    src2: "/src/data/images/set-4/2.png",
-  },
-  {
-    name: "Classic Saudi Thobe",
-    arabic: "ثوب سعودي",
-    cat: "Saudi Thobe · Cotton",
-    price: 1060,
-    tag: "BEST SELLER",
-    src: "/src/data/images/set-5/1.png",
-    src2: "/src/data/images/set-5/2.png",
-  },
-  {
-    name: "Charcoal Diplomat Thobe",
-    arabic: "الدبلوماسي",
-    cat: "Travel · Japanese cotton",
-    price: 1180,
-    tag: "DIPLOMATIC",
-    src: "/src/data/images/set-3/1.png",
-    src2: "/src/data/images/set-3/2.png",
-  },
-];
+const COLLECTIONS_PRODUCTS = getCollectionProducts().map(toCardFormat);
 
 function CollectionProductCard({ p }) {
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
   return (
     <article
-      onClick={() => navigate("/product")}
+      onClick={() => navigate(`/product/${p.id}`)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{ cursor: "pointer", position: "relative" }}
@@ -2047,7 +1737,7 @@ function CollectionProductCard({ p }) {
         </h3>
         <div style={{ display: "flex", gap: 10, alignItems: "baseline" }}>
           <span style={{ fontSize: 18, fontWeight: 600 }}>
-            ${p.price.toLocaleString()}
+            ₹{p.price.toLocaleString()}
           </span>
           {p.old && (
             <span
@@ -2057,7 +1747,7 @@ function CollectionProductCard({ p }) {
                 opacity: 0.45,
               }}
             >
-              ${p.old}
+              ₹{p.old}
             </span>
           )}
         </div>
@@ -2090,7 +1780,7 @@ function Collections() {
               className="eyebrow"
               style={{ color: "var(--emerald)", marginBottom: 18 }}
             >
-              THE ETERNAL EMIRATES COLLECTION · VOL. VII
+              THE HERITAGE INDIAN COLLECTION · VOL. VII
             </p>
             <h2
               className="display"
@@ -2127,32 +1817,6 @@ function Collections() {
 }
 
 /* ---- Testimonials ---- */
-const TESTIMONIALS = [
-  {
-    quote:
-      "I have ordered seven thobes from KhanSaab over four years. Each one feels as if it was made for that single morning.",
-    name: "H.E. Sheikh Mansour A.",
-    role: "Diplomat · Abu Dhabi",
-  },
-  {
-    quote:
-      "The wedding bisht arrived with three days to spare and a hand-written note from the master tailor. Heritage you can wear.",
-    name: "Yousef Al-Mahmoud",
-    role: "Groom · Doha · 2025",
-  },
-  {
-    quote:
-      "Took the made-to-measure flight from London to Dubai for four fittings. Worth every mile, every minute, every dirham.",
-    name: "Karim El-Khoury",
-    role: "Executive · London",
-  },
-  {
-    quote:
-      "Found KhanSaab through their atelier reels. The detail on the gold embroidery has to be seen in person to be believed.",
-    name: "Faisal R.",
-    role: "Collector · Riyadh",
-  },
-];
 
 function Testimonials() {
   const [i, setI] = useState(0);
@@ -2366,12 +2030,7 @@ function Testimonials() {
             borderBottom: "1px solid rgba(10,9,8,0.1)",
           }}
         >
-          {[
-            { v: "12,400+", l: "Five-star reviews" },
-            { v: "47", l: "Countries shipped" },
-            { v: "98%", l: "Re-order rate" },
-            { v: "4–6 wks", l: "MTM turnaround" },
-          ].map((s, k) => (
+          {TRUST_METRICS.map((s, k) => (
             <div key={k} style={{ textAlign: "center" }}>
               <div
                 className="display"
@@ -2477,7 +2136,7 @@ function CustomizeCTA() {
               className="btn btn-ghost"
               onClick={() =>
                 openWhatsApp(
-                  "Hello KhanSaab — I'd like to discuss a bespoke order.",
+                  WHATSAPP_MESSAGES.bespokeOrder,
                 )
               }
             >
@@ -2492,12 +2151,7 @@ function CustomizeCTA() {
               flexWrap: "wrap",
             }}
           >
-            {[
-              "✦ 4 fittings included",
-              "✦ Choose from 240+ fabrics",
-              "✦ Worldwide shipping",
-              "✦ Lifetime alterations",
-            ].map((t) => (
+            {BESPOKE_BENEFITS.map((t) => (
               <span
                 key={t}
                 className="mono"
@@ -2523,28 +2177,7 @@ function CustomizeCTA() {
               gap: 22,
             }}
           >
-            {[
-              {
-                n: "01",
-                t: "Consultation",
-                d: "Visit our atelier or schedule a video call. Tell us your story.",
-              },
-              {
-                n: "02",
-                t: "Fabric & Sketch",
-                d: "We propose three swatches and a hand-drawn sketch within 48 hours.",
-              },
-              {
-                n: "03",
-                t: "First Fitting",
-                d: "A muslin garment is cut for your body. Adjustments begin.",
-              },
-              {
-                n: "04",
-                t: "Final Delivery",
-                d: "Your finished piece arrives in a Khansaab heirloom box.",
-              },
-            ].map((s) => (
+            {BESPOKE_PROCESS_STEPS.map((s) => (
               <li
                 key={s.n}
                 style={{ display: "flex", gap: 20, alignItems: "flex-start" }}
@@ -2580,6 +2213,171 @@ function CustomizeCTA() {
   );
 }
 
+/* ---- B2B / Wholesale ---- */
+function B2BSection() {
+  const navigate = useNavigate();
+  return (
+    <section
+      style={{
+        background: "var(--emerald)",
+        color: "var(--ivory)",
+        padding: "120px 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div className="geo-overlay" style={{ opacity: 0.06 }} />
+      <div className="container" style={{ position: "relative" }}>
+        <header style={{ textAlign: "center", marginBottom: 72 }}>
+          <p
+            className="eyebrow"
+            style={{ color: "var(--gold)", marginBottom: 18 }}
+          >
+            WHOLESALE & DISTRIBUTION
+          </p>
+          <h2
+            className="display"
+            style={{
+              fontSize: "clamp(48px, 6vw, 96px)",
+              lineHeight: 1,
+              fontWeight: 400,
+              marginBottom: 20,
+            }}
+          >
+            Partner with{" "}
+            <span className="display-italic" style={{ color: "var(--gold)" }}>
+              KhanSaab.
+            </span>
+          </h2>
+          <p
+            style={{
+              fontSize: 17,
+              opacity: 0.8,
+              maxWidth: 600,
+              margin: "0 auto",
+              lineHeight: 1.7,
+            }}
+          >
+            Stock premium thobes, kanduras and jubbas in your retail store.
+            Low minimums, strong margins, and a brand your customers already trust.
+          </p>
+        </header>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 24,
+            marginBottom: 72,
+          }}
+        >
+          {[
+            {
+              icon: "✦",
+              t: "Low MOQ",
+              d: "Start with as few as 25 pieces per style. No warehouse needed to get started.",
+            },
+            {
+              icon: "✦",
+              t: "Retailer Margins",
+              d: "30%+ margins on MRP with volume-based tiered pricing. The more you order, the better it gets.",
+            },
+            {
+              icon: "✦",
+              t: "Dedicated Support",
+              d: "Assigned account manager, priority dispatch, and marketing assets for your store.",
+            },
+          ].map((card) => (
+            <div
+              key={card.t}
+              style={{
+                background: "rgba(245,239,227,0.08)",
+                border: "1px solid rgba(201,169,97,0.2)",
+                padding: "36px 28px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
+            >
+              <span style={{ fontSize: 20, color: "var(--gold)" }}>{card.icon}</span>
+              <h3
+                className="display"
+                style={{ fontSize: 24, fontWeight: 400 }}
+              >
+                {card.t}
+              </h3>
+              <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.65 }}>
+                {card.d}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 32,
+            padding: "36px 0",
+            borderTop: "1px solid rgba(201,169,97,0.2)",
+            borderBottom: "1px solid rgba(201,169,97,0.2)",
+            marginBottom: 64,
+          }}
+        >
+          {[
+            { v: "200+", l: "Retail partners" },
+            { v: "28", l: "States covered" },
+            { v: "48hr", l: "Dispatch time" },
+            { v: "30%+", l: "Retailer margins" },
+          ].map((s, k) => (
+            <div key={k} style={{ textAlign: "center" }}>
+              <div
+                className="display"
+                style={{
+                  fontSize: 40,
+                  color: "var(--gold)",
+                  marginBottom: 4,
+                }}
+              >
+                {s.v}
+              </div>
+              <div className="mono" style={{ opacity: 0.65, fontSize: 11 }}>
+                {s.l}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 16,
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            className="btn btn-gold"
+            onClick={() =>
+              openWhatsApp(
+                "Hello KhanSaab — I'm interested in bulk/wholesale pricing for my store.",
+              )
+            }
+          >
+            Enquire for Bulk Pricing
+          </button>
+          <button
+            className="btn btn-ghost"
+            onClick={() => navigate("/wholesale")}
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---- Page export ---- */
 export default function HomePage() {
   return (
@@ -2591,6 +2389,7 @@ export default function HomePage() {
       <BestSellers />
       <Collections />
       <Testimonials />
+      <B2BSection />
       <CustomizeCTA />
     </>
   );

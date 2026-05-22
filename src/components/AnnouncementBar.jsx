@@ -1,11 +1,7 @@
+import { ANNOUNCEMENTS } from '../data/announcements.js'
+
 export default function AnnouncementBar() {
-  const items = [
-    '✦ FREE WORLDWIDE SHIPPING ON ORDERS OVER $300',
-    '✦ HAND-STITCHED IN THE EMIRATES',
-    '✦ MADE TO MEASURE AVAILABLE',
-    '✦ OVER 12,000 ★★★★★ REVIEWS',
-  ]
-  const seq = [...items, ...items, ...items]
+  const seq = [...ANNOUNCEMENTS, ...ANNOUNCEMENTS, ...ANNOUNCEMENTS]
 
   return (
     <div style={{

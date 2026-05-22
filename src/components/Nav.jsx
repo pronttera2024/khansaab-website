@@ -3,14 +3,9 @@ import { useState, useEffect } from 'react'
 import { useModals } from '../context/ModalsContext.jsx'
 import KhanSaabLogo from './shared/KhanSaabLogo.jsx'
 import AnnouncementBar from './AnnouncementBar.jsx'
-
-const WHATSAPP_NUMBER = '918975048440'
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
-
-function openWhatsApp(msg) {
-  const u = msg ? `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}` : WHATSAPP_URL
-  window.open(u, '_blank', 'noopener,noreferrer')
-}
+import { openWhatsApp } from '../utils/whatsapp.js'
+import { NAV_LINKS } from '../data/navigation.js'
+import { CONTACT, WHATSAPP_MESSAGES } from '../data/site-config.js'
 
 export default function Nav({ light = false }) {
   const navigate = useNavigate()
@@ -30,11 +25,7 @@ export default function Nav({ light = false }) {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const links = [
-  { path: '/', label: 'Home', num: '01' },
-  { path: '/products', label: 'Collection', num: '02' },
-  { path: '/story', label: 'Our Story', num: '03' },
-]
+  const links = NAV_LINKS
 
   const forceSolid = location.pathname !== '/'
   const transparent = !scrolled && !light && !forceSolid
@@ -87,8 +78,8 @@ export default function Nav({ light = false }) {
                     )}
                   </button>
                 ))}
-                <button onClick={openAtelier} style={{ fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', fontWeight: 500, color: 'var(--gold)' }}>
-                  Atelier
+                <button onClick={() => navigate('/wholesale')} style={{ fontSize: 11, letterSpacing: '0.26em', textTransform: 'uppercase', fontWeight: 500, color: 'var(--gold)' }}>
+                  Wholesale
                 </button>
               </nav>
             </div>
@@ -161,8 +152,8 @@ export default function Nav({ light = false }) {
               <span className="num">{l.num}</span>
             </button>
           ))}
-          <button onClick={() => { setOpen(false); openAtelier() }} className="mobile-drawer-link" style={{ color: 'var(--gold)' }}>
-            <span>Atelier</span>
+          <button onClick={() => goAndClose('/wholesale')} className="mobile-drawer-link" style={{ color: 'var(--gold)' }}>
+            <span>Wholesale</span>
             <span className="num">04</span>
           </button>
         </nav>
@@ -172,11 +163,11 @@ export default function Nav({ light = false }) {
             Contact
           </p>
           <p style={{ fontSize: 14, opacity: 0.7, lineHeight: 1.8 }}>
-            12 Al Wasl Road, Dubai<br />
-            +971 4 555 0911<br />
-            concierge@khansaab.com
+            {CONTACT.address.street}, {CONTACT.address.area}<br />
+            {CONTACT.phone[0]}<br />
+            {CONTACT.email.concierge}
           </p>
-          <button onClick={() => openWhatsApp("Hello KhanSaab — I'm interested in custom tailoring.")}
+          <button onClick={() => openWhatsApp(WHATSAPP_MESSAGES.customTailoring)}
             className="btn btn-gold" style={{ marginTop: 20, height: 44, fontSize: 11 }}>
             Chat on WhatsApp
           </button>

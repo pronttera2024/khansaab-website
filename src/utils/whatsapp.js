@@ -1,5 +1,6 @@
-export const WHATSAPP_NUMBER = '918975048440'
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
+import { WHATSAPP_NUMBER, WHATSAPP_URL } from '../data/site-config.js'
+
+export { WHATSAPP_NUMBER, WHATSAPP_URL }
 
 export function openWhatsApp(msg) {
   const u = msg ? `${WHATSAPP_URL}?text=${encodeURIComponent(msg)}` : WHATSAPP_URL

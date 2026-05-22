@@ -20,7 +20,7 @@ export const HERO_SLIDES = [
   },
   {
     arabic: 'البشت الملكي',
-    eyebrow: 'THE CEREMONIAL BISHT EDIT · 24K GOLD THREAD',
+    eyebrow: 'THE CEREMONIAL BISHT EDIT · HAND EMBROIDERED',
     titleTop: 'A cloak',
     titleAccent: 'of honour.',
     titleBot: 'A garment of',

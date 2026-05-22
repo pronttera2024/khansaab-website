@@ -1128,7 +1128,7 @@ export default function StoryPage() {
         >
           <Img
             variant="dark"
-            label="GOLD THREAD EMBROIDERY · COLLAR DETAIL · MACRO"
+            label="HAND EMBROIDERY · COLLAR DETAIL · MACRO"
             src="/assets/about_2.png"
             style={{ height: "100%" }}
           />

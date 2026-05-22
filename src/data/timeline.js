@@ -25,7 +25,7 @@ export const TIMELINE_EVENTS = [
   {
     year: '2003',
     title: 'The Bisht Room',
-    desc: 'A dedicated atelier for ceremonial cloaks opens — 24k gold-thread embroidery a specialty.',
+    desc: 'A dedicated atelier for ceremonial cloaks opens — heritage hand embroidery a specialty.',
     img: '2003 · BISHT ROOM',
     src: '/assets/reel_7.png',
   },

@@ -27,7 +27,7 @@ export const TEAM = [
   },
   {
     name: 'Tariq Mansouri',
-    role: 'Bisht Master · 24k Gold',
+    role: 'Bisht Master · Hand Embroidery',
     arabic: 'طارق المنصوري',
     since: '2003',
     quote: 'A bisht should weigh on the shoulders the way honour does — gently, firmly.',

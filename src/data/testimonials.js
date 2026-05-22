@@ -12,7 +12,7 @@ export const TESTIMONIALS = [
     role: 'Groom · Pune · 2025',
   },
   {
-    quote: 'Drove from Bangalore to the Pune atelier for my fitting. Worth every kilometre. The detail on the gold embroidery has to be seen in person.',
+    quote: 'Drove from Bangalore to the Pune atelier for my fitting. Worth every kilometre. The detail on the hand embroidery has to be seen in person.',
     name: 'Karim Patel',
     role: 'Executive · Bangalore',
   },

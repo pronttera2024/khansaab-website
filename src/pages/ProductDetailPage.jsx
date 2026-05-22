@@ -82,7 +82,7 @@ function MobileGallery({ images, tag, active, setActive }) {
 export default function ProductDetailPage() {
   const { id } = useParams()
   const PRODUCT = getProductForPDP(getProductById(id))
-  const { openSizeGuide } = useModals()
+  const { openSizeGuide, openAtelier } = useModals()
   const { isPhone } = useViewport()
   const [activeImg, setActiveImg] = useState(0)
   const [activeSize, setActiveSize] = useState((PRODUCT.sizes && PRODUCT.sizes[0]) || '')
@@ -165,14 +165,14 @@ export default function ProductDetailPage() {
                   {PRODUCT.sizes.map(s => (
                     <button key={s} onClick={() => setActiveSize(s)} style={{ minWidth: 56, height: 48, border: s === activeSize ? '1px solid var(--ink)' : '1px solid rgba(10,9,8,0.15)', background: s === activeSize ? 'var(--ink)' : 'transparent', color: s === activeSize ? 'var(--ivory)' : 'var(--ink)', fontSize: 13, fontWeight: 500, transition: 'all 0.3s' }}>{s}</button>
                   ))}
-                  <button style={{ minWidth: 110, height: 48, border: '1px dashed rgba(10,9,8,0.3)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--emerald)' }}>+ Made to measure</button>
+                  <button onClick={openAtelier} style={{ minWidth: 110, height: 48, border: '1px dashed rgba(10,9,8,0.3)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--emerald)' }}>+ Made to measure</button>
                 </div>
               ) : (
                 <>
                   {PRODUCT.sizes.map(s => (
                     <button key={s} onClick={() => setActiveSize(s)} style={{ height: 50, border: s === activeSize ? '1px solid var(--ink)' : '1px solid rgba(10,9,8,0.15)', background: s === activeSize ? 'var(--ink)' : 'transparent', color: s === activeSize ? 'var(--ivory)' : 'var(--ink)', fontSize: 14, fontWeight: 500, transition: 'all 0.3s' }}>{s}</button>
                   ))}
-                  <button style={{ gridColumn: '1 / -1', height: 46, border: '1px dashed rgba(10,9,8,0.3)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--emerald)' }}>+ Made to measure</button>
+                  <button onClick={openAtelier} style={{ gridColumn: '1 / -1', height: 46, border: '1px dashed rgba(10,9,8,0.3)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--emerald)' }}>+ Made to measure</button>
                 </>
               )}
             </div>

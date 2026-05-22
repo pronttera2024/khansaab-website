@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useModals } from '../context/ModalsContext.jsx'
 import KhanSaabLogo from './shared/KhanSaabLogo.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
@@ -17,22 +17,30 @@ function FooterBlock({ label, lines }) {
 }
 
 function FooterLinks({ title, items }) {
+  const linkStyle = {
+    fontSize: 14, opacity: 0.7, cursor: 'pointer',
+    transition: 'opacity 0.3s, color 0.3s',
+    color: 'inherit', textAlign: 'left', padding: 0,
+    background: 'none', border: 0, font: 'inherit',
+    display: 'inline-block',
+  }
+  const hover = e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.color = 'var(--gold)' }
+  const leave = e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.color = 'inherit' }
   return (
     <div>
       <div className="eyebrow" style={{ color: 'var(--gold)', marginBottom: 18 }}>{title}</div>
-      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12, padding: 0, margin: 0 }}>
         {items.map(it => (
           <li key={it.label}>
-            <button onClick={it.onClick}
-              style={{
-                fontSize: 14, opacity: 0.7, cursor: 'pointer',
-                transition: 'opacity 0.3s, color 0.3s',
-                color: 'inherit', textAlign: 'left', padding: 0,
-              }}
-              onMouseEnter={e => { e.currentTarget.style.opacity = 1; e.currentTarget.style.color = 'var(--gold)' }}
-              onMouseLeave={e => { e.currentTarget.style.opacity = 0.7; e.currentTarget.style.color = 'inherit' }}>
-              {it.label}
-            </button>
+            {it.path ? (
+              <Link to={it.path} style={linkStyle} onMouseEnter={hover} onMouseLeave={leave}>
+                {it.label}
+              </Link>
+            ) : (
+              <button type="button" onClick={it.onClick} style={linkStyle} onMouseEnter={hover} onMouseLeave={leave}>
+                {it.label}
+              </button>
+            )}
           </li>
         ))}
       </ul>
@@ -41,7 +49,6 @@ function FooterLinks({ title, items }) {
 }
 
 export default function Footer() {
-  const navigate = useNavigate()
   const { openAtelier, openSizeGuide } = useModals()
 
   return (
@@ -105,13 +112,14 @@ export default function Footer() {
             return (
               <FooterLinks key={group.title} title={group.title} items={group.items.map(item => ({
                 label: item.label,
-                onClick: item.action ? actions[item.action] : () => navigate(item.path),
+                path: item.action ? undefined : item.path,
+                onClick: item.action ? actions[item.action] : undefined,
               }))} />
             )
           })}
         </div>
 
-        <div data-footer-newsletter style={{
+        {/* <div data-footer-newsletter style={{
           padding: '44px 0',
           borderTop: '1px solid rgba(201,169,97,0.18)',
           borderBottom: '1px solid rgba(201,169,97,0.18)',
@@ -141,7 +149,7 @@ export default function Footer() {
               }} />
             <button type="submit" className="btn btn-gold">Subscribe</button>
           </form>
-        </div>
+        </div> */}
 
         <div data-footer-bottom style={{
           padding: '32px 0',

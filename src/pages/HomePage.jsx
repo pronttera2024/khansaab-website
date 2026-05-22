@@ -798,7 +798,7 @@ function CategoriesBento() {
 
 function Reels() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(true);
+  const [paused] = useState(true);
   const [playing, setPlaying] = useState(false);
   const n = REELS_DATA.length;
 
@@ -895,26 +895,6 @@ function Reels() {
           </div>
           {!isPhone && (
             <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-              <button
-                onClick={() => setPaused((p) => !p)}
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: "50%",
-                  border: "1px solid rgba(201,169,97,0.4)",
-                  color: "var(--gold-light)",
-                  fontSize: 12,
-                }}
-              >
-                {paused ? "▶" : "❚❚"}
-              </button>
-              <div
-                style={{
-                  width: 1,
-                  height: 24,
-                  background: "rgba(201,169,97,0.25)",
-                }}
-              />
               <button
                 onClick={() => setActive((a) => (a - 1 + n) % n)}
                 style={{

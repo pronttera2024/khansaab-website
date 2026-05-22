@@ -561,16 +561,19 @@ function TeamCard({ member }) {
           overflow: "hidden",
         }}
       >
-        <Img
-          variant="dark"
-          label={`PORTRAIT · ${member.name.toUpperCase()}`}
-          src={member.src}
-          style={{
-            height: "100%",
-            transform: hov ? "scale(1.05)" : "scale(1)",
-            transition: "transform 0.7s var(--ease-out)",
-          }}
-        />
+        <Parallax speed={0.45} style={{ position: "absolute", inset: 0 }}>
+          <Img
+            variant="dark"
+            label={`PORTRAIT · ${member.name.toUpperCase()}`}
+            src={member.src}
+            style={{
+              height: "135%",
+              marginTop: "-17%",
+              transform: hov ? "scale(1.05)" : "scale(1)",
+              transition: "transform 0.7s var(--ease-out)",
+            }}
+          />
+        </Parallax>
         <div
           style={{
             position: "absolute",
@@ -752,11 +755,11 @@ function Team() {
           overflow: "hidden",
         }}
       >
-        <Parallax speed={0.25} style={{ position: "absolute", inset: 0 }}>
+        <Parallax speed={0.4} style={{ position: "absolute", inset: 0 }}>
           <Img
             label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
             src="/assets/about_1.png"
-            style={{ height: "125%", marginTop: "-12%" }}
+            style={{ height: "140%", marginTop: "-20%" }}
           />
         </Parallax>
         <div
@@ -897,12 +900,12 @@ export default function StoryPage() {
       <section
         style={{ position: "relative", height: isPhone ? "70vh" : "80vh", overflow: "hidden" }}
       >
-        <Parallax speed={0.3} style={{ position: "absolute", inset: 0 }}>
+        <Parallax speed={0.45} style={{ position: "absolute", inset: 0 }}>
           <Img
             variant="dark"
             label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
             src="/assets/about_1.png"
-            style={{ height: "130%", marginTop: "-15%" }}
+            style={{ height: "145%", marginTop: "-22%" }}
           />
         </Parallax>
         {isPhone ? (
@@ -1085,13 +1088,15 @@ export default function StoryPage() {
         }}
       >
         <div
-          style={{ position: "relative", height: isPhone ? "60vh" : "100%" }}
+          style={{ position: "relative", height: isPhone ? "60vh" : "100%", overflow: "hidden" }}
         >
-          <Img
-            label="HAND CUTTING · CHALK MARKS · POPLIN"
-            src="/assets/about_1.png"
-            style={{ height: "100%" }}
-          />
+          <Parallax speed={0.6} style={{ position: "absolute", inset: 0 }}>
+            <Img
+              label="HAND CUTTING · CHALK MARKS · POPLIN"
+              src="/assets/about_1.png"
+              style={{ height: "165%", marginTop: "-32%" }}
+            />
+          </Parallax>
           {isPhone && (
             <div
               style={{
@@ -1131,14 +1136,16 @@ export default function StoryPage() {
           </div>
         </div>
         <div
-          style={{ position: "relative", height: isPhone ? "60vh" : "100%" }}
+          style={{ position: "relative", height: isPhone ? "60vh" : "100%", overflow: "hidden" }}
         >
-          <Img
-            variant="dark"
-            label="HAND EMBROIDERY · COLLAR DETAIL · MACRO"
-            src="/assets/about_2.png"
-            style={{ height: "100%" }}
-          />
+          <Parallax speed={-0.6} style={{ position: "absolute", inset: 0 }}>
+            <Img
+              variant="dark"
+              label="HAND EMBROIDERY · COLLAR DETAIL · MACRO"
+              src="/assets/about_2.png"
+              style={{ height: "165%", marginTop: "-32%" }}
+            />
+          </Parallax>
           {isPhone && (
             <div
               style={{

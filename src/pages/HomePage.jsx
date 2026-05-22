@@ -595,6 +595,7 @@ function BentoCard({ cat, span }) {
           variant={isDark ? "dark" : "default"}
           label={cat.img}
           src={cat.src}
+          showLabel={false}
           style={{ height: "100%" }}
         />
         <div
@@ -665,15 +666,34 @@ function BentoCard({ cat, span }) {
             {cat.desc}
           </p>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            alignSelf: "flex-start",
+            padding: "10px 18px",
+            background: isDark
+              ? "rgba(201, 169, 97, 0.15)"
+              : "rgba(10, 9, 8, 0.06)",
+            border: `1px solid ${isDark ? "var(--gold)" : "currentColor"}`,
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            transition: "all 0.4s var(--ease-out)",
+            transform: hover ? "translateY(-2px)" : "translateY(0)",
+            boxShadow: hover
+              ? isDark
+                ? "0 8px 24px rgba(201, 169, 97, 0.25)"
+                : "0 8px 24px rgba(10, 9, 8, 0.18)"
+              : "none",
+          }}
+        >
           <span
             style={{
               fontSize: 11,
               letterSpacing: "0.25em",
               textTransform: "uppercase",
-              fontWeight: 500,
-              paddingBottom: 6,
-              borderBottom: `1px solid ${isDark ? "var(--gold)" : "currentColor"}`,
+              fontWeight: 600,
               color: isDark ? "var(--gold)" : "inherit",
             }}
           >
@@ -684,6 +704,7 @@ function BentoCard({ cat, span }) {
               transform: hover ? "translateX(6px)" : "translateX(0)",
               transition: "transform 0.4s var(--ease-out)",
               color: isDark ? "var(--gold)" : "inherit",
+              fontSize: 14,
             }}
           >
             →
@@ -2366,10 +2387,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <HorizontalAbout />
       <CategoriesBento />
-      <Reels />
+      <HorizontalAbout />
       <BestSellers />
+      <Reels />
       <Collections />
       <Testimonials />
       <B2BSection />

@@ -5,27 +5,6 @@ import { openWhatsApp } from '../utils/whatsapp.js'
 import { CONTACT, BRAND, PAYMENT_METHODS, WHATSAPP_MESSAGES } from '../data/site-config.js'
 import { FOOTER_LINKS } from '../data/navigation.js'
 
-function FooterBlock({ label, lines }) {
-  return (
-    <div>
-      <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85, marginBottom: 14 }}>{label}</div>
-      <div style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8 }}>
-        {lines.map((l, i) => {
-          const href = typeof l === 'string' && l.startsWith('+')
-            ? `tel:${l.replace(/\s/g, '')}`
-            : typeof l === 'string' && l.includes('@')
-            ? `mailto:${l}`
-            : null
-          return href
-            ? <div key={i}><a href={href} style={{ color: 'inherit', textDecoration: 'none' }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
-                onMouseLeave={e => e.currentTarget.style.color = 'inherit'}>{l}</a></div>
-            : <div key={i}>{l}</div>
-        })}
-      </div>
-    </div>
-  )
-}
 
 function FooterLinks({ title, items }) {
   const linkStyle = {

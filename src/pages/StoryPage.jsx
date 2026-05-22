@@ -3,6 +3,7 @@ import Img from "../components/shared/Img.jsx";
 import { Ornament, CornerOrnament } from "../components/shared/Ornament.jsx";
 import { useReveal } from "../hooks/useReveal.js";
 import { useViewport } from "../hooks/useViewport.js";
+import { Reveal, Parallax } from "../components/shared/Reveal.jsx";
 import { ContactStrip } from "./ProductsPage.jsx";
 import { TIMELINE_EVENTS } from "../data/timeline.js";
 import { TEAM } from "../data/team.js";
@@ -748,13 +749,16 @@ function Team() {
           marginTop: isPhone ? 60 : 120,
           height: isPhone ? "46vh" : "70vh",
           position: "relative",
+          overflow: "hidden",
         }}
       >
-        <Img
-          label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
-          src="/assets/about_1.png"
-          style={{ height: "100%" }}
-        />
+        <Parallax speed={0.25} style={{ position: "absolute", inset: 0 }}>
+          <Img
+            label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
+            src="/assets/about_1.png"
+            style={{ height: "125%", marginTop: "-12%" }}
+          />
+        </Parallax>
         <div
           style={{
             position: "absolute",
@@ -818,23 +822,24 @@ export default function StoryPage() {
             className="display"
             style={{
               fontSize: "clamp(54px, 14vw, 220px)",
-              lineHeight: 0.92,
+              lineHeight: 1.20,
               fontWeight: 400,
               letterSpacing: "-0.02em",
               marginBottom: isPhone ? 22 : 28,
+              paddingBottom: "0.1em",
             }}
           >
-            Our legacy is
+            <RevealText text="Our legacy is" />
             <br />
-            <span
+            <RevealText
               className="display-italic"
               style={{ color: "var(--emerald)" }}
-            >
-              our story.
-            </span>
+              text="our story."
+              delay={0.4}
+            />
           </h1>
           <Ornament />
-          <p
+          <Reveal as="p" delay={0.7}
             style={{
               maxWidth: 620,
               margin: "24px auto 0",
@@ -846,7 +851,7 @@ export default function StoryPage() {
           >
             A short letter from three generations of tailors — on the cloth, the
             city and the men who taught us how to dress the modern Indian man.
-          </p>
+          </Reveal>
           {isPhone && (
             <p
               className="mono"
@@ -890,14 +895,16 @@ export default function StoryPage() {
 
       {/* Archival image */}
       <section
-        style={{ position: "relative", height: isPhone ? "70vh" : "80vh" }}
+        style={{ position: "relative", height: isPhone ? "70vh" : "80vh", overflow: "hidden" }}
       >
-        <Img
-          variant="dark"
-          label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
-          src="/assets/about_1.png"
-          style={{ height: "100%" }}
-        />
+        <Parallax speed={0.3} style={{ position: "absolute", inset: 0 }}>
+          <Img
+            variant="dark"
+            label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
+            src="/assets/about_1.png"
+            style={{ height: "130%", marginTop: "-15%" }}
+          />
+        </Parallax>
         {isPhone ? (
           <div
             style={{

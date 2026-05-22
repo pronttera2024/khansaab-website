@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { RouterProvider } from './context/RouterContext.jsx'
 import { ModalsProvider, useModals } from './context/ModalsContext.jsx'
 import { useAutoPopup } from './hooks/useAutoPopup.js'
+import { useSmoothScroll } from './hooks/useSmoothScroll.js'
 
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
@@ -58,6 +59,7 @@ const ROUTE_MAP = {
 // Inner shell — needs useNavigate, which requires BrowserRouter above it.
 // RouterProvider also needs BrowserRouter, so both live here.
 function AppShell() {
+  useSmoothScroll()
   const navigate = useNavigate()
   const [tweaks, setTweaks] = useState({ rtl: false, accent: '#0F3B2E', currentRoute: 'home' })
   const setTweak = (key, val) => setTweaks(t => ({ ...t, [key]: val }))

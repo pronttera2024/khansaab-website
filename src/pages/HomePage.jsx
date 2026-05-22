@@ -4,6 +4,7 @@ import { useModals } from "../context/ModalsContext.jsx";
 import { useViewport } from "../hooks/useViewport.js";
 import Img from "../components/shared/Img.jsx";
 import { Ornament } from "../components/shared/Ornament.jsx";
+import { RevealText, Reveal, Parallax } from "../components/shared/Reveal.jsx";
 import { openWhatsApp } from "../utils/whatsapp.js";
 import { HERO_SLIDES } from "../data/hero.js";
 import { CATEGORIES } from "../data/categories.js";
@@ -591,13 +592,15 @@ function BentoCard({ cat, span }) {
       }}
     >
       <div style={{ position: "absolute", inset: 0 }}>
-        <Img
-          variant={isDark ? "dark" : "default"}
-          label={cat.img}
-          src={cat.src}
-          showLabel={false}
-          style={{ height: "100%" }}
-        />
+        <Parallax speed={0.18} style={{ height: "100%" }}>
+          <Img
+            variant={isDark ? "dark" : "default"}
+            label={cat.img}
+            src={cat.src}
+            showLabel={false}
+            style={{ height: "120%", marginTop: "-10%" }}
+          />
+        </Parallax>
         <div
           style={{
             position: "absolute",
@@ -653,7 +656,7 @@ function BentoCard({ cat, span }) {
               fontWeight: 400,
             }}
           >
-            {cat.name}
+            <RevealText text={cat.name} stagger={0.05} />
           </h3>
           <p
             style={{
@@ -743,16 +746,16 @@ function CategoriesBento() {
               marginBottom: 20,
             }}
           >
-            Six garments.{" "}
-            <span
+            <RevealText text="Six garments." />{" "}
+            <RevealText
+              as="span"
               className="display-italic"
               style={{ color: "var(--emerald)" }}
-            >
-              One tradition.
-            </span>
+              text="One tradition."
+              delay={0.25}
+            />
           </h2>
-          <p
-            style={{
+          <Reveal as="p" delay={0.5} style={{
               maxWidth: 540,
               margin: "0 auto",
               fontSize: 16,
@@ -761,7 +764,7 @@ function CategoriesBento() {
           >
             Every category is curated by our head tailor. No drop-shipping, no
             compromise — only what we'd wear ourselves.
-          </p>
+          </Reveal>
         </header>
         {isPhone ? (
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14 }}>
@@ -1422,7 +1425,7 @@ function BestSellers() {
                 fontWeight: 400,
               }}
             >
-              Best sellers.
+              <RevealText text="Best sellers." />
             </h2>
           </div>
           <button
@@ -1565,7 +1568,7 @@ function BestSellers() {
                       fontWeight: 500,
                     }}
                   >
-                    {p.name}
+                    <RevealText text={p.name} stagger={0.04} />
                   </h3>
                   <div
                     data-product-price-row
@@ -1737,7 +1740,7 @@ function CollectionProductCard({ p }) {
             fontWeight: 500,
           }}
         >
-          {p.name}
+          <RevealText text={p.name} stagger={0.04} />
         </h3>
         <div style={{ display: "flex", gap: 10, alignItems: "baseline" }}>
           <span style={{ fontSize: 18, fontWeight: 600 }}>
@@ -1794,7 +1797,7 @@ function Collections() {
                 fontWeight: 400,
               }}
             >
-              Collections.
+              <RevealText text="Collections." />
             </h2>
           </div>
           <button
@@ -1886,10 +1889,14 @@ function Testimonials() {
             fontWeight: 400,
           }}
         >
-          From those who{" "}
-          <span className="display-italic" style={{ color: "var(--emerald)" }}>
-            wear it.
-          </span>
+          <RevealText text="From those who" />{" "}
+          <RevealText
+            as="span"
+            className="display-italic"
+            style={{ color: "var(--emerald)" }}
+            text="wear it."
+            delay={0.3}
+          />
         </h2>
         <div style={{ position: "relative", minHeight: 220 }}>
           <div
@@ -2071,11 +2078,13 @@ function CustomizeCTA() {
       }}
     >
       <div style={{ position: "absolute", inset: 0, opacity: 0.35 }}>
-        <Img
-          variant="dark"
-          label="MASTER TAILOR · CHALK MARKING · STUDIO"
-          style={{ height: "100%" }}
-        />
+        <Parallax speed={0.25} style={{ height: "100%" }}>
+          <Img
+            variant="dark"
+            label="MASTER TAILOR · CHALK MARKING · STUDIO"
+            style={{ height: "120%", marginTop: "-10%" }}
+          />
+        </Parallax>
       </div>
       <div
         style={{
@@ -2112,12 +2121,16 @@ function CustomizeCTA() {
               fontWeight: 400,
             }}
           >
-            Don't see{" "}
-            <span className="display-italic" style={{ color: "var(--gold)" }}>
-              your garment?
-            </span>
+            <RevealText text="Don't see" />{" "}
+            <RevealText
+              as="span"
+              className="display-italic"
+              style={{ color: "var(--gold)" }}
+              text="your garment?"
+              delay={0.25}
+            />
             <br />
-            We'll build it.
+            <RevealText text="We'll build it." delay={0.5} />
           </h2>
           <p
             style={{
@@ -2248,10 +2261,14 @@ function B2BSection() {
               marginBottom: 20,
             }}
           >
-            Partner with{" "}
-            <span className="display-italic" style={{ color: "var(--gold)" }}>
-              KhanSaab.
-            </span>
+            <RevealText text="Partner with" />{" "}
+            <RevealText
+              as="span"
+              className="display-italic"
+              style={{ color: "var(--gold)" }}
+              text="KhanSaab."
+              delay={0.3}
+            />
           </h2>
           <p
             style={{

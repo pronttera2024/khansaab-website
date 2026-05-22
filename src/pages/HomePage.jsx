@@ -90,23 +90,6 @@ function Hero() {
                 opacity: 0.12,
               }}
             />
-            <div
-              className="label"
-              style={{
-                position: "absolute",
-                top: 24,
-                left: 24,
-                background: "rgba(10,9,8,0.55)",
-                color: "rgba(245,239,227,0.6)",
-                border: "1px solid rgba(201,169,97,0.25)",
-                padding: "5px 10px",
-                fontFamily: "var(--f-mono)",
-                fontSize: 9,
-                letterSpacing: "0.18em",
-              }}
-            >
-              {slide.label}
-            </div>
           </div>
           <div
             style={{

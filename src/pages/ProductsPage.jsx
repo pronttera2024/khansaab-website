@@ -1206,25 +1206,110 @@ export default function ProductsPage() {
           <span className="mono" style={{ opacity: 0.55 }}>
             Sort by
           </span>
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            style={{
-              height: 42,
-              padding: "0 16px",
-              border: "1px solid rgba(10,9,8,0.18)",
-              background: "transparent",
-              fontFamily: "var(--f-body)",
-              fontSize: 13,
-              borderRadius: 999,
-              cursor: "pointer",
-            }}
-          >
-            <option value="featured">Featured</option>
-            <option value="new">Newest</option>
-            <option value="price-asc">Price: low to high</option>
-            <option value="price-desc">Price: high to low</option>
-          </select>
+          <div style={{ position: "relative" }}>
+            {(() => {
+              const SORT_LABELS = {
+                featured: "Featured",
+                new: "Newest",
+                "price-asc": "Price: low to high",
+                "price-desc": "Price: high to low",
+              };
+              return (
+                <>
+                  <button
+                    onClick={() => setSortOpen((o) => !o)}
+                    onBlur={() => setTimeout(() => setSortOpen(false), 120)}
+                    aria-haspopup="listbox"
+                    aria-expanded={sortOpen}
+                    style={{
+                      height: 42,
+                      minWidth: 200,
+                      padding: "0 18px",
+                      border: "1px solid rgba(10,9,8,0.18)",
+                      background: sortOpen ? "var(--ink)" : "transparent",
+                      color: sortOpen ? "var(--ivory)" : "var(--ink)",
+                      fontFamily: "var(--f-body)",
+                      fontSize: 13,
+                      borderRadius: 999,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 12,
+                      transition: "all 0.25s var(--ease-out)",
+                    }}
+                  >
+                    <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                        <path d="M4 4 H13" />
+                        <path d="M4 8 H10" />
+                        <path d="M4 12 H7" />
+                      </svg>
+                      {SORT_LABELS[sort]}
+                    </span>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ transition: "transform 0.25s", transform: sortOpen ? "rotate(180deg)" : "rotate(0)" }}>
+                      <path d="M2 3.5 L5 6.5 L8 3.5" />
+                    </svg>
+                  </button>
+                  {sortOpen && (
+                    <div
+                      role="listbox"
+                      style={{
+                        position: "absolute",
+                        top: "calc(100% + 8px)",
+                        right: 0,
+                        minWidth: 220,
+                        background: "var(--paper)",
+                        border: "1px solid rgba(10,9,8,0.1)",
+                        borderRadius: 14,
+                        boxShadow: "0 18px 40px rgba(10,9,8,0.12)",
+                        padding: 6,
+                        zIndex: 50,
+                      }}
+                    >
+                      {Object.entries(SORT_LABELS).map(([v, label]) => {
+                        const active = v === sort;
+                        return (
+                          <button
+                            key={v}
+                            onMouseDown={(e) => e.preventDefault()}
+                            onClick={() => { setSort(v); setSortOpen(false); }}
+                            role="option"
+                            aria-selected={active}
+                            style={{
+                              width: "100%",
+                              textAlign: "left",
+                              padding: "10px 14px",
+                              fontSize: 13,
+                              borderRadius: 10,
+                              background: active ? "rgba(15,59,46,0.08)" : "transparent",
+                              color: active ? "var(--emerald)" : "var(--ink)",
+                              fontWeight: active ? 600 : 400,
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              gap: 10,
+                              cursor: "pointer",
+                              transition: "background 0.18s",
+                            }}
+                            onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "rgba(10,9,8,0.05)"; }}
+                            onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
+                          >
+                            {label}
+                            {active && (
+                              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 8.5 L6.5 12 L13 4.5" />
+                              </svg>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </>
+              );
+            })()}
+          </div>
           <div
             style={{
               display: "flex",

@@ -81,7 +81,7 @@ export default function Footer() {
             <FooterBlock label="Atelier" lines={[CONTACT.address.street, CONTACT.address.area, CONTACT.address.country]} />
             <FooterBlock label="Studio Hours" lines={[CONTACT.hours.weekday, CONTACT.hours.time, CONTACT.hours.weekend]} />
             <FooterBlock label="Phone" lines={CONTACT.phone} />
-            <FooterBlock label="Email" lines={[CONTACT.email.concierge, CONTACT.email.press]} />
+            <FooterBlock label="Email" lines={[CONTACT.email.concierge]} />
           </div>
         </div>
 
@@ -92,7 +92,7 @@ export default function Footer() {
           padding: '72px 0',
         }}>
           <div>
-            <KhanSaabLogo size={48} color="var(--ivory)" />
+            <KhanSaabLogo size={48} color="var(--ivory)" invert />
             <p style={{ marginTop: 24, opacity: 0.55, fontSize: 14, lineHeight: 1.7, maxWidth: 320 }}>
               {BRAND.description}
             </p>

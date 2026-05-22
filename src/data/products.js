@@ -590,6 +590,14 @@ export function getBestsellers() {
   return ALL_PRODUCTS.slice(0, 4)
 }
 
+/** Get related products for the PDP — excludes current product, returns up to 4 in card format */
+export function getRelatedProducts(currentId, limit = 4) {
+  return ALL_PRODUCTS
+    .filter(p => p.id !== currentId)
+    .slice(0, limit)
+    .map(toCardFormat)
+}
+
 /** Get collection products (first 6 for homepage collection grid) */
 export function getCollectionProducts() {
   return ALL_PRODUCTS.slice(0, 6)

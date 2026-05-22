@@ -5,7 +5,7 @@ import { useViewport } from '../hooks/useViewport.js'
 import Img from '../components/shared/Img.jsx'
 import { openWhatsApp } from '../utils/whatsapp.js'
 import { ContactStrip, ProductCard } from './ProductsPage.jsx'
-import { getProductById, getProductForPDP, RELATED_PRODUCTS } from '../data/products.js'
+import { getProductById, getProductForPDP, getRelatedProducts } from '../data/products.js'
 import { PRODUCT_REVIEWS, REVIEW_HISTOGRAM } from '../data/testimonials.js'
 import { SHIPPING_BADGES, PDP_MAKING_STEPS } from '../data/content.js'
 import { WHATSAPP_MESSAGES, CONTACT } from '../data/site-config.js'
@@ -82,6 +82,7 @@ function MobileGallery({ images, tag, active, setActive }) {
 export default function ProductDetailPage() {
   const { id } = useParams()
   const PRODUCT = getProductForPDP(getProductById(id))
+  const RELATED = getRelatedProducts(PRODUCT.id)
   const { openSizeGuide, openAtelier } = useModals()
   const { isPhone } = useViewport()
   const [activeImg, setActiveImg] = useState(0)
@@ -347,7 +348,7 @@ export default function ProductDetailPage() {
             </h2>
           </header>
           <div style={{ display: 'grid', gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: isPhone ? 12 : 24 }}>
-            {RELATED_PRODUCTS.map((p, i) => (
+            {RELATED.map((p, i) => (
               <ProductCard key={i} p={p} view="grid" compact={isPhone}/>
             ))}
           </div>

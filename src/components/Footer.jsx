@@ -10,7 +10,18 @@ function FooterBlock({ label, lines }) {
     <div>
       <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85, marginBottom: 14 }}>{label}</div>
       <div style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8 }}>
-        {lines.map((l, i) => <div key={i}>{l}</div>)}
+        {lines.map((l, i) => {
+          const href = typeof l === 'string' && l.startsWith('+')
+            ? `tel:${l.replace(/\s/g, '')}`
+            : typeof l === 'string' && l.includes('@')
+            ? `mailto:${l}`
+            : null
+          return href
+            ? <div key={i}><a href={href} style={{ color: 'inherit', textDecoration: 'none' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'inherit'}>{l}</a></div>
+            : <div key={i}>{l}</div>
+        })}
       </div>
     </div>
   )
@@ -85,10 +96,80 @@ export default function Footer() {
           </div>
 
           <div data-footer-info style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-            <FooterBlock label="Atelier" lines={[CONTACT.address.street, CONTACT.address.area, CONTACT.address.country]} />
-            <FooterBlock label="Studio Hours" lines={[CONTACT.hours.weekday, CONTACT.hours.time, CONTACT.hours.weekend]} />
-            <FooterBlock label="Phone" lines={CONTACT.phone} />
-            <FooterBlock label="Email" lines={[CONTACT.email.concierge]} />
+
+            {/* Atelier */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85 }}>Atelier</div>
+              </div>
+              <div style={{ width: 32, height: 1, background: 'var(--gold)', opacity: 0.4, marginBottom: 12 }} />
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${CONTACT.address.street}, ${CONTACT.address.area}, ${CONTACT.address.country}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8, color: 'inherit', textDecoration: 'none', display: 'block' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'inherit'}
+              >
+                <div>{CONTACT.address.street}</div>
+                <div>{CONTACT.address.area}</div>
+                <div>{CONTACT.address.country}</div>
+              </a>
+            </div>
+
+            {/* Studio Hours */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+                </svg>
+                <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85 }}>Studio Hours</div>
+              </div>
+              <div style={{ width: 32, height: 1, background: 'var(--gold)', opacity: 0.4, marginBottom: 12 }} />
+              <div style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8 }}>
+                <div>{CONTACT.hours.weekday}</div>
+                <div>{CONTACT.hours.time}</div>
+                <div>{CONTACT.hours.weekend}</div>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/>
+                </svg>
+                <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85 }}>Phone</div>
+              </div>
+              <div style={{ width: 32, height: 1, background: 'var(--gold)', opacity: 0.4, marginBottom: 12 }} />
+              <div style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8 }}>
+                {CONTACT.phone.map((l, i) => (
+                  <div key={i}><a href={`tel:${l.replace(/\s/g, '')}`} style={{ color: 'inherit', textDecoration: 'none' }}
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'inherit'}>{l}</a></div>
+                ))}
+              </div>
+            </div>
+
+            {/* Email */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <div className="eyebrow" style={{ color: 'var(--gold)', opacity: 0.85 }}>Email</div>
+              </div>
+              <div style={{ width: 32, height: 1, background: 'var(--gold)', opacity: 0.4, marginBottom: 12 }} />
+              <div style={{ fontSize: 14, opacity: 0.8, lineHeight: 1.8 }}>
+                <a href={`mailto:${CONTACT.email.concierge}`} style={{ color: 'inherit', textDecoration: 'none' }}
+                  onMouseEnter={e => e.currentTarget.style.color = 'var(--gold)'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'inherit'}>{CONTACT.email.concierge}</a>
+              </div>
+            </div>
+
           </div>
         </div>
 

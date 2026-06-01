@@ -5,7 +5,7 @@ function imgSeed(label) {
   return h % 1000
 }
 
-export default function Img({ label, variant = 'default', style, children, aspect, src, showLabel = true, ...rest }) {
+export default function Img({ label, variant = 'default', style, children, aspect, src, showLabel = false, ...rest }) {
   const cls = `placeholder has-image ${variant === 'dark' ? 'dark' : variant === 'emerald' ? 'emerald' : ''}`
   const s = { ...style }
   if (aspect) s.aspectRatio = aspect

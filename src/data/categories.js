@@ -25,22 +25,22 @@ export const CATEGORIES = [
     img: 'WHITE GHUTRA + AGAL',
     src: '/assets/shemagh.png',
   },
-  {
-    id: 'keffiyah',
-    name: 'Keffiyah',
-    arabic: 'كوفية',
-    desc: 'Traditional woven headdress — a symbol of heritage and identity.',
-    count: 24,
-    bg: 'var(--ink)',
-    color: 'var(--ivory)',
-    img: 'BLACK BISHT · GOLD TRIM',
-    src: '/assets/bisht_black.png',
-  },
+  // {
+  //   id: 'keffiyah',
+  //   name: 'Keffiyah',
+  //   arabic: 'كوفية',
+  //   desc: 'Traditional woven headdress — a symbol of heritage and identity.',
+  //   count: 24,
+  //   bg: 'var(--ink)',
+  //   color: 'var(--ivory)',
+  //   img: 'BLACK BISHT · GOLD TRIM',
+  //   src: '/assets/bisht_black.png',
+  // },
 ]
 
 // Filter / taxonomy options for the products page
 export const FILTER_OPTIONS = {
-  category: [['all', 'All garments'], ['thobes', 'Thobes'], ['shimag', 'Shimag'], ['keffiyah', 'Keffiyah']],
+  category: [['all', 'All garments'], ['thobes', 'Thobes'], ['shimag', 'Shimag']],
 }
 
 export const SORT_OPTIONS = [

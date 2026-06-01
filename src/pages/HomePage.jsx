@@ -746,7 +746,7 @@ function CategoriesBento() {
               marginBottom: 20,
             }}
           >
-            <RevealText text="Six garments." />{" "}
+            <RevealText text={`${BENTO_CATS.length} garments.`} />{" "}
             <RevealText
               as="span"
               className="display-italic"
@@ -781,12 +781,17 @@ function CategoriesBento() {
               gap: 16,
             }}
           >
-            <BentoCard
-              cat={BENTO_CATS[0]}
-              span={{ gridColumn: "span 6", gridRow: "span 2" }}
-            />
-            <BentoCard cat={BENTO_CATS[1]} span={{ gridColumn: "span 6" }} />
-            <BentoCard cat={BENTO_CATS[2]} span={{ gridColumn: "span 6" }} />
+            {BENTO_CATS.map((cat, i) => (
+              <BentoCard
+                key={cat.id}
+                cat={cat}
+                span={
+                  i === 0
+                    ? { gridColumn: "span 6", gridRow: "span 2" }
+                    : { gridColumn: "span 6", gridRow: "span 2"}
+                }
+              />
+            ))}
           </div>
         )}
       </div>
@@ -796,26 +801,182 @@ function CategoriesBento() {
 
 /* ---- Reels carousel ---- */
 
+function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate, isMobile }) {
+  const ytSrc = `https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`;
+
+  return (
+    <article
+      onClick={() => {
+        if (!isActive) { onActivate(); return; }
+        onTogglePlay();
+      }}
+      style={{
+        ...(isMobile
+          ? {
+              flex: `0 0 ${cardW}px`,
+              height: cardH,
+              scrollSnapAlign: "center",
+              transform: isActive ? "scale(1)" : "scale(0.94)",
+              boxShadow: isActive ? "0 20px 50px rgba(0,0,0,0.5)" : "none",
+            }
+          : {
+              width: cardW,
+              height: 560,
+            }),
+        position: "relative",
+        overflow: "hidden",
+        background: "var(--ink-soft)",
+        borderRadius: 6,
+        transition: "transform 0.4s var(--ease-out), box-shadow 0.4s",
+        cursor: "pointer",
+      }}
+    >
+      {/* YouTube iframe — only mounted when playing */}
+      {playing && (
+        <iframe
+          src={ytSrc}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            border: "none",
+          }}
+        />
+      )}
+
+      {/* Overlay — shows thumbnail + play button when not playing */}
+      {!playing && (
+        <>
+          <img
+            src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`}
+            alt={r.label}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)" }} />
+        </>
+      )}
+      {!playing && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: isMobile ? 14 : 18,
+            zIndex: 2,
+          }}
+        >
+          {/* Top row: avatar + duration */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div
+                style={{
+                  width: isMobile ? 26 : 28,
+                  height: isMobile ? 26 : 28,
+                  borderRadius: "50%",
+                  background: "linear-gradient(135deg, var(--gold), var(--gold-warm))",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "var(--ink)", fontSize: 11, fontWeight: 600,
+                  fontFamily: "var(--f-display)",
+                }}
+              >K</div>
+              <span style={{ fontSize: 11, fontWeight: 500, color: "var(--ivory)" }}>khansaab</span>
+            </div>
+            <div
+              style={{
+                background: "rgba(10,9,8,0.6)",
+                backdropFilter: "blur(8px)",
+                padding: "4px 9px", borderRadius: 4,
+                fontSize: 10, fontFamily: "var(--f-mono)", color: "var(--gold-light)",
+              }}
+            >{r.duration}</div>
+          </div>
+
+          {/* Centre play button */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div
+              style={{
+                width: isMobile ? 52 : 72,
+                height: isMobile ? 52 : 72,
+                borderRadius: "50%",
+                border: "1px solid var(--gold)",
+                background: "rgba(201,169,97,0.18)",
+                backdropFilter: "blur(10px)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--gold)",
+                transition: "transform 0.2s, background 0.2s",
+              }}
+            >
+              <svg width={isMobile ? 18 : 22} height={isMobile ? 18 : 22} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5 L20 12 L8 19 Z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Bottom: label + caption */}
+          <div>
+            <p style={{ fontSize: isMobile ? 14 : 15, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: "var(--ivory)" }}>
+              {r.label}
+            </p>
+            <p style={{ fontSize: isMobile ? 11 : 12, opacity: 0.75, marginBottom: 6, color: "var(--ivory)" }}>
+              {r.caption}
+            </p>
+            <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: "var(--ivory)" }}>
+              {r.views} views · ♡ {r.likes}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Pause button shown while playing */}
+      {playing && (
+        <div
+          style={{
+            position: "absolute",
+            top: 14, right: 14,
+            zIndex: 3,
+            width: 36, height: 36,
+            borderRadius: "50%",
+            background: "rgba(10,9,8,0.55)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(201,169,97,0.5)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            color: "var(--gold)",
+            cursor: "pointer",
+          }}
+        >
+          {/* Pause icon */}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="5" y="4" width="4" height="16" rx="1" />
+            <rect x="15" y="4" width="4" height="16" rx="1" />
+          </svg>
+        </div>
+      )}
+    </article>
+  );
+}
+
 function Reels() {
   const [active, setActive] = useState(0);
-  const [paused] = useState(true);
-  const [playing, setPlaying] = useState(false);
+  const [playingIdx, setPlayingIdx] = useState(null);
   const n = REELS_DATA.length;
 
+  const togglePlay = (i) => {
+    setPlayingIdx((prev) => (prev === i ? null : i));
+  };
+
   useEffect(() => {
-    setPlaying(false);
+    setPlayingIdx(null);
   }, [active]);
   const { isPhone, width } = useViewport();
   const cardW = isPhone ? Math.min(260, Math.max(220, width - 80)) : 320;
   const cardGap = isPhone ? 14 : 24;
   const cardH = isPhone ? 460 : 560;
   const scrollerRef = useRef(null);
-
-  useEffect(() => {
-    if (paused || isPhone) return;
-    const t = setInterval(() => setActive((a) => (a + 1) % n), 4000);
-    return () => clearInterval(t);
-  }, [paused, n, isPhone]);
 
   useEffect(() => {
     if (!isPhone) return;
@@ -941,188 +1102,19 @@ function Reels() {
             alignItems: "center",
           }}
         >
-          {REELS_DATA.map((r, i) => {
-            const isActive = i === active;
-            return (
-              <article
-                key={i}
-                onClick={() => (isActive ? setPlaying(true) : scrollTo(i))}
-                style={{
-                  flex: `0 0 ${cardW}px`,
-                  height: cardH,
-                  scrollSnapAlign: "center",
-                  position: "relative",
-                  overflow: "hidden",
-                  background: "var(--ink-soft)",
-                  boxShadow: isActive ? "0 20px 50px rgba(0,0,0,0.5)" : "none",
-                  borderRadius: 6,
-                  transform: isActive ? "scale(1)" : "scale(0.94)",
-                  transition: "transform 0.4s var(--ease-out), box-shadow 0.4s",
-                  cursor: "pointer",
-                }}
-              >
-                {isActive && playing ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                    }}
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`}
-                      alt={r.label}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background:
-                          "linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 14,
-                        left: 14,
-                        right: 14,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 8,
-                          alignItems: "center",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: 26,
-                            height: 26,
-                            borderRadius: "50%",
-                            background:
-                              "linear-gradient(135deg, var(--gold), var(--gold-warm))",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "var(--ink)",
-                            fontSize: 11,
-                            fontWeight: 600,
-                            fontFamily: "var(--f-display)",
-                          }}
-                        >
-                          K
-                        </div>
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 500,
-                            color: "var(--ivory)",
-                          }}
-                        >
-                          khansaab
-                        </span>
-                      </div>
-                      <div
-                        style={{
-                          background: "rgba(10,9,8,0.6)",
-                          padding: "4px 9px",
-                          borderRadius: 4,
-                          fontSize: 10,
-                          fontFamily: "var(--f-mono)",
-                          color: "var(--gold-light)",
-                        }}
-                      >
-                        {r.duration}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 52,
-                        height: 52,
-                        borderRadius: "50%",
-                        border: "1px solid var(--gold)",
-                        background: "rgba(201,169,97,0.18)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--gold)",
-                      }}
-                    >
-                      <svg
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M8 5 L20 12 L8 19 Z" />
-                      </svg>
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 16,
-                        left: 16,
-                        right: 16,
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontSize: 14,
-                          fontWeight: 500,
-                          marginBottom: 4,
-                          lineHeight: 1.25,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.label}
-                      </p>
-                      <p
-                        style={{
-                          fontSize: 11,
-                          opacity: 0.75,
-                          marginBottom: 6,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.caption}
-                      </p>
-                      <p
-                        className="mono"
-                        style={{
-                          opacity: 0.55,
-                          fontSize: 10,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.views} views · ♡ {r.likes}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </article>
-            );
-          })}
+          {REELS_DATA.map((r, i) => (
+            <ReelCard
+              key={i}
+              r={r}
+              cardW={cardW}
+              cardH={cardH}
+              isActive={i === active}
+              playing={playingIdx === i}
+              onTogglePlay={() => togglePlay(i)}
+              onActivate={() => scrollTo(i)}
+              isMobile
+            />
+          ))}
         </div>
       ) : (
         <div
@@ -1145,17 +1137,10 @@ function Reels() {
             const visible = absOff <= 2;
             const x = off * (cardW + cardGap);
             const scale = isActive ? 1 : absOff === 1 ? 0.82 : 0.65;
-            const opacity = !visible
-              ? 0
-              : isActive
-                ? 1
-                : absOff === 1
-                  ? 0.7
-                  : 0.3;
+            const opacity = !visible ? 0 : isActive ? 1 : absOff === 1 ? 0.7 : 0.3;
             return (
-              <article
+              <div
                 key={i}
-                onClick={() => (isActive ? setPlaying(true) : setActive(i))}
                 style={{
                   position: "absolute",
                   width: cardW,
@@ -1164,176 +1149,24 @@ function Reels() {
                   opacity,
                   filter: `blur(${isActive ? 0 : absOff}px)`,
                   transition: "all 0.7s var(--ease-out)",
-                  cursor: "pointer",
                   zIndex: isActive ? 5 : 5 - absOff,
-                  overflow: "hidden",
-                  background: "var(--ink-soft)",
-                  boxShadow: isActive ? "0 30px 80px rgba(0,0,0,0.5)" : "none",
                   borderRadius: 6,
+                  overflow: "hidden",
+                  boxShadow: isActive ? "0 30px 80px rgba(0,0,0,0.5)" : "none",
+                  pointerEvents: visible ? "auto" : "none",
                 }}
               >
-                {isActive && playing ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`}
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                    }}
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`}
-                      alt={r.label}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background:
-                          "linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 14,
-                        left: 14,
-                        right: 14,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: 8,
-                          alignItems: "center",
-                        }}
-                      >
-                        <div
-                          style={{
-                            width: 28,
-                            height: 28,
-                            borderRadius: "50%",
-                            background:
-                              "linear-gradient(135deg, var(--gold), var(--gold-warm))",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "var(--ink)",
-                            fontSize: 11,
-                            fontWeight: 600,
-                            fontFamily: "var(--f-display)",
-                          }}
-                        >
-                          K
-                        </div>
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 500,
-                            color: "var(--ivory)",
-                          }}
-                        >
-                          khansaab
-                        </span>
-                      </div>
-                      <div
-                        style={{
-                          background: "rgba(10,9,8,0.6)",
-                          backdropFilter: "blur(8px)",
-                          padding: "4px 9px",
-                          borderRadius: 4,
-                          fontSize: 10,
-                          fontFamily: "var(--f-mono)",
-                          color: "var(--gold-light)",
-                        }}
-                      >
-                        {r.duration}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 72,
-                        height: 72,
-                        borderRadius: "50%",
-                        border: "1px solid var(--gold)",
-                        background: "rgba(201,169,97,0.18)",
-                        backdropFilter: "blur(10px)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "var(--gold)",
-                      }}
-                    >
-                      <svg
-                        width="22"
-                        height="22"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M8 5 L20 12 L8 19 Z" />
-                      </svg>
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 18,
-                        left: 18,
-                        right: 18,
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontSize: 15,
-                          fontWeight: 500,
-                          marginBottom: 4,
-                          lineHeight: 1.25,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.label}
-                      </p>
-                      <p
-                        style={{
-                          fontSize: 12,
-                          opacity: 0.75,
-                          marginBottom: 8,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.caption}
-                      </p>
-                      <p
-                        className="mono"
-                        style={{
-                          opacity: 0.55,
-                          fontSize: 10,
-                          color: "var(--ivory)",
-                        }}
-                      >
-                        {r.views} views
-                      </p>
-                    </div>
-                  </>
-                )}
-              </article>
+                <ReelCard
+                  r={r}
+                  cardW={cardW}
+                  cardH={560}
+                  isActive={isActive}
+                  playing={playingIdx === i}
+                  onTogglePlay={() => togglePlay(i)}
+                  onActivate={() => setActive(i)}
+                  isMobile={false}
+                />
+              </div>
             );
           })}
         </div>

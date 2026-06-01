@@ -89,7 +89,10 @@ export default function ProductDetailPage() {
   const [activeSize, setActiveSize] = useState((PRODUCT.sizes && PRODUCT.sizes[0]) || '')
   const [acc, setAcc] = useState('details')
 
-  const ctaHandler = () => openWhatsApp(WHATSAPP_MESSAGES.fitting(PRODUCT.name, activeSize))
+  const ctaHandler = () => {
+    const productUrl = `${window.location.origin}/product/${PRODUCT.id}`
+    openWhatsApp(`${WHATSAPP_MESSAGES.fitting(PRODUCT.name, activeSize)}\n\nProduct link: ${productUrl}`)
+  }
 
   return (
     <main style={{

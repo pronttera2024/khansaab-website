@@ -668,7 +668,7 @@ function FilterSheet({ open, onClose, count, children }) {
 }
 
 function ContactStrip() {
-  const { openAtelier } = useModals();
+  const { opencollection } = useModals();
   return (
     <section
       style={{
@@ -707,7 +707,7 @@ function ContactStrip() {
           >
             Speak to our{" "}
             <span className="display-italic" style={{ color: "var(--gold)" }}>
-              concierge.
+              guide.
             </span>
           </h3>
         </div>
@@ -720,12 +720,12 @@ function ContactStrip() {
           }}
         >
           <button
-            onClick={() => openWhatsApp(WHATSAPP_MESSAGES.concierge)}
+            onClick={() => openWhatsApp(WHATSAPP_MESSAGES.guide)}
             className="btn btn-gold"
           >
-            WhatsApp Concierge
+            WhatsApp guide
           </button>
-          <button onClick={openAtelier} className="btn btn-ghost">
+          <button onClick={opencollection} className="btn btn-ghost">
             Book a Call
           </button>
         </div>
@@ -738,7 +738,7 @@ export { ContactStrip, ProductCard };
 
 export default function ProductsPage() {
   const { isPhone } = useViewport();
-  const { openAtelier } = useModals();
+  const { opencollection } = useModals();
   const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState({
     category: searchParams.get("category") || "all",
@@ -847,7 +847,7 @@ export default function ProductsPage() {
             lineHeight: 1.55,
           }}
         >
-          Our concierge will pick three pieces tailored to your event.
+          Our guide will pick three pieces tailored to your event.
         </p>
         <button
           onClick={() => openWhatsApp(WHATSAPP_MESSAGES.findGarment)}
@@ -860,7 +860,7 @@ export default function ProductsPage() {
             borderBottom: "1px solid var(--gold)",
           }}
         >
-          Chat with concierge →
+          Chat with guide →
         </button>
       </div>
     </>
@@ -1239,15 +1239,41 @@ export default function ProductsPage() {
                       transition: "all 0.25s var(--ease-out)",
                     }}
                   >
-                    <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        gap: 8,
+                        alignItems: "center",
+                      }}
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                      >
                         <path d="M4 4 H13" />
                         <path d="M4 8 H10" />
                         <path d="M4 12 H7" />
                       </svg>
                       {SORT_LABELS[sort]}
                     </span>
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ transition: "transform 0.25s", transform: sortOpen ? "rotate(180deg)" : "rotate(0)" }}>
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      style={{
+                        transition: "transform 0.25s",
+                        transform: sortOpen ? "rotate(180deg)" : "rotate(0)",
+                      }}
+                    >
                       <path d="M2 3.5 L5 6.5 L8 3.5" />
                     </svg>
                   </button>
@@ -1273,7 +1299,10 @@ export default function ProductsPage() {
                           <button
                             key={v}
                             onMouseDown={(e) => e.preventDefault()}
-                            onClick={() => { setSort(v); setSortOpen(false); }}
+                            onClick={() => {
+                              setSort(v);
+                              setSortOpen(false);
+                            }}
                             role="option"
                             aria-selected={active}
                             style={{
@@ -1282,7 +1311,9 @@ export default function ProductsPage() {
                               padding: "10px 14px",
                               fontSize: 13,
                               borderRadius: 10,
-                              background: active ? "rgba(15,59,46,0.08)" : "transparent",
+                              background: active
+                                ? "rgba(15,59,46,0.08)"
+                                : "transparent",
                               color: active ? "var(--emerald)" : "var(--ink)",
                               fontWeight: active ? 600 : 400,
                               display: "flex",
@@ -1292,12 +1323,29 @@ export default function ProductsPage() {
                               cursor: "pointer",
                               transition: "background 0.18s",
                             }}
-                            onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = "rgba(10,9,8,0.05)"; }}
-                            onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = "transparent"; }}
+                            onMouseEnter={(e) => {
+                              if (!active)
+                                e.currentTarget.style.background =
+                                  "rgba(10,9,8,0.05)";
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!active)
+                                e.currentTarget.style.background =
+                                  "transparent";
+                            }}
                           >
                             {label}
                             {active && (
-                              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
                                 <path d="M3 8.5 L6.5 12 L13 4.5" />
                               </svg>
                             )}

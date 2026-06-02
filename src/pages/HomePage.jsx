@@ -10,15 +10,23 @@ import { HERO_SLIDES } from "../data/hero.js";
 import { CATEGORIES } from "../data/categories.js";
 import { REELS_DATA } from "../data/reels.js";
 import { TESTIMONIALS, TRUST_METRICS } from "../data/testimonials.js";
-import { BESPOKE_PROCESS_PANELS, BESPOKE_PROCESS_STEPS, BESPOKE_BENEFITS } from "../data/content.js";
+import {
+  BESPOKE_PROCESS_PANELS,
+  BESPOKE_PROCESS_STEPS,
+  BESPOKE_BENEFITS,
+} from "../data/content.js";
 import { WHATSAPP_MESSAGES } from "../data/site-config.js";
-import { getBestsellers, getCollectionProducts, toCardFormat } from "../data/products.js";
+import {
+  getBestsellers,
+  getCollectionProducts,
+  toCardFormat,
+} from "../data/products.js";
 
 function Hero() {
   const [idx, setIdx] = useState(0);
   const n = HERO_SLIDES.length;
   const navigate = useNavigate();
-  const { openAtelier } = useModals();
+  const { opencollection } = useModals();
 
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % n), 5500);
@@ -262,7 +270,7 @@ function Hero() {
                 >
                   {slide.cta1}
                 </button>
-                <button className="btn btn-ghost" onClick={openAtelier}>
+                <button className="btn btn-ghost" onClick={opencollection}>
                   {slide.cta2}
                 </button>
               </div>
@@ -620,7 +628,7 @@ function BentoCard({ cat, span }) {
           padding: "clamp(20px, 4vw, 36px)",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           gap: 16,
         }}
       >
@@ -642,33 +650,43 @@ function BentoCard({ cat, span }) {
           >
             {cat.arabic}
           </span>
-          <span className="mono" style={{ opacity: 0.6 }}>
+          {/* <span className="mono" style={{ opacity: 0.6 }}>
             {String(cat.count).padStart(3, "0")} PIECES
-          </span>
+          </span> */}
         </div>
-        <div>
-          <h3
-            className="display"
-            style={{
-              fontSize: span.gridRow ? 56 : "clamp(28px, 5vw, 40px)",
-              lineHeight: 0.95,
-              marginBottom: 10,
-              fontWeight: 400,
-            }}
-          >
-            <RevealText text={cat.name} stagger={0.05} />
-          </h3>
-          <p
-            style={{
-              fontSize: 13.5,
-              opacity: 0.75,
-              maxWidth: 320,
-              lineHeight: 1.55,
-            }}
-          >
-            {cat.desc}
-          </p>
-        </div>
+         <div
+    style={{
+      marginTop: "auto",
+      display: "flex",
+      flexDirection: "column",
+      gap: 12, // controls space between text and button
+    }}
+  >
+          <div>
+            <h3
+              className="display"
+              style={{
+                fontSize: span.gridRow ? 56 : "clamp(28px, 5vw, 40px)",
+                lineHeight: 0.95,
+                marginBottom: 8,
+                fontWeight: 400,
+              }}
+            >
+              <RevealText text={cat.name} stagger={0.05} />
+            </h3>
+            <p
+              style={{
+                fontSize: 13.5,
+                opacity: 0.75,
+                maxWidth: 320,
+                lineHeight: 1.55,
+                marginBottom: 0,
+                
+              }}
+            >
+              {cat.desc}
+            </p>
+          </div>
         <div
           style={{
             display: "inline-flex",
@@ -712,6 +730,7 @@ function BentoCard({ cat, span }) {
           >
             →
           </span>
+          </div>
         </div>
       </div>
     </article>
@@ -746,16 +765,19 @@ function CategoriesBento() {
               marginBottom: 20,
             }}
           >
-            <RevealText text={`${BENTO_CATS.length} garments.`} />{" "}
+            <RevealText text="Classic Roots." />{" "}
             <RevealText
               as="span"
               className="display-italic"
               style={{ color: "var(--emerald)" }}
-              text="One tradition."
+              text="Modern Elegance."
               delay={0.25}
             />
           </h2>
-          <Reveal as="p" delay={0.5} style={{
+          <Reveal
+            as="p"
+            delay={0.5}
+            style={{
               maxWidth: 540,
               margin: "0 auto",
               fontSize: 16,
@@ -788,7 +810,7 @@ function CategoriesBento() {
                 span={
                   i === 0
                     ? { gridColumn: "span 6", gridRow: "span 2" }
-                    : { gridColumn: "span 6", gridRow: "span 2"}
+                    : { gridColumn: "span 6", gridRow: "span 2" }
                 }
               />
             ))}
@@ -801,13 +823,25 @@ function CategoriesBento() {
 
 /* ---- Reels carousel ---- */
 
-function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate, isMobile }) {
+function ReelCard({
+  r,
+  cardW,
+  cardH,
+  isActive,
+  playing,
+  onTogglePlay,
+  onActivate,
+  isMobile,
+}) {
   const ytSrc = `https://www.youtube.com/embed/${r.ytId}?autoplay=1&mute=0&rel=0&modestbranding=1&playsinline=1`;
 
   return (
     <article
       onClick={() => {
-        if (!isActive) { onActivate(); return; }
+        if (!isActive) {
+          onActivate();
+          return;
+        }
         onTogglePlay();
       }}
       style={{
@@ -853,9 +887,22 @@ function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate
           <img
             src={`https://img.youtube.com/vi/${r.ytId}/hqdefault.jpg`}
             alt={r.label}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)" }} />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(180deg, transparent 35%, rgba(10,9,8,0.9) 100%)",
+            }}
+          />
         </>
       )}
       {!playing && (
@@ -871,33 +918,61 @@ function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate
           }}
         >
           {/* Top row: avatar + duration */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <div
                 style={{
                   width: isMobile ? 26 : 28,
                   height: isMobile ? 26 : 28,
                   borderRadius: "50%",
-                  background: "linear-gradient(135deg, var(--gold), var(--gold-warm))",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: "var(--ink)", fontSize: 11, fontWeight: 600,
+                  background:
+                    "linear-gradient(135deg, var(--gold), var(--gold-warm))",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--ink)",
+                  fontSize: 11,
+                  fontWeight: 600,
                   fontFamily: "var(--f-display)",
                 }}
-              >K</div>
-              <span style={{ fontSize: 11, fontWeight: 500, color: "var(--ivory)" }}>khansaab</span>
+              >
+                K
+              </div>
+              <span
+                style={{ fontSize: 11, fontWeight: 500, color: "var(--ivory)" }}
+              >
+                khansaab
+              </span>
             </div>
             <div
               style={{
                 background: "rgba(10,9,8,0.6)",
                 backdropFilter: "blur(8px)",
-                padding: "4px 9px", borderRadius: 4,
-                fontSize: 10, fontFamily: "var(--f-mono)", color: "var(--gold-light)",
+                padding: "4px 9px",
+                borderRadius: 4,
+                fontSize: 10,
+                fontFamily: "var(--f-mono)",
+                color: "var(--gold-light)",
               }}
-            >{r.duration}</div>
+            >
+              {r.duration}
+            </div>
           </div>
 
           {/* Centre play button */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <div
               style={{
                 width: isMobile ? 52 : 72,
@@ -906,12 +981,19 @@ function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate
                 border: "1px solid var(--gold)",
                 background: "rgba(201,169,97,0.18)",
                 backdropFilter: "blur(10px)",
-                display: "flex", alignItems: "center", justifyContent: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 color: "var(--gold)",
                 transition: "transform 0.2s, background 0.2s",
               }}
             >
-              <svg width={isMobile ? 18 : 22} height={isMobile ? 18 : 22} viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                width={isMobile ? 18 : 22}
+                height={isMobile ? 18 : 22}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M8 5 L20 12 L8 19 Z" />
               </svg>
             </div>
@@ -919,13 +1001,31 @@ function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate
 
           {/* Bottom: label + caption */}
           <div>
-            <p style={{ fontSize: isMobile ? 14 : 15, fontWeight: 500, marginBottom: 4, lineHeight: 1.25, color: "var(--ivory)" }}>
+            <p
+              style={{
+                fontSize: isMobile ? 14 : 15,
+                fontWeight: 500,
+                marginBottom: 4,
+                lineHeight: 1.25,
+                color: "var(--ivory)",
+              }}
+            >
               {r.label}
             </p>
-            <p style={{ fontSize: isMobile ? 11 : 12, opacity: 0.75, marginBottom: 6, color: "var(--ivory)" }}>
+            <p
+              style={{
+                fontSize: isMobile ? 11 : 12,
+                opacity: 0.75,
+                marginBottom: 6,
+                color: "var(--ivory)",
+              }}
+            >
               {r.caption}
             </p>
-            <p className="mono" style={{ opacity: 0.55, fontSize: 10, color: "var(--ivory)" }}>
+            <p
+              className="mono"
+              style={{ opacity: 0.55, fontSize: 10, color: "var(--ivory)" }}
+            >
               {r.views} views · ♡ {r.likes}
             </p>
           </div>
@@ -937,14 +1037,18 @@ function ReelCard({ r, cardW, cardH, isActive, playing, onTogglePlay, onActivate
         <div
           style={{
             position: "absolute",
-            top: 14, right: 14,
+            top: 14,
+            right: 14,
             zIndex: 3,
-            width: 36, height: 36,
+            width: 36,
+            height: 36,
             borderRadius: "50%",
             background: "rgba(10,9,8,0.55)",
             backdropFilter: "blur(8px)",
             border: "1px solid rgba(201,169,97,0.5)",
-            display: "flex", alignItems: "center", justifyContent: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             color: "var(--gold)",
             cursor: "pointer",
           }}
@@ -1030,7 +1134,7 @@ function Reels() {
               className="eyebrow"
               style={{ color: "var(--gold)", marginBottom: 16 }}
             >
-              FROM THE ATELIER · @KHANSAABSTORE
+              FROM THE collection · @KHANSAABSTORE
             </p>
             <h2
               className="display"
@@ -1051,7 +1155,16 @@ function Reels() {
               }}
             >
               A weekly window into the studio. Tap a reel to watch — or follow
-              along on <a href="https://www.instagram.com/khansaabstore/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold)', textDecoration: 'underline' }}>Instagram</a>.
+              along on{" "}
+              <a
+                href="https://www.instagram.com/khansaabstore/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--gold)", textDecoration: "underline" }}
+              >
+                Instagram
+              </a>
+              .
             </p>
           </div>
           {!isPhone && (
@@ -1137,7 +1250,13 @@ function Reels() {
             const visible = absOff <= 2;
             const x = off * (cardW + cardGap);
             const scale = isActive ? 1 : absOff === 1 ? 0.82 : 0.65;
-            const opacity = !visible ? 0 : isActive ? 1 : absOff === 1 ? 0.7 : 0.3;
+            const opacity = !visible
+              ? 0
+              : isActive
+                ? 1
+                : absOff === 1
+                  ? 0.7
+                  : 0.3;
             return (
               <div
                 key={i}
@@ -1600,7 +1719,7 @@ function Collections() {
               className="eyebrow"
               style={{ color: "var(--emerald)", marginBottom: 18 }}
             >
-              THE HERITAGE INDIAN COLLECTION · VOL. VII
+              THE HERITAGE COLLECTION · VOL. VII
             </p>
             <h2
               className="display"
@@ -1879,7 +1998,7 @@ function Testimonials() {
 
 /* ---- Customize CTA ---- */
 function CustomizeCTA() {
-  const { openAtelier } = useModals();
+  const { opencollection } = useModals();
   return (
     <section
       style={{
@@ -1959,16 +2078,12 @@ function CustomizeCTA() {
             finish it over four weeks.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <button className="btn btn-gold" onClick={openAtelier}>
+            <button className="btn btn-gold" onClick={opencollection}>
               Start a Bespoke Order
             </button>
             <button
               className="btn btn-ghost"
-              onClick={() =>
-                openWhatsApp(
-                  WHATSAPP_MESSAGES.bespokeOrder,
-                )
-              }
+              onClick={() => openWhatsApp(WHATSAPP_MESSAGES.bespokeOrder)}
             >
               Connect on WhatsApp
             </button>
@@ -2092,8 +2207,8 @@ function B2BSection() {
               lineHeight: 1.7,
             }}
           >
-            Stock premium thobes, kanduras and jubbas in your retail store.
-            Low minimums, strong margins, and a brand your customers already trust.
+            Stock premium thobes, kanduras and jubbas in your retail store. Low
+            minimums, strong margins, and a brand your customers already trust.
           </p>
         </header>
 
@@ -2133,11 +2248,10 @@ function B2BSection() {
                 gap: 14,
               }}
             >
-              <span style={{ fontSize: 20, color: "var(--gold)" }}>{card.icon}</span>
-              <h3
-                className="display"
-                style={{ fontSize: 24, fontWeight: 400 }}
-              >
+              <span style={{ fontSize: 20, color: "var(--gold)" }}>
+                {card.icon}
+              </span>
+              <h3 className="display" style={{ fontSize: 24, fontWeight: 400 }}>
                 {card.t}
               </h3>
               <p style={{ fontSize: 14, opacity: 0.75, lineHeight: 1.65 }}>

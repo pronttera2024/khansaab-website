@@ -723,7 +723,7 @@ function ContactStrip() {
             onClick={() => openWhatsApp(WHATSAPP_MESSAGES.guide)}
             className="btn btn-gold"
           >
-            WhatsApp guide
+             guide
           </button>
           <button onClick={opencollection} className="btn btn-ghost">
             Book a Call

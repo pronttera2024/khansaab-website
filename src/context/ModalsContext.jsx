@@ -1,19 +1,19 @@
 import { createContext, useContext, useState, useCallback } from "react";
-import { markAtelierDismissed } from "../hooks/useAutoPopup.js";
+import { markcollectionDismissed } from "../hooks/useAutoPopup.js";
 
 const ModalsContext = createContext(null);
 
-const ATELIER_DAILY_KEY = "khansaab:atelier-last-shown";
+const collection_DAILY_KEY = "khansaab:collection-last-shown";
 const todayStamp = () => new Date().toISOString().slice(0, 10);
 
 export function ModalsProvider({ children }) {
-  const [atelierOpen, setAtelierOpen] = useState(false);
+  const [collectionOpen, setcollectionOpen] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
-  const openAtelier = useCallback(() => setAtelierOpen(true), []);
-  const closeAtelier = useCallback(() => {
-    setAtelierOpen(false);
-    markAtelierDismissed();
+  const opencollection = useCallback(() => setcollectionOpen(true), []);
+  const closecollection = useCallback(() => {
+    setcollectionOpen(false);
+    markcollectionDismissed();
   }, []);
   const openSizeGuide = useCallback(() => setSizeGuideOpen(true), []);
   const closeSizeGuide = useCallback(() => setSizeGuideOpen(false), []);
@@ -21,9 +21,9 @@ export function ModalsProvider({ children }) {
   return (
     <ModalsContext.Provider
       value={{
-        atelierOpen,
-        openAtelier,
-        closeAtelier,
+        collectionOpen,
+        opencollection,
+        closecollection,
         sizeGuideOpen,
         openSizeGuide,
         closeSizeGuide,

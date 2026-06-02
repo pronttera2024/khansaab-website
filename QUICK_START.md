@@ -48,12 +48,14 @@ src/
 ## 3️⃣ Navigate Between Pages
 
 Click the navigation links in the header:
+
 - **Home** → Homepage with hero and collections
 - **Collection** → Product grid
 - **Our Story** → Brand story and team
-- **Custom Tailoring** → Atelier info
+- **Custom Tailoring** → collection info
 
 Or use the tweaks panel (⚙️):
+
 - **Display** → Toggle RTL (Arabic layout)
 - **Accent palette** → Change house color
 - **Navigate** → Jump to any page
@@ -61,9 +63,11 @@ Or use the tweaks panel (⚙️):
 ## 4️⃣ Edit Content
 
 ### Add a new section to Home
+
 Edit `src/pages/HomePage.jsx`:
+
 ```jsx
-<section style={{ padding: '160px 0', background: 'var(--ivory)' }}>
+<section style={{ padding: "160px 0", background: "var(--ivory)" }}>
   <div className="container">
     <h2 className="display">Your Section Title</h2>
     {/* Add content here */}
@@ -72,24 +76,28 @@ Edit `src/pages/HomePage.jsx`:
 ```
 
 ### Change colors
+
 Edit `src/styles/index.css`:
+
 ```css
 :root {
-  --gold: #C9A961;      /* Luxury accent */
-  --emerald: #0F3B2E;   /* Primary accent */
-  --ink: #0A0908;       /* Dark background */
-  --ivory: #F5EFE3;     /* Light background */
+  --gold: #c9a961; /* Luxury accent */
+  --emerald: #0f3b2e; /* Primary accent */
+  --ink: #0a0908; /* Dark background */
+  --ivory: #f5efe3; /* Light background */
 }
 ```
 
 ### Update product data
+
 Edit `src/pages/ProductsPage.jsx`:
+
 ```jsx
 const products = [
-  { id: 1, name: 'Ivory Thobe', price: 'AED 1,200' },
-  { id: 2, name: 'Navy Kandura', price: 'AED 1,500' },
+  { id: 1, name: "Ivory Thobe", price: "AED 1,200" },
+  { id: 2, name: "Navy Kandura", price: "AED 1,500" },
   // Add more...
-]
+];
 ```
 
 ## 5️⃣ Build for Production
@@ -100,6 +108,7 @@ npm run preview    # Preview production build locally
 ```
 
 Deploy the `dist/` folder to:
+
 - Vercel
 - Netlify
 - Any static host
@@ -107,44 +116,43 @@ Deploy the `dist/` folder to:
 ## 6️⃣ Component Usage Examples
 
 ### Use navigation
+
 ```jsx
-import { useRouter } from '../context/RouterContext.jsx'
+import { useRouter } from "../context/RouterContext.jsx";
 
 function MyComponent() {
-  const { route, go } = useRouter()
-  
-  return (
-    <button onClick={() => go('products')}>
-      View Products
-    </button>
-  )
+  const { route, go } = useRouter();
+
+  return <button onClick={() => go("products")}>View Products</button>;
 }
 ```
 
 ### Use responsive breakpoints
+
 ```jsx
-import { useViewport } from '../hooks/useViewport'
+import { useViewport } from "../hooks/useViewport";
 
 function MyComponent() {
-  const { isMobile, isTablet } = useViewport()
-  
-  if (isMobile) return <MobileLayout />
-  return <DesktopLayout />
+  const { isMobile, isTablet } = useViewport();
+
+  if (isMobile) return <MobileLayout />;
+  return <DesktopLayout />;
 }
 ```
 
 ### Use scroll reveal animation
+
 ```jsx
-import { useReveal } from '../hooks/useReveal'
+import { useReveal } from "../hooks/useReveal";
 
 function MyComponent() {
-  const [ref, visible] = useReveal()
-  
+  const [ref, visible] = useReveal();
+
   return (
     <div ref={ref} style={{ opacity: visible ? 1 : 0 }}>
       Content that fades in on scroll
     </div>
-  )
+  );
 }
 ```
 
@@ -159,18 +167,26 @@ function MyComponent() {
 ## 8️⃣ Troubleshooting
 
 ### Port 5173 already in use?
+
 ```bash
 npm run dev -- --port 3000
 ```
 
 ### Want to change Google Fonts?
+
 Edit `index.html`:
+
 ```html
-<link href="https://fonts.googleapis.com/css2?family=YOUR+FONTS&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=YOUR+FONTS&display=swap"
+  rel="stylesheet"
+/>
 ```
 
 ### Need dark mode?
+
 Add to `src/styles/index.css`:
+
 ```css
 @media (prefers-color-scheme: dark) {
   :root {

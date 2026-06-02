@@ -164,7 +164,12 @@ function MobileTimelineItem({ e, i, total }) {
           overflow: "hidden",
         }}
       >
-        <Img variant="dark" label={e.img} src={e.src} style={{ height: "100%" }} />
+        <Img
+          variant="dark"
+          label={e.img}
+          src={e.src}
+          style={{ height: "100%" }}
+        />
         <div
           style={{
             position: "absolute",
@@ -699,7 +704,7 @@ function Team() {
             gap: isPhone ? 14 : 24,
           }}
         >
-          <div>
+          {/* <div>
             <p
               className="eyebrow"
               style={{ color: "var(--emerald)", marginBottom: 14 }}
@@ -722,8 +727,8 @@ function Team() {
                 house.
               </span>
             </h2>
-          </div>
-          <p
+          </div> */}
+          {/* <p
             style={{
               maxWidth: 380,
               opacity: 0.65,
@@ -733,9 +738,9 @@ function Team() {
           >
             Owners, master tailors and the studio team. Every garment leaves
             with a name stitched on the inside placket — these are some of them.
-          </p>
+          </p> */}
         </header>
-        <div
+        {/* <div
           style={{
             display: "grid",
             gridTemplateColumns: isPhone ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
@@ -745,7 +750,7 @@ function Team() {
           {TEAM.map((m, i) => (
             <TeamCard key={i} member={m} />
           ))}
-        </div>
+        </div> */}
       </div>
       <div
         style={{
@@ -757,8 +762,8 @@ function Team() {
       >
         <Parallax speed={0.4} style={{ position: "absolute", inset: 0 }}>
           <Img
-            label="THE FULL ATELIER · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
-            src="/assets/about_1.png"
+            label="THE FULL collection · 40 ARTISANS · GROUP PORTRAIT · PUNE 2026"
+            src="/assets/our_story_last_img.png"
             style={{ height: "140%", marginTop: "-20%" }}
           />
         </Parallax>
@@ -781,7 +786,7 @@ function Team() {
               letterSpacing: "0.22em",
             }}
           >
-            THE FULL ATELIER · PUNE · MARCH 2026
+            THE FULL collection · PUNE · MARCH 2026
           </p>
         </div>
       </div>
@@ -808,7 +813,7 @@ export default function StoryPage() {
             className="eyebrow"
             style={{ color: "var(--emerald)", marginBottom: isPhone ? 14 : 20 }}
           >
-            EST. MMXIV · HYDERABAD
+            EST. MMXIV · Pune
           </p>
           <p
             className="arabic"
@@ -825,7 +830,7 @@ export default function StoryPage() {
             className="display"
             style={{
               fontSize: "clamp(54px, 14vw, 220px)",
-              lineHeight: 1.20,
+              lineHeight: 1.2,
               fontWeight: 400,
               letterSpacing: "-0.02em",
               marginBottom: isPhone ? 22 : 28,
@@ -842,7 +847,9 @@ export default function StoryPage() {
             />
           </h1>
           <Ornament />
-          <Reveal as="p" delay={0.7}
+          <Reveal
+            as="p"
+            delay={0.7}
             style={{
               maxWidth: 620,
               margin: "24px auto 0",
@@ -898,13 +905,17 @@ export default function StoryPage() {
 
       {/* Archival image */}
       <section
-        style={{ position: "relative", height: isPhone ? "70vh" : "80vh", overflow: "hidden" }}
+        style={{
+          position: "relative",
+          height: isPhone ? "70vh" : "80vh",
+          overflow: "hidden",
+        }}
       >
         <Parallax speed={0.45} style={{ position: "absolute", inset: 0 }}>
           <Img
             variant="dark"
-            label="HYDERABAD · 1972 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
-            src="/assets/about_1.png"
+            label="Pune · 2020 · TAILOR WORKSHOP · BLACK & WHITE ARCHIVAL"
+            src="/assets/our_story_hero.png"
             style={{ height: "145%", marginTop: "-22%" }}
           />
         </Parallax>
@@ -955,7 +966,7 @@ export default function StoryPage() {
             }}
           >
             "Our grandfather, Khan, opened a single tailoring workshop in the
-            lanes of Old Hyderabad. He stitched 14 hours a day."
+            Pune. He stitched 14 hours a day."
           </div>
         </div>
       </section>
@@ -973,7 +984,7 @@ export default function StoryPage() {
               className="eyebrow"
               style={{ color: "var(--emerald)", marginBottom: 14 }}
             >
-              A LETTER FROM THE ATELIER
+              A LETTER FROM THE collection
             </p>
             <h2
               className="display"
@@ -983,7 +994,7 @@ export default function StoryPage() {
                 fontWeight: 400,
               }}
             >
-              <RevealText text="From a single sewing room to forty pairs of hands." />
+              <RevealText text="From a small atelier in Pune to thousands of wardrobes across India." />
             </h2>
           </div>
           <div
@@ -1011,31 +1022,19 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n 1972 my grandfather Khan opened a tailoring workshop in the
-              narrow lanes of Old Hyderabad with two needles, a kerosene lamp
-              and the conviction that a man's garment ought to outlast him. He
-              hand-stitched 14 hours a day, six days a week, for the nawabs and
-              merchants of the Charminar quarter.
+              n 2020, Khansaab began in the heart of Kondhwa, Pune, with a simple vision — to redefine traditional menswear through premium craftsmanship, timeless design, and uncompromising fabric quality. What started as a passion for elegant thobes has today become a trusted name for men who value sophistication, comfort, and identity.
             </p>
             <p style={{ marginBottom: 22 }}>
-              He never advertised. Word travelled — first to Lucknow and Delhi,
-              then to the Gulf and beyond. By 1988 his appointment book required
-              three months of waiting.
+              At Khansaab, every thobe is designed with attention to detail — from the stitching and silhouette to the fall of the fabric. We specialize in a wide range of styles including Saudi, Kuwaiti, Omani, Emirati, and modern custom designs, crafted for men who appreciate both tradition and refinement.
             </p>
             <p style={{ marginBottom: 22 }}>
-              My father inherited the bench in 1995 and moved the atelier to
-              Pune. He insisted on Benarasi silk, Japanese cotton, and the
-              unbroken rule that every garment leaves with the maker's name
-              stitched on the inside placket.
+              Over the years, we have proudly served more than 3000+ customers, building a reputation for quality, consistency, and personalized service. What sets us apart is not only our fabrics and craftsmanship, but our ability to customize every thobe according to the customer’s fitting, style preference, and comfort.
             </p>
             <p style={{ marginBottom: 22 }}>
-              I joined in 2014 — not to change anything, but to extend it.
-              KhanSaab today dresses forty men a week and ships to forty-seven
-              countries. The shears, the silk and the placket remain the same.
+              We believe a thobe should do more than just fit well — it should reflect personality, confidence, and culture. That is why every Khansaab garment is made with premium materials and tailored precision to ensure elegance in every wear.
             </p>
             <p style={{ marginBottom: 0 }}>
-              We do not run advertisements. We do not chase seasons. We make
-              heritage garments for men who know the difference.
+             Today, Khansaab continues to grow while staying true to its roots: premium quality, authentic craftsmanship, and garments made for distinction.
             </p>
           </div>
           <div
@@ -1067,7 +1066,7 @@ export default function StoryPage() {
               S
             </div>
             <div>
-              <p style={{ fontSize: 14, fontWeight: 600 }}>Saif Khan</p>
+              <p style={{ fontSize: 14, fontWeight: 600 }}>Saffan Khan</p>
               <p
                 className="mono"
                 style={{ opacity: 0.55, fontSize: 10, letterSpacing: "0.2em" }}
@@ -1088,12 +1087,16 @@ export default function StoryPage() {
         }}
       >
         <div
-          style={{ position: "relative", height: isPhone ? "60vh" : "100%", overflow: "hidden" }}
+          style={{
+            position: "relative",
+            height: isPhone ? "60vh" : "100%",
+            overflow: "hidden",
+          }}
         >
           <Parallax speed={0.6} style={{ position: "absolute", inset: 0 }}>
             <Img
               label="HAND CUTTING · CHALK MARKS · POPLIN"
-              src="/assets/about_1.png"
+              src="/assets/storyChapI.png"
               style={{ height: "165%", marginTop: "-32%" }}
             />
           </Parallax>
@@ -1136,13 +1139,17 @@ export default function StoryPage() {
           </div>
         </div>
         <div
-          style={{ position: "relative", height: isPhone ? "60vh" : "100%", overflow: "hidden" }}
+          style={{
+            position: "relative",
+            height: isPhone ? "60vh" : "100%",
+            overflow: "hidden",
+          }}
         >
           <Parallax speed={-0.6} style={{ position: "absolute", inset: 0 }}>
             <Img
               variant="dark"
               label="HAND EMBROIDERY · COLLAR DETAIL · MACRO"
-              src="/assets/about_2.png"
+              src="/assets/storyChapII.png"
               style={{ height: "165%", marginTop: "-32%" }}
             />
           </Parallax>

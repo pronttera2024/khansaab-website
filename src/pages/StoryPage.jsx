@@ -952,22 +952,11 @@ export default function StoryPage() {
               color: "var(--gold-light)",
             }}
           >
-            CHARMINAR QUARTER · 1972
+            
           </div>
-          <div
-            style={{
-              maxWidth: isPhone ? "100%" : 320,
-              textAlign: isPhone ? "left" : "right",
-              fontFamily: "var(--f-display)",
-              fontStyle: "italic",
-              fontSize: isPhone ? 18 : 16,
-              lineHeight: 1.45,
-              opacity: 0.95,
-            }}
-          >
-            "Our grandfather, Khan, opened a single tailoring workshop in the
-            Pune. He stitched 14 hours a day."
-          </div>
+          
+            
+          
         </div>
       </section>
 
@@ -1071,7 +1060,7 @@ export default function StoryPage() {
                 className="mono"
                 style={{ opacity: 0.55, fontSize: 10, letterSpacing: "0.2em" }}
               >
-                MASTER TAILOR · THIRD GENERATION
+                OWNER · THIRD GENERATION
               </p>
             </div>
           </div>

@@ -725,9 +725,9 @@ function ContactStrip() {
           >
              guide
           </button>
-          <button onClick={opencollection} className="btn btn-ghost">
+          <a href="tel:+919834449478" className="btn btn-ghost">
             Book a Call
-          </button>
+          </a>
         </div>
       </div>
     </section>

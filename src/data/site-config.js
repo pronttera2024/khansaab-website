@@ -18,8 +18,8 @@ export const CONTACT = {
     accessibility: "khansaabstoreoffical@gmail.com",
   },
   address: {
-    street: "Kausar Bhagh",
-    area: "Kondwha, Pune",
+    street: "Shop No. 1, Next to Kausar Baugh Masjid",
+    area: "Opp. Arabian Mandi, Kondhwa, Pune – 411048",
     country: "India",
   },
   hours: {

@@ -144,18 +144,7 @@ function MobileTimelineItem({ e, i, total }) {
       >
         CHAPTER {String(i + 1).padStart(2, "0")}
       </p>
-      <p
-        className="display-italic"
-        style={{
-          fontSize: 48,
-          color: "var(--gold)",
-          lineHeight: 0.9,
-          marginBottom: 14,
-          letterSpacing: "-0.02em",
-        }}
-      >
-        {e.year}
-      </p>
+
       <div
         style={{
           aspectRatio: "16/9",
@@ -220,7 +209,7 @@ function MobileTimeline() {
             className="eyebrow"
             style={{ color: "var(--gold)", marginBottom: 12 }}
           >
-            FIFTY-FOUR YEARS
+            OUR JOURNEY
           </p>
           <h2
             className="display"
@@ -230,9 +219,9 @@ function MobileTimeline() {
               fontWeight: 400,
             }}
           >
-            From{" "}
+            From the{" "}
             <span className="display-italic" style={{ color: "var(--gold)" }}>
-              1972
+              beginning
             </span>{" "}
             to{" "}
             <span className="display-italic" style={{ color: "var(--gold)" }}>
@@ -337,7 +326,7 @@ function Timeline() {
             className="eyebrow"
             style={{ color: "var(--gold)", marginBottom: 12 }}
           >
-            FIFTY-FOUR YEARS · OUR TIMELINE
+            OUR JOURNEY · OUR TIMELINE
           </p>
           <h2
             className="display"
@@ -347,9 +336,9 @@ function Timeline() {
               fontWeight: 400,
             }}
           >
-            From{" "}
+            From the{" "}
             <span className="display-italic" style={{ color: "var(--gold)" }}>
-              1972
+              beginning
             </span>{" "}
             to{" "}
             <span className="display-italic" style={{ color: "var(--gold)" }}>
@@ -371,8 +360,8 @@ function Timeline() {
             gap: 20,
           }}
         >
-          <span className="mono" style={{ color: "var(--gold)" }}>
-            {TIMELINE_EVENTS[0].year}
+          <span className="mono" style={{ color: "var(--gold)", fontSize: 10, letterSpacing: "0.1em" }}>
+            START
           </span>
           <div
             style={{
@@ -411,8 +400,8 @@ function Timeline() {
               />
             ))}
           </div>
-          <span className="mono" style={{ color: "var(--gold)" }}>
-            {TIMELINE_EVENTS[TIMELINE_EVENTS.length - 1].year}
+          <span className="mono" style={{ color: "var(--gold)", fontSize: 10, letterSpacing: "0.1em" }}>
+            TODAY
           </span>
         </div>
 
@@ -464,20 +453,7 @@ function Timeline() {
             >
               <div style={{ position: "relative" }}>
                 <div
-                  className="display-italic"
                   style={{
-                    fontSize: "clamp(180px, 22vw, 320px)",
-                    color: "var(--gold)",
-                    lineHeight: 0.85,
-                    opacity: 0.95,
-                    letterSpacing: "-0.04em",
-                  }}
-                >
-                  {e.year}
-                </div>
-                <div
-                  style={{
-                    marginTop: 16,
                     display: "flex",
                     alignItems: "center",
                     gap: 14,

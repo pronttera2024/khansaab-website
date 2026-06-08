@@ -22,11 +22,11 @@ export const ALL_PRODUCTS = [
       { icon: '✦', title: 'Straight-cut fit', desc: 'Classic Saudi silhouette with ankle-length drape.' },
     ],
     images: {
-      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384376/14_muqz48.png',
+      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780923243/14_cp0flx.png',
       secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384379/15_tlfxx3.png',
     },
     gallery: [
-      { label: 'CLASSIC WHITE · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384376/14_muqz48.png' },
+      { label: 'CLASSIC WHITE · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780923243/14_cp0flx.png' },
       { label: 'CLASSIC WHITE · BACK', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384255/13_gvtz7o.png' },
       { label: 'CLASSIC WHITE · DETAIL', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384379/15_tlfxx3.png' },
     ],
@@ -138,8 +138,8 @@ export const ALL_PRODUCTS = [
       { icon: '✦', title: 'Concealed closure', desc: 'Hidden button placket for a clean, unbroken front.' },
     ],
     images: {
-      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382017/5_ayyilv.png',
-      secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382017/5_ayyilv.png',
+      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780921967/6_oemus4.png',
+      secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780921966/7_foebc1.png',
     },
   },
   {
@@ -273,11 +273,11 @@ export const ALL_PRODUCTS = [
       { icon: '✦', title: 'Moroccan cut', desc: 'Generous, relaxed silhouette true to North African tradition.' },
     ],
     images: {
-      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382835/22_oxlh5v.png',
+      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922307/22_njfic9.png',
       secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382839/21_zmi8ct.png',
     },
     gallery: [
-      { label: 'GOLDEN BEIGE · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382835/22_oxlh5v.png' },
+      { label: 'GOLDEN BEIGE · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922307/22_njfic9.png' },
       { label: 'GOLDEN BEIGE · BACK', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382839/21_zmi8ct.png' },
       { label: 'GOLDEN BEIGE · DETAIL', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382812/19_qynbvo.png' },
       { label: 'GOLDEN BEIGE · SIDE', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779382812/20_kijrep.png' },
@@ -382,14 +382,14 @@ export const ALL_PRODUCTS = [
       { icon: '✦', title: 'Soft cotton', desc: 'Premium-grade cotton that softens further with each wash.' },
     ],
     images: {
-      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384157/12_mvjkjh.png',
-      secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384153/11_q1sjxx.png',
+      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922692/12_txlvvv.png',
+      secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922689/11_iljdvn.png',
     },
     gallery: [
-      { label: 'VIOLET · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384157/12_mvjkjh.png' },
-      { label: 'VIOLET · BACK', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384153/11_q1sjxx.png' },
-      { label: 'VIOLET · DETAIL', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384077/9_sptq6a.png' },
-      { label: 'VIOLET · SIDE', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384155/10_zefjuz.png' },
+      { label: 'VIOLET · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922692/12_txlvvv.png' },
+      { label: 'VIOLET · BACK', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922689/11_iljdvn.png' },
+      { label: 'VIOLET · DETAIL', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922686/9_asdczm.png' },
+      { label: 'VIOLET · SIDE', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1780922688/10_hkj9mv.png' },
     ],
   },
   {

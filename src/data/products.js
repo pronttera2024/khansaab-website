@@ -884,14 +884,14 @@ export const ALL_PRODUCTS = [
     ],
     images: {
       primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384020/8_cnfmih.png",
+        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780931035/8_z5gw1p.png",
       secondary:
         "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383971/6_c8d2jy.png",
     },
     gallery: [
       {
         label: "POWDER BLUE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384020/8_cnfmih.png",
+        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780931035/8_z5gw1p.png",
       },
       {
         label: "POWDER BLUE · BACK",

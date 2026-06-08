@@ -23,9 +23,9 @@ export const CONTACT = {
     country: "India",
   },
   hours: {
-    weekday: "Mon — Sat",
+    weekday: "Mon — Sun",
     time: "10:00 — 21:00 IST",
-    weekend: "Sunday by appointment",
+    weekend: "Friday by appointment",
   },
   sla: "Replies within an hour",
 };

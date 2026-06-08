@@ -151,8 +151,8 @@ export default function Nav({ light = false }) {
                 minHeight: 44,
               }}
             >
-              <button
-                onClick={opencollection}
+              <a
+                href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
                 className="nav-desktop btn btn-ghost"
                 style={{
                   fontSize: 11,
@@ -163,10 +163,13 @@ export default function Nav({ light = false }) {
                     ? "rgba(245,239,227,0.45)"
                     : "rgba(10,9,8,0.35)",
                   color: "inherit",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 Custom Tailoring
-              </button>
+              </a>
 
               <button
                 className="mobile-tailoring-btn"

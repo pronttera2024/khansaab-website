@@ -222,7 +222,7 @@ export const ALL_PRODUCTS = [
       primary:
         "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381861/34_cjch2t.png",
       secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381864/33_pcjtqr.png",
+        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780930335/KhanSaab_toq0t2.png",
     },
     gallery: [
       {

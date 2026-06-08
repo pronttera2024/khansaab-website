@@ -15,7 +15,7 @@ import {
   BESPOKE_PROCESS_STEPS,
   BESPOKE_BENEFITS,
 } from "../data/content.js";
-import { WHATSAPP_MESSAGES } from "../data/site-config.js";
+import { WHATSAPP_MESSAGES, CONTACT } from "../data/site-config.js";
 import {
   getBestsellers,
   getCollectionProducts,
@@ -270,9 +270,17 @@ function Hero() {
                 >
                   {slide.cta1}
                 </button>
-                <button className="btn btn-ghost" onClick={opencollection}>
+                <a
+                  href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
+                  className="btn btn-ghost"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
                   {slide.cta2}
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -2224,12 +2232,12 @@ function B2BSection() {
             {
               icon: "✦",
               t: "Low MOQ",
-              d: "Start with as few as 25 pieces per style. No warehouse needed to get started.",
+              d: "Start with as few as 60 pieces per style. No warehouse needed to get started.",
             },
             {
               icon: "✦",
               t: "Retailer Margins",
-              d: "30%+ margins on MRP with volume-based tiered pricing. The more you order, the better it gets.",
+              d: "40%+ margins on MRP with volume-based tiered pricing. The more you order, the better it gets.",
             },
             {
               icon: "✦",
@@ -2264,7 +2272,7 @@ function B2BSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: 32,
             padding: "36px 0",
             borderTop: "1px solid rgba(201,169,97,0.2)",
@@ -2273,10 +2281,9 @@ function B2BSection() {
           }}
         >
           {[
-            { v: "200+", l: "Retail partners" },
-            { v: "28", l: "States covered" },
+            { v: "PAN India", l: "Coverage" },
             { v: "48hr", l: "Dispatch time" },
-            { v: "30%+", l: "Retailer margins" },
+            { v: "40%+", l: "Retailer margins" },
           ].map((s, k) => (
             <div key={k} style={{ textAlign: "center" }}>
               <div

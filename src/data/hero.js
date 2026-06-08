@@ -26,7 +26,7 @@ export const HERO_SLIDES = [
     titleBot: "A garment of",
     titleBotAccent: "a lifetime.",
     body: "",
-    cta1: "Shop the Bishts",
+    cta1: "Shop now",
     cta2: "Bespoke Consultation",
     image: "/assets/heroSectionImage/2.png",
     label: "GROOM · OBSIDIAN BISHT · STAIRCASE",

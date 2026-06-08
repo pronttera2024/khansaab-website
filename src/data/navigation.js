@@ -14,26 +14,25 @@ export const FOOTER_LINKS = {
     items: [
       { label: "Thobes", path: "/products" },
       { label: "Kanduras", path: "/products" },
-      { label: "Bishts", path: "/products" },
-      { label: "Jubbas", path: "/products" },
+      // { label: "Bishts", path: "/products" },
+      // { label: "Jubbas", path: "/products" },
       { label: "Shemaghs", path: "/products" },
-      { label: "Gift Cards", path: "/products" },
+      // { label: "Gift Cards", path: "/products" },
     ],
   },
   house: {
     title: "House",
     items: [
       { label: "Our Story", path: "/story" },
-      { label: "The collection", action: "opencollection" },
+      { label: "The Collection", path: "/products" },
       { label: "Craftsmanship", path: "/story" },
-      { label: "Journal", path: "/story" },
-      { label: "Press", path: "/story" },
+      // { label: "Journal", path: "/story" },
+      // { label: "Press", path: "/story" },
     ],
   },
   service: {
     title: "Service",
     items: [
-      { label: "Made to Measure", action: "opencollection" },
       { label: "Size Guide", action: "openSizeGuide" },
       { label: "Shipping", path: "/legal/legal-shipping" },
       { label: "Returns", path: "/legal/legal-returns" },

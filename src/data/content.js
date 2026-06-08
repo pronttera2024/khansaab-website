@@ -104,7 +104,7 @@ export const collection_DIALOG = {
   body: "Tell us your measurements, choose your fabric and silhouette — our master tailors will hand-finish a garment cut entirely for you. Hand-stitched, signed, and delivered to your door.",
   processSteps: ["Measure", "Fabric", "Stitch", "Deliver"],
   ctaLabel: "Contact us on WhatsApp",
-  slaLine: "+91 89750 48440 · Replies within an hour",
+  slaLine: "+91 98344 49478 · Replies within an hour",
 };
 
 export const SEARCH_PLACEHOLDERS = [

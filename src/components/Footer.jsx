@@ -139,9 +139,17 @@ export default function Footer() {
               private fitting — we'd love to hear from you.
             </p>
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              <button className="btn btn-gold" onClick={opencollection}>
+              <a
+                href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
+                className="btn btn-gold"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 Book an Appointment
-              </button>
+              </a>
               <button
                 className="btn btn-ghost"
                 onClick={() => openWhatsApp(WHATSAPP_MESSAGES.general)}

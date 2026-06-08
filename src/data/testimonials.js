@@ -64,8 +64,8 @@ export const REVIEW_HISTOGRAM = {
 };
 
 export const TRUST_METRICS = [
-  { v: "12,400+", l: "Five-star reviews" },
-  { v: "28", l: "States delivered" },
+  { v: "5000+", l: "Five-star reviews" },
+  { v: "Pan India", l: "delivered" },
   { v: "98%", l: "Re-order rate" },
   { v: "4–6 wks", l: "MTM turnaround" },
 ];

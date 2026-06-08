@@ -69,7 +69,7 @@ export default function WholesalePage() {
         <div className="container">
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : 'repeat(6, 1fr)',
+            gridTemplateColumns: isPhone ? 'repeat(2, 1fr)' : 'repeat(5, 1fr)',
             gap: isPhone ? 28 : 32,
           }}>
             {WHOLESALE_STATS.map((s, k) => (
@@ -102,20 +102,72 @@ export default function WholesalePage() {
             gridTemplateColumns: isPhone ? '1fr' : 'repeat(3, 1fr)',
             gap: isPhone ? 20 : 24,
           }}>
-            {WHOLESALE_BENEFITS.map((b) => (
-              <div key={b.n} style={{
-                padding: isPhone ? '28px 24px' : '36px 32px',
-                border: '1px solid rgba(10,9,8,0.08)',
-                background: 'var(--ivory)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-              }}>
-                <span className="display-italic" style={{ fontSize: 28, color: 'var(--gold)', lineHeight: 1 }}>{b.n}</span>
-                <h3 className="display" style={{ fontSize: isPhone ? 20 : 22, fontWeight: 400 }}>{b.t}</h3>
-                <p style={{ fontSize: 14, opacity: 0.72, lineHeight: 1.65 }}>{b.d}</p>
-              </div>
-            ))}
+            {WHOLESALE_BENEFITS.map((b) => {
+              const isFeatured = b.n === '01';
+              return (
+                <div
+                  key={b.n}
+                  style={{
+                    padding: isPhone ? '28px 24px' : '40px 36px',
+                    border: isFeatured
+                      ? '1px solid rgba(201,169,97,0.3)'
+                      : '1px solid rgba(10,9,8,0.08)',
+                    background: isFeatured
+                      ? 'var(--emerald)'
+                      : 'var(--ivory)',
+                    color: isFeatured
+                      ? 'var(--ivory)'
+                      : 'var(--ink)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 12,
+                    gridColumn: !isPhone && isFeatured ? 'span 2' : 'auto',
+                    justifyContent: 'center',
+                    boxShadow: isFeatured ? '0 10px 30px rgba(15,59,46,0.1)' : 'none',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {isFeatured && (
+                    <div
+                      className="geo-overlay"
+                      style={{ opacity: 0.04, pointerEvents: 'none' }}
+                    />
+                  )}
+                  <span
+                    className="display-italic"
+                    style={{
+                      fontSize: 28,
+                      color: 'var(--gold)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {b.n}
+                  </span>
+                  <h3
+                    className="display"
+                    style={{
+                      fontSize: isPhone ? 20 : isFeatured ? 26 : 22,
+                      fontWeight: 400,
+                      color: isFeatured ? 'var(--ivory)' : 'var(--ink)',
+                    }}
+                  >
+                    {b.t}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: 14,
+                      opacity: isFeatured ? 0.85 : 0.72,
+                      lineHeight: 1.65,
+                      maxWidth: isFeatured ? 560 : 'none',
+                    }}
+                  >
+                    {b.d}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -138,9 +190,9 @@ export default function WholesalePage() {
           </header>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isPhone ? '1fr' : 'repeat(4, 1fr)',
+            gridTemplateColumns: isPhone ? '1fr' : 'repeat(3, 1fr)',
             gap: isPhone ? 16 : 20,
-            maxWidth: 900,
+            maxWidth: 800,
             margin: '0 auto',
           }}>
             {WHOLESALE_TIERS.map((tier, i) => (

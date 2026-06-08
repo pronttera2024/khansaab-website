@@ -568,6 +568,35 @@ export const ALL_PRODUCTS = [
       secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779386831/41_bhavvz.png',
     },
   },
+  {
+    id: 'black-thobe',
+    name: 'Black Thobe',
+    arabic: 'ثوب أسود',
+    category: 'thobes',
+    catLabel: 'Saudi Thobe · Cotton',
+    price: 2400,
+    oldPrice: 3000,
+    tag: null,
+    occasion: 'everyday',
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    description: 'A timeless Saudi thobe in deep, lustrous black, crafted from premium breathable cotton. Featuring a clean mandarin collar, concealed button placket, and a refined straight-cut silhouette suited for everyday elegance and formal gatherings alike.',
+    features: [
+      { icon: '✦', title: 'Lustrous black', desc: 'A deep, rich black that holds its colour wash after wash.' },
+      { icon: '✦', title: 'Mandarin collar', desc: 'Clean-cut stand collar with concealed button closure.' },
+      { icon: '✦', title: 'Breathable cotton', desc: 'Premium long-staple cotton, soft and comfortable all day.' },
+      { icon: '✦', title: 'Straight-cut fit', desc: 'Classic Saudi silhouette with a clean, ankle-length drape.' },
+    ],
+    images: {
+      primary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384599/31_k9xdcs.png',
+      secondary: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384562/30_xr1fl4.png',
+    },
+    gallery: [
+      { label: 'BLACK · FRONT', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384599/31_k9xdcs.png' },
+      { label: 'BLACK · BACK', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384562/30_xr1fl4.png' },
+      { label: 'BLACK · DETAIL', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384558/29_h2jtvi.png' },
+      { label: 'BLACK · SIDE', src: 'https://res.cloudinary.com/dljg7vpso/image/upload/v1779384554/28_qape2d.png' },
+    ],
+  },
 ]
 
 // ─── Related / cross-sell products (for PDP) ─────────────────────────────────

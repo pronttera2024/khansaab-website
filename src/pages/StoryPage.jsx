@@ -959,7 +959,7 @@ export default function StoryPage() {
                 fontWeight: 400,
               }}
             >
-              <RevealText text="From a small atelier in Pune to thousands of wardrobes across India." />
+              <RevealText text="From the streets of Pune to a flagship of authentic Saudi thobes." />
             </h2>
           </div>
           <div
@@ -987,19 +987,19 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n 2020, Khansaab began in the heart of Kondhwa, Pune, with a simple vision — to redefine traditional menswear through premium craftsmanship, timeless design, and uncompromising fabric quality. What started as a passion for elegant thobes has today become a trusted name for men who value sophistication, comfort, and identity.
+              n the beginning, KhanSaab was not born in a factory but on the streets. Safwan started by sourcing and delivering curated thobes himself, engaging directly with wearers to decode their needs, master their fit preferences, and study the pulse of the market — one garment, one conversation at a time.
             </p>
             <p style={{ marginBottom: 22 }}>
-              At Khansaab, every thobe is designed with attention to detail — from the stitching and silhouette to the fall of the fabric. We specialize in a wide range of styles including Saudi, Kuwaiti, Omani, Emirati, and modern custom designs, crafted for men who appreciate both tradition and refinement.
+              To guarantee uncompromising quality, Safwan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia. That decision turned a passion for elegant menswear into a craft answerable to no one but the wearer.
             </p>
             <p style={{ marginBottom: 22 }}>
-              Over the years, we have proudly served more than 3000+ customers, building a reputation for quality, consistency, and personalized service. What sets us apart is not only our fabrics and craftsmanship, but our ability to customize every thobe according to the customer’s fitting, style preference, and comfort.
+              In 2025, with a dedicated team of professionals and only the finest fabrics, KhanSaab opened its first retail storefront in Mithanagar, Kondhwa — establishing a true sanctuary and a hub for premium thobes in the heart of Pune.
             </p>
             <p style={{ marginBottom: 22 }}>
-              We believe a thobe should do more than just fit well — it should reflect personality, confidence, and culture. That is why every Khansaab garment is made with premium materials and tailored precision to ensure elegance in every wear.
+              Driven by growth and a commitment to a premium bespoke experience, KhanSaab relocated in 2026 to a larger flagship showroom and design studio in Kausar Baug, Kondhwa — room enough to craft, fit, and finish every thobe under one roof.
             </p>
             <p style={{ marginBottom: 0 }}>
-             Today, Khansaab continues to grow while staying true to its roots: premium quality, authentic craftsmanship, and garments made for distinction.
+              Today, KhanSaab stands as a symbol of distinction, serving patrons with the unmatched elegance of authentic Saudi thobes — hand-finished to a unique, flawless fit, and made for distinction.
             </p>
           </div>
           <div

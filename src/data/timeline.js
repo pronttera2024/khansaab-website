@@ -20,14 +20,14 @@ export const TIMELINE_EVENTS = [
     title: "The First Sanctuary",
     desc: "Gathering a dedicated team of professionals and selecting only the finest fabrics, KhanSaab opened its first retail storefront in Mithanagar, Kondhwa in 2025—establishing a hub for premium thobes.",
     img: "MITHANAGAR STUDIO",
-    src: "/assets/ref_5.jpg",
+    src: "/assets/ref_5.png",
   },
   {
     year: "2026",
     title: "Bigger Horizons",
     desc: "Driven by growth and a commitment to a premium bespoke experience, KhanSaab relocated in 2026 to a larger flagship showroom and design studio in Kausar Baug, Kondhwa.",
     img: "KAUSAR BAUG FLAGSHIP",
-    src: "/assets/about_1.png",
+    src: "/assets/process_3.png",
   },
   {
     year: "Today",

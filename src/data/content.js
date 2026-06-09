@@ -92,7 +92,7 @@ export const PDP_MAKING_STEPS = [
     d: "Day 12-14",
     t: "Finish",
     body: "Pressed, packed and signed on the inner placket.",
-    src: "/assets/reel_7.png",
+    src: "/assets/reel_7 copy.png",
   },
 ];
 

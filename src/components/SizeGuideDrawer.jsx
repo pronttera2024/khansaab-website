@@ -118,7 +118,7 @@ export default function SizeGuideDrawer({ open, onClose }) {
               marginBottom: 24,
             }}
           >
-            All measurements are in <strong>centimetres</strong> unless noted.
+            All measurements are in <strong>inches</strong> and based on body measurements. Consider a loosening of 5-6 inches.
             Measure over a thin shirt, standing relaxed. When between sizes,
             choose the larger for comfort or contact our collection for
             <button
@@ -178,12 +178,11 @@ export default function SizeGuideDrawer({ open, onClose }) {
                     <td style={{ padding: "12px 10px", fontWeight: 600 }}>
                       {r.size}
                     </td>
+                    <td style={{ padding: "12px 10px" }}>{r.length}</td>
                     <td style={{ padding: "12px 10px" }}>{r.chest}</td>
                     <td style={{ padding: "12px 10px" }}>{r.waist}</td>
-                    <td style={{ padding: "12px 10px" }}>{r.hip}</td>
                     <td style={{ padding: "12px 10px" }}>{r.shoulder}</td>
                     <td style={{ padding: "12px 10px" }}>{r.sleeve}</td>
-                    <td style={{ padding: "12px 10px" }}>{r.length}</td>
                   </tr>
                 ))}
               </tbody>

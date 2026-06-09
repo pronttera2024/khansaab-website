@@ -123,7 +123,7 @@ export const STORY_RIBBONS = {
   },
   ribbon2: {
     words: ["Made by hand", "Made to last", "Made to be passed on"],
-    direction: "right",
+    direction: "left",
     color: "var(--ink)",
     bg: "var(--gold)",
   },

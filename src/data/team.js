@@ -2,7 +2,7 @@
 
 export const TEAM = [
   {
-    name: "Saffan Khan",
+    name: "Safwan Khan",
     role: "Head of House · Master Tailor",
     arabic: "سيف خان",
     since: "2014",

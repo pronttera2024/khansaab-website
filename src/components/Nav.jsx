@@ -171,14 +171,17 @@ export default function Nav({ light = false }) {
                 Custom Tailoring
               </a>
 
-              <button
+              <a
+                href={`tel:${CONTACT.phone[0].replace(/\s/g, "")}`}
                 className="mobile-tailoring-btn"
-                onClick={opencollection}
                 aria-label="Custom tailoring"
                 style={{
                   borderColor: transparent
                     ? "rgba(245,239,227,0.35)"
                     : "rgba(10,9,8,0.25)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <svg
@@ -195,7 +198,7 @@ export default function Nav({ light = false }) {
                   <circle cx="15" cy="6" r="1.6" />
                   <path d="M8 21 L16 21" />
                 </svg>
-              </button>
+              </a>
 
               <button
                 className="mobile-menu-btn"

@@ -33,7 +33,7 @@ function TextRibbon({
           display: "flex",
           gap: 48,
           whiteSpace: "nowrap",
-          animation: `ribbonScroll ${direction === "right" ? "-40s" : "40s"} linear infinite`,
+          animation: `ribbonScroll 40s linear infinite ${direction === "right" ? "reverse" : "normal"}`,
           fontFamily: "var(--f-display)",
           fontStyle: "italic",
           fontSize: "clamp(48px, 6vw, 88px)",
@@ -928,11 +928,11 @@ export default function StoryPage() {
               color: "var(--gold-light)",
             }}
           >
-            
+
           </div>
-          
-            
-          
+
+
+
         </div>
       </section>
 
@@ -987,7 +987,7 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n the beginning, KhanSaab was not born in a factory but on the streets. Safwan started by sourcing and delivering curated thobes himself, engaging directly with wearers to decode their needs, master their fit preferences, and study the pulse of the market — one garment, one conversation at a time.
+              n the beginning, <strong>KhanSaab</strong> was not born in a factory but on the streets. Safwan started by sourcing and delivering curated thobes himself, engaging directly with wearers to decode their needs, master their fit preferences, and study the pulse of the market — one garment, one conversation at a time.
             </p>
             <p style={{ marginBottom: 22 }}>
               To guarantee uncompromising quality, Safwan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia. That decision turned a passion for elegant menswear into a craft answerable to no one but the wearer.
@@ -1031,12 +1031,12 @@ export default function StoryPage() {
               S
             </div>
             <div>
-              <p style={{ fontSize: 14, fontWeight: 600 }}>Saffan Khan</p>
+              <p style={{ fontSize: 14, fontWeight: 600 }}>Safwan Khan</p>
               <p
                 className="mono"
                 style={{ opacity: 0.55, fontSize: 10, letterSpacing: "0.2em" }}
               >
-                OWNER · THIRD GENERATION
+                OWNER
               </p>
             </div>
           </div>
@@ -1080,21 +1080,11 @@ export default function StoryPage() {
               position: "absolute",
               bottom: isPhone ? 20 : 32,
               left: isPhone ? 20 : 32,
-              color: "var(--ink)",
+              color: "var(--ivory)",
               maxWidth: 280,
             }}
           >
-            <p
-              className="mono"
-              style={{
-                opacity: 0.7,
-                marginBottom: 6,
-                fontSize: isPhone ? 10 : 11,
-                letterSpacing: "0.22em",
-              }}
-            >
-              CHAPTER I
-            </p>
+            
             <p
               className="display"
               style={{ fontSize: isPhone ? 32 : 28, lineHeight: 1.05 }}
@@ -1137,18 +1127,7 @@ export default function StoryPage() {
               maxWidth: 280,
             }}
           >
-            <p
-              className="mono"
-              style={{
-                opacity: 0.85,
-                marginBottom: 6,
-                color: "var(--gold)",
-                fontSize: isPhone ? 10 : 11,
-                letterSpacing: "0.22em",
-              }}
-            >
-              CHAPTER II
-            </p>
+            
             <p
               className="display"
               style={{ fontSize: isPhone ? 32 : 28, lineHeight: 1.05 }}

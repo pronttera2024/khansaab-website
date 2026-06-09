@@ -491,20 +491,6 @@ export default function ProductDetailPage() {
                         {s}
                       </button>
                     ))}
-                    <button
-                      onClick={opencollection}
-                      style={{
-                        minWidth: 110,
-                        height: 48,
-                        border: "1px dashed rgba(10,9,8,0.3)",
-                        fontSize: 11,
-                        letterSpacing: "0.18em",
-                        textTransform: "uppercase",
-                        color: "var(--emerald)",
-                      }}
-                    >
-                      + Made to measure
-                    </button>
                   </div>
                 ) : (
                   <>
@@ -530,20 +516,6 @@ export default function ProductDetailPage() {
                         {s}
                       </button>
                     ))}
-                    <button
-                      onClick={opencollection}
-                      style={{
-                        gridColumn: "1 / -1",
-                        height: 46,
-                        border: "1px dashed rgba(10,9,8,0.3)",
-                        fontSize: 11,
-                        letterSpacing: "0.18em",
-                        textTransform: "uppercase",
-                        color: "var(--emerald)",
-                      }}
-                    >
-                      + Made to measure
-                    </button>
                   </>
                 )}
               </div>

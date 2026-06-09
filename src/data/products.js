@@ -96,14 +96,14 @@ export const ALL_PRODUCTS = [
     ],
     images: {
       primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381505/20_x1ksly.png",
+        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780996532/KhanSaab_1_rty95o.png",
       secondary:
         "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381502/17_b2r6nr.png",
     },
     gallery: [
       {
         label: "GREY TAUPE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381505/20_x1ksly.png",
+        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780996532/KhanSaab_1_rty95o.png",
       },
       {
         label: "GREY TAUPE · BACK",

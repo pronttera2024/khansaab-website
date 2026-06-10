@@ -179,7 +179,6 @@ export default function Nav({ light = false }) {
                   borderColor: transparent
                     ? "rgba(245,239,227,0.35)"
                     : "rgba(10,9,8,0.25)",
-                  display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}

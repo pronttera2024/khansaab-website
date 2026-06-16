@@ -39,23 +39,21 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780923243/14_cp0flx.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384379/15_tlfxx3.png",
+      primary: "/images/Classic_White_Thobe/14.png",
+      secondary: "/images/Classic_White_Thobe/15.png",
     },
     gallery: [
       {
         label: "CLASSIC WHITE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780923243/14_cp0flx.png",
+        src: "/images/Classic_White_Thobe/14.png",
       },
       {
         label: "CLASSIC WHITE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384255/13_gvtz7o.png",
+        src: "/images/Classic_White_Thobe/13.png",
       },
       {
         label: "CLASSIC WHITE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384379/15_tlfxx3.png",
+        src: "/images/Classic_White_Thobe/15.png",
       },
     ],
   },
@@ -95,23 +93,29 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780996532/KhanSaab_1_rty95o.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381502/17_b2r6nr.png",
+      primary: "/images/Grey_Taupe_Thobe/20.png",
+      secondary: "/images/Grey_Taupe_Thobe/17.png",
     },
     gallery: [
       {
         label: "GREY TAUPE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780996532/KhanSaab_1_rty95o.png",
+        src: "/images/Grey_Taupe_Thobe/20.png",
       },
       {
         label: "GREY TAUPE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381502/17_b2r6nr.png",
+        src: "/images/Grey_Taupe_Thobe/17.png",
+      },
+      {
+        label: "GREY TAUPE · DETAIL",
+        src: "/images/Grey_Taupe_Thobe/19.png",
       },
       {
         label: "GREY TAUPE · WORN",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381499/18_vcyece.png",
+        src: "/images/Grey_Taupe_Thobe/18.png",
+      },
+      {
+        label: "GREY TAUPE · SIDE",
+        src: "/images/Grey_Taupe_Thobe/16.png",
       },
     ],
   },
@@ -151,27 +155,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381186/10_svmpp3.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381190/9_fm8dci.png",
+      primary: "/images/Obsidian_Royal_Bisht/10.png",
+      secondary: "/images/Obsidian_Royal_Bisht/9.png",
     },
     gallery: [
       {
         label: "OBSIDIAN BISHT · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381186/10_svmpp3.png",
+        src: "/images/Obsidian_Royal_Bisht/10.png",
       },
       {
         label: "OBSIDIAN BISHT · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381190/9_fm8dci.png",
+        src: "/images/Obsidian_Royal_Bisht/9.png",
       },
       {
         label: "OBSIDIAN BISHT · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381189/11_kgkcdt.png",
+        src: "/images/Obsidian_Royal_Bisht/11.png",
       },
       {
         label: "OBSIDIAN BISHT · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381189/12_eq8dyb.png",
+        src: "/images/Obsidian_Royal_Bisht/12.png",
       },
     ],
   },
@@ -211,23 +213,21 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381861/34_cjch2t.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780930335/KhanSaab_toq0t2.png",
+      primary: "/images/Golden_Beige_Thobe/34.png",
+      secondary: "/images/Golden_Beige_Thobe/31.png",
     },
     gallery: [
       {
         label: "MUSTARD GOLD · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381861/34_cjch2t.png",
+        src: "/images/Golden_Beige_Thobe/34.png",
       },
       {
         label: "MUSTARD GOLD · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780930335/KhanSaab_toq0t2.png",
+        src: "/images/Golden_Beige_Thobe/31.png",
       },
       {
         label: "MUSTARD GOLD · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381861/32_fkpwyw.png",
+        src: "/images/Golden_Beige_Thobe/32.png",
       },
     ],
   },
@@ -267,11 +267,19 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780921967/6_oemus4.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780921966/7_foebc1.png",
+      primary: "/images/Onion_Pink/5.png",
+      secondary: "/images/Onion_Pink/6.png",
     },
+    gallery: [
+      {
+        label: "ONION PINK · FRONT FULL",
+        src: "/images/Onion_Pink/5.png",
+      },
+      {
+        label: "ONION PINK · COLLAR DETAIL",
+        src: "/images/Onion_Pink/6.png",
+      },
+    ],
   },
   {
     id: "ivory-sovereign-thobe",
@@ -289,27 +297,25 @@ export const ALL_PRODUCTS = [
     description:
       "Our signature ankle-length Saudi thobe in heavyweight ivory Japanese cotton. Hand-cut by a single artisan, finished over 14 working days, and signed on the inner placket. The Sovereign features our quartet collar, mother-of-pearl tarboosh and pearl-stitched cuffs.",
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381796/24_u7vudz.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381795/26_kh13ma.png",
+      primary: "/images/The_Ivory_Sovereign_Thobe/24.png",
+      secondary: "/images/The_Ivory_Sovereign_Thobe/26.png",
     },
     gallery: [
       {
         label: "IVORY SOVEREIGN · FRONT FULL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381796/24_u7vudz.png",
+        src: "/images/The_Ivory_Sovereign_Thobe/24.png",
       },
       {
         label: "IVORY SOVEREIGN · COLLAR DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381795/26_kh13ma.png",
+        src: "/images/The_Ivory_Sovereign_Thobe/26.png",
       },
       {
         label: "IVORY SOVEREIGN · CUFF + TARBOOSH",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381795/25_kcdcxd.png",
+        src: "/images/The_Ivory_Sovereign_Thobe/25.png",
       },
       {
         label: "IVORY SOVEREIGN · BACK · STUDIO",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381807/27_ezze0a.png",
+        src: "/images/The_Ivory_Sovereign_Thobe/27.png",
       },
     ],
     features: [
@@ -371,27 +377,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384599/31_k9xdcs.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384562/30_xr1fl4.png",
+      primary: "/images/Black_Thobe/31.png",
+      secondary: "/images/Black_Thobe/30.png",
     },
     gallery: [
       {
         label: "BLACK · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384599/31_k9xdcs.png",
+        src: "/images/Black_Thobe/31.png",
       },
       {
         label: "BLACK · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384562/30_xr1fl4.png",
+        src: "/images/Black_Thobe/30.png",
       },
       {
         label: "BLACK · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384558/29_h2jtvi.png",
+        src: "/images/Black_Thobe/29.png",
       },
       {
         label: "BLACK · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384554/28_qape2d.png",
+        src: "/images/Black_Thobe/28.png",
       },
     ],
   },
@@ -431,27 +435,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381963/3_usamfa.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381988/1_mwafaa.png",
+      primary: "/images/Dusty_Blue_Thobe/3.png",
+      secondary: "/images/Dusty_Blue_Thobe/1.png",
     },
     gallery: [
       {
         label: "DUSTY BLUE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381963/3_usamfa.png",
+        src: "/images/Dusty_Blue_Thobe/3.png",
       },
       {
         label: "DUSTY BLUE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381988/1_mwafaa.png",
+        src: "/images/Dusty_Blue_Thobe/1.png",
       },
       {
         label: "DUSTY BLUE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381973/4_jd24ya.png",
+        src: "/images/Dusty_Blue_Thobe/4.png",
       },
       {
         label: "DUSTY BLUE · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381967/2_lgcclb.png",
+        src: "/images/Dusty_Blue_Thobe/2.png",
       },
     ],
   },
@@ -491,27 +493,29 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382389/9_bmqbnt.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383434/KhanSaab_yry8gu.png",
+      primary: "/images/Stone_Grey_Thobe/9.png",
+      secondary: "/images/Stone_Grey_Thobe/8.png",
     },
     gallery: [
       {
         label: "STONE GREY · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382389/9_bmqbnt.png",
+        src: "/images/Stone_Grey_Thobe/9.png",
       },
       {
         label: "STONE GREY · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382390/8_pbobzl.png",
+        src: "/images/Stone_Grey_Thobe/8.png",
       },
       {
         label: "STONE GREY · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382402/10_jifepo.png",
+        src: "/images/Stone_Grey_Thobe/10.png",
       },
       {
         label: "STONE GREY · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383434/KhanSaab_yry8gu.png",
+        src: "/images/Stone_Grey_Thobe/6.png",
+      },
+      {
+        label: "STONE GREY · CLOSEUP",
+        src: "/images/Stone_Grey_Thobe/7.png",
       },
     ],
   },
@@ -551,11 +555,23 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382605/18_zs4h83.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382620/15_xwxov1.png",
+      primary: "/images/Olive_Green_Thobe/28.png",
+      secondary: "/images/Olive_Green_Thobe/29.png",
     },
+    gallery: [
+      {
+        label: "OLIVE GREEN · FRONT",
+        src: "/images/Olive_Green_Thobe/28.png",
+      },
+      {
+        label: "OLIVE GREEN · BACK",
+        src: "/images/Olive_Green_Thobe/29.png",
+      },
+      {
+        label: "OLIVE GREEN · DETAIL",
+        src: "/images/Olive_Green_Thobe/30.png",
+      },
+    ],
   },
   {
     id: "golden-beige-thobe",
@@ -593,27 +609,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922307/22_njfic9.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382839/21_zmi8ct.png",
+      primary: "/images/Golden_Beige_Thobe/34.png",
+      secondary: "/images/Golden_Beige_Thobe/32.png",
     },
     gallery: [
       {
         label: "GOLDEN BEIGE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922307/22_njfic9.png",
+        src: "/images/Golden_Beige_Thobe/34.png",
       },
       {
         label: "GOLDEN BEIGE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382839/21_zmi8ct.png",
+        src: "/images/Golden_Beige_Thobe/33.png",
       },
       {
         label: "GOLDEN BEIGE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382812/19_qynbvo.png",
+        src: "/images/Golden_Beige_Thobe/32.png",
       },
       {
         label: "GOLDEN BEIGE · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382812/20_kijrep.png",
+        src: "/images/Golden_Beige_Thobe/31.png",
       },
     ],
   },
@@ -653,23 +667,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383396/26_dyv2hu.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382873/23_ezsxgf.png",
+      primary: "/images/Khaki_Thobe/26.png",
+      secondary: "/images/Khaki_Thobe/23.png",
     },
     gallery: [
       {
         label: "KHAKI · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383396/26_dyv2hu.png",
+        src: "/images/Khaki_Thobe/26.png",
       },
       {
         label: "KHAKI · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779382873/23_ezsxgf.png",
+        src: "/images/Khaki_Thobe/23.png",
       },
       {
         label: "KHAKI · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383400/24_pbqifh.png",
+        src: "/images/Khaki_Thobe/24.png",
+      },
+      {
+        label: "KHAKI · SIDE",
+        src: "/images/Khaki_Thobe/25.png",
       },
     ],
   },
@@ -709,11 +725,23 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383586/29_ol0rem.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779387526/KhanSaab_1_vpmasz.png",
+      primary: "/images/Dusty_Grey_Kuwaiti_Thobe/29.png",
+      secondary: "/images/Dusty_Grey_Kuwaiti_Thobe/27.png",
     },
+    gallery: [
+      {
+        label: "DUSTY GREY · FRONT",
+        src: "/images/Dusty_Grey_Kuwaiti_Thobe/29.png",
+      },
+      {
+        label: "DUSTY GREY · BACK",
+        src: "/images/Dusty_Grey_Kuwaiti_Thobe/27.png",
+      },
+      {
+        label: "DUSTY GREY · DETAIL",
+        src: "/images/Dusty_Grey_Kuwaiti_Thobe/28.png",
+      },
+    ],
   },
   {
     id: "dark-grey-thobe",
@@ -751,27 +779,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383698/34_go5vto.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383703/36_h3sv87.png",
+      primary: "/images/Dark_Grey_Thobe/34.png",
+      secondary: "/images/Dark_Grey_Thobe/36.png",
     },
     gallery: [
       {
         label: "DARK GREY · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383698/34_go5vto.png",
+        src: "/images/Dark_Grey_Thobe/34.png",
       },
       {
         label: "DARK GREY · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383703/36_h3sv87.png",
+        src: "/images/Dark_Grey_Thobe/36.png",
       },
       {
         label: "DARK GREY · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383698/33_h7yupa.png",
+        src: "/images/Dark_Grey_Thobe/33.png",
       },
       {
         label: "DARK GREY · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383714/35_dkntqh.png",
+        src: "/images/Dark_Grey_Thobe/35.png",
       },
     ],
   },
@@ -811,27 +837,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922692/12_txlvvv.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922689/11_iljdvn.png",
+      primary: "/images/Violet_Kuwaiti_Thobe/12.png",
+      secondary: "/images/Violet_Kuwaiti_Thobe/11.png",
     },
     gallery: [
       {
         label: "VIOLET · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922692/12_txlvvv.png",
+        src: "/images/Violet_Kuwaiti_Thobe/12.png",
       },
       {
         label: "VIOLET · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922689/11_iljdvn.png",
+        src: "/images/Violet_Kuwaiti_Thobe/11.png",
       },
       {
         label: "VIOLET · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922686/9_asdczm.png",
+        src: "/images/Violet_Kuwaiti_Thobe/9.png",
       },
       {
         label: "VIOLET · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780922688/10_hkj9mv.png",
+        src: "/images/Violet_Kuwaiti_Thobe/10.png",
       },
     ],
   },
@@ -871,27 +895,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1780931035/8_z5gw1p.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383971/6_c8d2jy.png",
+      primary: "/images/Powder_Blue_Kuwaiti_Thobe/8.png",
+      secondary: "/images/Powder_Blue_Kuwaiti_Thobe/6.png",
     },
     gallery: [
       {
         label: "POWDER BLUE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1780931035/8_z5gw1p.png",
+        src: "/images/Powder_Blue_Kuwaiti_Thobe/8.png",
       },
       {
         label: "POWDER BLUE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383971/6_c8d2jy.png",
+        src: "/images/Powder_Blue_Kuwaiti_Thobe/6.png",
       },
       {
         label: "POWDER BLUE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384023/7_efy37e.png",
+        src: "/images/Powder_Blue_Kuwaiti_Thobe/7.png",
       },
       {
         label: "POWDER BLUE · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779383957/5_w1dbbs.png",
+        src: "/images/Powder_Blue_Kuwaiti_Thobe/5.png",
       },
     ],
   },
@@ -931,27 +953,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384401/20_itqljk.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384447/23_nbvekl.png",
+      primary: "/images/Mocha_Beige_Thobe/20.png",
+      secondary: "/images/Mocha_Beige_Thobe/23.png",
     },
     gallery: [
       {
         label: "MOCHA BEIGE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384401/20_itqljk.png",
+        src: "/images/Mocha_Beige_Thobe/20.png",
       },
       {
         label: "MOCHA BEIGE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384447/23_nbvekl.png",
+        src: "/images/Mocha_Beige_Thobe/23.png",
       },
       {
         label: "MOCHA BEIGE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384444/21_nqtsjb.png",
+        src: "/images/Mocha_Beige_Thobe/21.png",
       },
       {
         label: "MOCHA BEIGE · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384443/22_mphchu.png",
+        src: "/images/Mocha_Beige_Thobe/22.png",
       },
     ],
   },
@@ -991,27 +1011,25 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384497/27_deunyz.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779388135/KhanSaab_3_gfj7qi.png",
+      primary: "/images/Icy_Blue_Thobe/27.png",
+      secondary: "/images/Icy_Blue_Thobe/26.png",
     },
     gallery: [
       {
         label: "ICY BLUE · FRONT",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384497/27_deunyz.png",
+        src: "/images/Icy_Blue_Thobe/27.png",
       },
       {
         label: "ICY BLUE · BACK",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779388135/KhanSaab_3_gfj7qi.png",
+        src: "/images/Icy_Blue_Thobe/26.png",
       },
       {
         label: "ICY BLUE · DETAIL",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384493/25_gbwnlg.png",
+        src: "/images/Icy_Blue_Thobe/25.png",
       },
       {
         label: "ICY BLUE · SIDE",
-        src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779384488/24_ayzvx4.png",
+        src: "/images/Icy_Blue_Thobe/24.png",
       },
     ],
   },
@@ -1050,15 +1068,23 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386808/40_uucmgp.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386808/40_uucmgp.png",
+      primary: "/images/cream-shemag/41.png",
+      secondary: "/images/cream-shemag/41.png",
     },
+    gallery: [
+      {
+        label: "CREAM BEIGE · FRONT FULL",
+        src: "/images/cream-shemag/41.png",
+      },
+      {
+        label: "CREAM BEIGE · SIDE DETAIL",
+        src: "/images/cream-shemag/42.png",
+      },
+    ],
   },
   {
-    id: "light-grey-shemag",
-    name: "Light Grey Shemag",
+    id: "light-white-shemag",
+    name: "Light white Shemag",
     arabic: "شماغ رمادي",
     category: "shimag",
     catLabel: "Shemag · Cotton",
@@ -1067,7 +1093,7 @@ export const ALL_PRODUCTS = [
     tag: null,
     occasion: "everyday",
     description:
-      "A versatile shemag in refined light grey, crafted from premium woven cotton. Features traditional motifs with a modern palette, soft hand-feel, and generous dimensions for multiple styling options.",
+      "A versatile shemag in refined light white, crafted from premium woven cotton. Features traditional motifs with a modern palette, soft hand-feel, and generous dimensions for multiple styling options.",
     features: [
       {
         icon: "✦",
@@ -1077,7 +1103,7 @@ export const ALL_PRODUCTS = [
       {
         icon: "✦",
         title: "Modern palette",
-        desc: "Light grey that complements any thobe or outfit.",
+        desc: "Light white that complements any thobe or outfit.",
       },
       {
         icon: "✦",
@@ -1091,11 +1117,19 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386798/39_zvff9k.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386798/39_zvff9k.png",
+      primary: "/images/white-shemag/41.png",
+      secondary: "/images/white-shemag/41.png",
     },
+    gallery: [
+      {
+        label: "LIGHT white · FRONT FULL",
+        src: "/images/white-shemag/41.png",
+      },
+      {
+        label: "LIGHT white · SIDE DETAIL",
+        src: "/images/white-shemag/41.png",
+      },
+    ],
   },
   {
     id: "brown-shemag",
@@ -1132,10 +1166,8 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386795/38_i4pjuv.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386795/38_i4pjuv.png",
+      primary: "/images/brown-shemag/39.png",
+      secondary: "/images/brown-shemag/39.png",
     },
   },
   {
@@ -1174,10 +1206,8 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386831/41_bhavvz.png",
-      secondary:
-        "https://res.cloudinary.com/dljg7vpso/image/upload/v1779386831/41_bhavvz.png",
+      primary: "/images/brown-shemag/39.png",
+      secondary: "/images/brown-shemag/39.png",
     },
   },
 ];
@@ -1192,7 +1222,7 @@ export const RELATED_PRODUCTS = [
     price: 2200,
     old: 3000,
     tag: "EDITORS' PICK",
-    src: "https://res.cloudinary.com/dljg7vpso/image/upload/v1779381505/20_x1ksly.png",
+    src: "/images/Grey_Taupe_Thobe/20.png",
   },
   {
     id: "obsidian-royal-bisht",

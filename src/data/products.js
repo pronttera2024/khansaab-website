@@ -39,17 +39,17 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary: "/images/Classic_White_Thobe/14.png",
+      primary: "/images/Classic_White_Thobe/13.png",
       secondary: "/images/Classic_White_Thobe/15.png",
     },
     gallery: [
       {
-        label: "CLASSIC WHITE · FRONT",
-        src: "/images/Classic_White_Thobe/14.png",
-      },
-      {
         label: "CLASSIC WHITE · BACK",
         src: "/images/Classic_White_Thobe/13.png",
+      },
+      {
+        label: "CLASSIC WHITE · FRONT",
+        src: "/images/Classic_White_Thobe/14.png",
       },
       {
         label: "CLASSIC WHITE · DETAIL",
@@ -113,10 +113,6 @@ export const ALL_PRODUCTS = [
         label: "GREY TAUPE · WORN",
         src: "/images/Grey_Taupe_Thobe/18.png",
       },
-      {
-        label: "GREY TAUPE · SIDE",
-        src: "/images/Grey_Taupe_Thobe/16.png",
-      },
     ],
   },
   {
@@ -171,10 +167,10 @@ export const ALL_PRODUCTS = [
         label: "OBSIDIAN BISHT · DETAIL",
         src: "/images/Obsidian_Royal_Bisht/11.png",
       },
-      {
-        label: "OBSIDIAN BISHT · SIDE",
-        src: "/images/Obsidian_Royal_Bisht/12.png",
-      },
+      // {
+      //   label: "OBSIDIAN BISHT · SIDE",
+      //   src: "/images/Obsidian_Royal_Bisht/12.png",
+      // },
     ],
   },
   {
@@ -309,10 +305,7 @@ export const ALL_PRODUCTS = [
         label: "IVORY SOVEREIGN · COLLAR DETAIL",
         src: "/images/The_Ivory_Sovereign_Thobe/26.png",
       },
-      {
-        label: "IVORY SOVEREIGN · CUFF + TARBOOSH",
-        src: "/images/The_Ivory_Sovereign_Thobe/25.png",
-      },
+      
       {
         label: "IVORY SOVEREIGN · BACK · STUDIO",
         src: "/images/The_Ivory_Sovereign_Thobe/27.png",
@@ -509,14 +502,8 @@ export const ALL_PRODUCTS = [
         label: "STONE GREY · DETAIL",
         src: "/images/Stone_Grey_Thobe/10.png",
       },
-      {
-        label: "STONE GREY · SIDE",
-        src: "/images/Stone_Grey_Thobe/6.png",
-      },
-      {
-        label: "STONE GREY · CLOSEUP",
-        src: "/images/Stone_Grey_Thobe/7.png",
-      },
+     
+     
     ],
   },
   {
@@ -555,7 +542,7 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary: "/images/Olive_Green_Thobe/28.png",
+      primary: "/images/Olive_Green_Thobe/30.png",
       secondary: "/images/Olive_Green_Thobe/29.png",
     },
     gallery: [
@@ -621,10 +608,7 @@ export const ALL_PRODUCTS = [
         label: "GOLDEN BEIGE · BACK",
         src: "/images/Golden_Beige_Thobe/33.png",
       },
-      {
-        label: "GOLDEN BEIGE · DETAIL",
-        src: "/images/Golden_Beige_Thobe/32.png",
-      },
+     
       {
         label: "GOLDEN BEIGE · SIDE",
         src: "/images/Golden_Beige_Thobe/31.png",
@@ -837,7 +821,7 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary: "/images/Violet_Kuwaiti_Thobe/12.png",
+      primary: "/images/Violet_Kuwaiti_Thobe/9.png",
       secondary: "/images/Violet_Kuwaiti_Thobe/11.png",
     },
     gallery: [
@@ -853,10 +837,7 @@ export const ALL_PRODUCTS = [
         label: "VIOLET · DETAIL",
         src: "/images/Violet_Kuwaiti_Thobe/9.png",
       },
-      {
-        label: "VIOLET · SIDE",
-        src: "/images/Violet_Kuwaiti_Thobe/10.png",
-      },
+      
     ],
   },
   {
@@ -1024,10 +1005,6 @@ export const ALL_PRODUCTS = [
         src: "/images/Icy_Blue_Thobe/26.png",
       },
       {
-        label: "ICY BLUE · DETAIL",
-        src: "/images/Icy_Blue_Thobe/25.png",
-      },
-      {
         label: "ICY BLUE · SIDE",
         src: "/images/Icy_Blue_Thobe/24.png",
       },
@@ -1076,10 +1053,7 @@ export const ALL_PRODUCTS = [
         label: "CREAM BEIGE · FRONT FULL",
         src: "/images/cream-shemag/41.png",
       },
-      {
-        label: "CREAM BEIGE · SIDE DETAIL",
-        src: "/images/cream-shemag/42.png",
-      },
+
     ],
   },
   {
@@ -1125,10 +1099,6 @@ export const ALL_PRODUCTS = [
         label: "LIGHT white · FRONT FULL",
         src: "/images/white-shemag/41.png",
       },
-      {
-        label: "LIGHT white · SIDE DETAIL",
-        src: "/images/white-shemag/41.png",
-      },
     ],
   },
   {
@@ -1166,8 +1136,8 @@ export const ALL_PRODUCTS = [
       },
     ],
     images: {
-      primary: "/images/brown-shemag/39.png",
-      secondary: "/images/brown-shemag/39.png",
+      primary: "/images/brown-shemag/42.png",
+      secondary: "/images/brown-shemag/42.png",
     },
   },
   {

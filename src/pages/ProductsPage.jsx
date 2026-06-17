@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useModals } from "../context/ModalsContext.jsx";
 import { useViewport } from "../hooks/useViewport.js";
@@ -739,7 +739,7 @@ export { ContactStrip, ProductCard };
 export default function ProductsPage() {
   const { isPhone } = useViewport();
   const { opencollection } = useModals();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [filters, setFilters] = useState({
     category: searchParams.get("category") || "all",
   });
@@ -778,14 +778,69 @@ export default function ProductsPage() {
   );
 
   const PER_PAGE = isPhone ? 6 : 9;
-  const [page, setPage] = useState(1);
+  const initialPage = parseInt(searchParams.get("page"), 10) || 1;
+  const [page, setPage] = useState(initialPage);
   const totalPages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
   const paged = matches.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
-  // Reset to page 1 when filters/query change
+  // Sync state with URL searchParams (handles Back/Forward navigation)
   useEffect(() => {
+    const qCategory = searchParams.get("category") || "all";
+    if (filters.category !== qCategory) {
+      setFilters((prev) => ({ ...prev, category: qCategory }));
+    }
+    const qPage = parseInt(searchParams.get("page"), 10) || 1;
+    if (page !== qPage) {
+      setPage(qPage);
+    }
+  }, [searchParams]);
+
+  // Adjust page if it exceeds totalPages (due to bounds or filters shrinking)
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages);
+      const newParams = new URLSearchParams(searchParams);
+      if (totalPages === 1) {
+        newParams.delete("page");
+      } else {
+        newParams.set("page", totalPages.toString());
+      }
+      setSearchParams(newParams, { replace: true });
+    }
+  }, [page, totalPages, searchParams, setSearchParams]);
+
+  const handlePageChange = (n) => {
+    setPage(n);
+    const newParams = new URLSearchParams(searchParams);
+    if (n === 1) {
+      newParams.delete("page");
+    } else {
+      newParams.set("page", n.toString());
+    }
+    setSearchParams(newParams);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
     setPage(1);
-  }, [filters.category, query]);
+    const newParams = new URLSearchParams(searchParams);
+    if (newFilters.category === "all") {
+      newParams.delete("category");
+    } else {
+      newParams.set("category", newFilters.category);
+    }
+    newParams.delete("page");
+    setSearchParams(newParams);
+  };
+
+  const handleQueryChange = (newQuery) => {
+    setQuery(newQuery);
+    setPage(1);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete("page");
+    setSearchParams(newParams);
+  };
 
   const activeFilterCount = Object.values(filters).filter(
     (v) => v !== "all",
@@ -805,7 +860,7 @@ export default function ProductsPage() {
           Refine
         </p>
         <button
-          onClick={() => setFilters({ category: "all" })}
+          onClick={() => handleFilterChange({ category: "all" })}
           style={{
             fontSize: 11,
             letterSpacing: "0.2em",
@@ -819,7 +874,7 @@ export default function ProductsPage() {
       <FilterGroup
         title="Category"
         value={filters.category}
-        onChange={(v) => setFilters({ ...filters, category: v })}
+        onChange={(v) => handleFilterChange({ ...filters, category: v })}
         options={FILTER_OPTIONS.category}
       />
       <div
@@ -995,7 +1050,7 @@ export default function ProductsPage() {
                   type="search"
                   inputMode="search"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => handleQueryChange(e.target.value)}
                   aria-label="Search garments"
                   style={{
                     width: "100%",
@@ -1033,7 +1088,7 @@ export default function ProductsPage() {
               </div>
               {query && (
                 <button
-                  onClick={() => setQuery("")}
+                  onClick={() => handleQueryChange("")}
                   aria-label="Clear search"
                   style={{
                     width: 22,
@@ -1146,7 +1201,7 @@ export default function ProductsPage() {
               data-no-scrollbar
             >
               <button
-                onClick={() => setFilters({ category: "all", price: "all" })}
+                onClick={() => handleFilterChange({ category: "all", price: "all" })}
                 style={{
                   flex: "0 0 auto",
                   height: 28,
@@ -1167,7 +1222,7 @@ export default function ProductsPage() {
                 .map(([k, v]) => (
                   <button
                     key={k}
-                    onClick={() => setFilters({ ...filters, [k]: "all" })}
+                    onClick={() => handleFilterChange({ ...filters, [k]: "all" })}
                     style={{
                       flex: "0 0 auto",
                       height: 28,
@@ -1420,7 +1475,7 @@ export default function ProductsPage() {
                 .map(([k, v]) => (
                   <button
                     key={k}
-                    onClick={() => setFilters({ ...filters, [k]: "all" })}
+                    onClick={() => handleFilterChange({ ...filters, [k]: "all" })}
                     style={{
                       padding: "8px 16px",
                       borderRadius: 999,
@@ -1492,7 +1547,7 @@ export default function ProductsPage() {
               }}
             >
               <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                onClick={() => handlePageChange(Math.max(1, page - 1))}
                 disabled={page === 1}
                 style={{
                   minWidth: isPhone ? 38 : 44,
@@ -1510,7 +1565,7 @@ export default function ProductsPage() {
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                 <button
                   key={n}
-                  onClick={() => setPage(n)}
+                  onClick={() => handlePageChange(n)}
                   style={{
                     minWidth: isPhone ? 38 : 44,
                     height: isPhone ? 38 : 44,
@@ -1526,7 +1581,7 @@ export default function ProductsPage() {
                 </button>
               ))}
               <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() => handlePageChange(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
                 style={{
                   minWidth: isPhone ? 38 : 44,

@@ -64,7 +64,7 @@ export const BESPOKE_BENEFITS = [
 
 export const SHIPPING_BADGES = [
   { i: "✦", t: "Free shipping across India", d: "Delivery in 5-7 days" },
-  { i: "✦", t: "Cash on delivery", d: "Pay when you receive" },
+  { i: "✦", t: "50% Advance", d: "50% Pay on delivery" },
   { i: "✦", t: "10-day returns", d: "Full refund · No questions" },
   { i: "✦", t: "Quality checked", d: "Inspected before dispatch" },
 ];

@@ -987,10 +987,10 @@ export default function StoryPage() {
               >
                 I
               </span>
-              n the beginning, <strong>KhanSaab</strong> was not born in a factory but on the streets. Safwan started by sourcing and delivering curated thobes himself, engaging directly with wearers to decode their needs, master their fit preferences, and study the pulse of the market — one garment, one conversation at a time.
+              n the beginning, <strong>KhanSaab</strong> was not born in a factory but on the streets. Safwan Khan started by sourcing and delivering curated thobes himself, engaging directly with wearers to decode their needs, master their fit preferences, and study the pulse of the market — one garment, one conversation at a time.
             </p>
             <p style={{ marginBottom: 22 }}>
-              To guarantee uncompromising quality, Safwan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia. That decision turned a passion for elegant menswear into a craft answerable to no one but the wearer.
+              To guarantee uncompromising quality, Safwan Khan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia. That decision turned a passion for elegant menswear into a craft answerable to no one but the wearer.
             </p>
             <p style={{ marginBottom: 22 }}>
               In 2025, with a dedicated team of professionals and only the finest fabrics, KhanSaab opened its first retail storefront in Mithanagar, Kondhwa — establishing a true sanctuary and a hub for premium thobes in the heart of Pune.

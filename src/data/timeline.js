@@ -4,14 +4,14 @@ export const TIMELINE_EVENTS = [
   {
     year: "Beginning",
     title: "Understanding the Wearer",
-    desc: "Safwan began not in a factory, but on the streets. Sourcing and delivering curated thobes, he engaged directly with wearers to decode their needs, master fit preferences, and study the market's pulse.",
+    desc: "Safwan Khan began not in a factory, but on the streets. Sourcing and delivering curated thobes, he engaged directly with wearers to decode their needs, master fit preferences, and study the market's pulse.",
     img: "THE SEED",
     src: "/assets/reel_7.png",
   },
   {
     year: "Crafting",
     title: "The Master's Touch",
-    desc: "To guarantee uncompromising quality, Safwan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia.",
+    desc: "To guarantee uncompromising quality, Safwan Khan established an in-house manufacturing unit, bringing on board master tailors with over 20 years of experience crafting premium thobes in Saudi Arabia.",
     img: "THE MASTER ARTISANS",
     src: "/assets/reel_6.png",
   },

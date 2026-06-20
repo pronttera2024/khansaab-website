@@ -52,7 +52,7 @@ export const BRAND = {
   established: 2014,
   copyright: `© ${new Date().getFullYear()} KhanSaab collection. All rights reserved.`,
   description:
-    "Heritage menswear rooted in Indian craftsmanship — designed in Pune, hand-finished by master tailors of Old Hyderabad. Established 2014.",
+    "Premium thobes rooted in authentic Saudi tailoring — designed in Pune, hand-finished by master tailors with over 20 years of experience in Saudi Arabia. Established 2025.",
 };
 
 export const WHATSAPP_MESSAGES = {
